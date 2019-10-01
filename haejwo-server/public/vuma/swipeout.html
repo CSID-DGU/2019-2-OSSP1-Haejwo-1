@@ -1,0 +1,370 @@
+<template>
+	<div class="page">
+		<!-- navbar -->
+		<div class="navbar navbar-page">
+			<div class="navbar-inner sliding">
+				<div class="left">
+					<a href="#" class="link back">
+						<i class="icon icon-back"></i>
+						<span class="if-not-md">Back</span>
+					</a>
+				</div>
+				<div class="title">
+					Swipeout
+				</div>
+			</div>
+		</div>
+		<!-- end navbar -->
+
+		<div class="page-content">
+			<div class="segments-page">
+				<div class="container">
+					
+					<!-- swipeout -->
+
+					<div class="wrap-title wrap-title-first">
+						<h3>Swipe Right to Delete</h3>
+					</div>
+
+					<div class="list list-box">
+						<ul>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people1.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Caldwell Bard</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people2.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Mick Merton</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people3.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Obie Patton</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="wrap-title">
+						<h3>Swipe to Delete With Confirm</h3>
+					</div>
+
+					<div class="list list-box">
+						<ul>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people4.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Caldwell Bard</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete" data-confirm="Are you sure you want to delete this contact?">Delete</a>
+								</div>
+							</li>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people5.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Mick Merton</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete" data-confirm="Are you sure you want to delete this contact?">Delete</a>
+								</div>
+							</li>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people6.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Obie Patton</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete" data-confirm="Are you sure you want to delete this contact?">Delete</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="wrap-title">
+						<h3>Swipe to Delete With Confirm</h3>
+					</div>
+
+					<div class="list list-box">
+						<ul>
+							<li class="swipeout" @swipeout:deleted="onDeleted">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people1.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Caldwell Bard</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+							<li class="swipeout" @swipeout:deleted="onDeleted">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people2.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Mick Merton</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+							<li class="swipeout" @swipeout:deleted="onDeleted">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people3.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Obie Patton</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- end swipeout -->
+
+					<div class="wrap-title">
+						<h3>Swipe Left to Delete</h3>
+					</div>
+
+					<div class="list list-box">
+						<ul>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people4.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Caldwell Bard</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-left">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people5.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Mick Merton</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-left">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+							<li class="swipeout">
+								<div class="item-content swipeout-content">
+									<div class="item-media">
+										<img src="images/people6.png" alt="">
+									</div>
+									<div class="item-inner">
+										<div class="item-title">Obie Patton</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-left">
+									<a href="#" class="swipeout-delete">Delete</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- end swipeout -->
+
+					<div class="wrap-title">
+						<h3>Wishlist With Swipeout</h3>
+					</div>
+
+					<div class="list list-box">
+						<ul>
+							<li class="swipeout wishlist-on-swipeout">
+								<div class="item-content swipeout-content">
+									<div class="row">
+										<div class="col-25">
+											<div class="content-image">
+												<img src="images/wishlist1.jpg" alt="">
+											</div>
+										</div>
+										<div class="col-50">
+											<div class="content-text">
+												<a href="#">
+													<p>Anti-hot motorcycle gloves. Import</p>
+												</a>
+											</div>
+										</div>
+										<div class="col-25">
+											<div class="content-info">
+												<span class="price">$22.00</span>
+												<span class="wishlist-status">Availabe</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-left">
+									<a href="#" @click="showToastBottom">
+										<i class="fas fa-shopping-cart"></i>
+									</a>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">
+										<i class="fas fa-trash"></i>
+									</a>
+								</div>
+							</li>
+							<li class="swipeout wishlist-on-swipeout">
+								<div class="item-content swipeout-content">
+									<div class="row">
+										<div class="col-25">
+											<div class="content-image">
+												<img src="images/wishlist2.jpg" alt="">
+											</div>
+										</div>
+										<div class="col-50">
+											<div class="content-text">
+												<a href="#">
+													<p>Anti-hot motorcycle gloves. Import</p>
+												</a>
+											</div>
+										</div>
+										<div class="col-25">
+											<div class="content-info">
+												<span class="price">$30.00</span>
+												<span class="wishlist-status">Availabe</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-left">
+									<a href="#" @click="showToastBottom">
+										<i class="fas fa-shopping-cart"></i>
+									</a>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">
+										<i class="fas fa-trash"></i>
+									</a>
+								</div>
+							</li>
+							<li class="swipeout wishlist-on-swipeout">
+								<div class="item-content swipeout-content">
+									<div class="row">
+										<div class="col-25">
+											<div class="content-image">
+												<img src="images/wishlist3.jpg" alt="">
+											</div>
+										</div>
+										<div class="col-50">
+											<div class="content-text">
+												<a href="#">
+													<p>Anti-hot motorcycle gloves. Import</p>
+												</a>
+											</div>
+										</div>
+										<div class="col-25">
+											<div class="content-info">
+												<span class="price">$41.00</span>
+												<span class="wishlist-status status-sold">SOLD</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="swipeout-actions-left">
+									<a href="#" @click="showToastBottom">
+										<i class="fas fa-shopping-cart"></i>
+									</a>
+								</div>
+								<div class="swipeout-actions-right">
+									<a href="#" class="swipeout-delete">
+										<i class="fas fa-trash"></i>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- end swipeout -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+	return {
+		methods: {
+			showToastBottom: function () {
+				var self = this;
+        // Create toast
+        if (!self.toastBottom) {
+        	self.toastBottom = self.$app.toast.create({
+        		text: 'Product Added to Cart',
+        		closeTimeout: 1500,
+        	});
+        }
+        // Open it
+        self.toastBottom.open();
+    },
+
+    onDeleted: function () {
+    	var app = this.$app;
+    	app.dialog.alert('Contact Removed');
+    },
+
+},
+on: {
+	pageBeforeOut: function () {
+		var self = this;
+		self.$app.toast.close();
+	},
+	pageBeforeRemove: function () {
+		var self = this;
+        // Destroy toasts when page removed
+        if (self.toastBottom) self.toastBottom.destroy();
+    },
+}
+}
+</script>

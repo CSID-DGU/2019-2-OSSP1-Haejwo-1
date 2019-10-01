@@ -1,0 +1,28 @@
+<template>
+  <% toolbar_state = current_page?('/') || (params['main'] == 'true') ? '' : 'no-toolbar' %>
+  <div class="page <%= toolbar_state %>" data-name="<%= data_name %><%= Time.now.to_i %>">
+    <%= yield %>
+  </div>
+</template>
+<style>
+  <%= yield :style %>
+</style>
+<script>
+  return {
+    created: function() {
+      <%= yield :created %>
+    },
+    mounted: function() {
+      <%= yield :mounted %>
+    },
+    on: {
+      pageInit: function(e) {
+        window.history.pushState('forward', null, '/#' + '<%= data_name %>');
+        <%= yield :init %>
+      },
+      pageAfterIn: function() {
+        <%= yield :afterin %>
+      }
+    }
+  }
+</script>

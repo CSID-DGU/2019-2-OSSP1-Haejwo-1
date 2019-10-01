@@ -1,0 +1,103 @@
+<template>
+	<div class="page">
+		<!-- navbar -->
+		<div class="navbar navbar-page">
+			<div class="navbar-inner sliding">
+				<div class="left">
+					<a href="#" class="link back">
+						<i class="icon icon-back"></i>
+						<span class="if-not-md">Back</span>
+					</a>
+				</div>
+				<div class="title">
+					Lazy Load
+				</div>
+			</div>
+		</div>
+		<!-- end navbar -->
+		<div class="page-content">
+
+			<!-- lazy load -->
+			<div class="segments-page">
+				<div class="container">
+					<div class="content-box lazy-loading">
+						<img data-src="images/lazy-load1.jpg" alt="" class="lazy lazy-fade-in demo-lazy">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sunt, sit quod autem! Necessitatibus esse rerum maiores numquam quo culpa doloribus repudiandae, adipisci consequuntur eveniet? Temporibus at nulla corporis omnis.</p>
+					</div>
+
+					<div class="divider-space"></div>
+
+					<div class="content-box lazy-loading">
+						<img data-src="images/lazy-load2.jpg" alt="" class="lazy lazy-fade-in demo-lazy">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sunt, sit quod autem! Necessitatibus esse rerum maiores numquam quo culpa doloribus repudiandae, adipisci consequuntur eveniet? Temporibus at nulla corporis omnis.</p>
+					</div>
+
+					<div class="divider-space"></div>
+
+					<div class="content-box lazy-loading">
+						<img data-src="images/lazy-load3.jpg" alt="" class="lazy lazy-fade-in demo-lazy">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sunt, sit quod autem! Necessitatibus esse rerum maiores numquam quo culpa doloribus repudiandae, adipisci consequuntur eveniet? Temporibus at nulla corporis omnis.</p>
+					</div>
+
+					<div class="divider-space"></div>
+
+					<div class="content-box lazy-loading">
+						<img data-src="images/lazy-load4.jpg" alt="" class="lazy lazy-fade-in demo-lazy">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sunt, sit quod autem! Necessitatibus esse rerum maiores numquam quo culpa doloribus repudiandae, adipisci consequuntur eveniet? Temporibus at nulla corporis omnis.</p>
+					</div>
+
+					<div class="divider-space"></div>
+
+					<div class="content-box lazy-loading">
+						<img data-src="images/lazy-load2.jpg" alt="" class="lazy lazy-fade-in demo-lazy">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sunt, sit quod autem! Necessitatibus esse rerum maiores numquam quo culpa doloribus repudiandae, adipisci consequuntur eveniet? Temporibus at nulla corporis omnis.</p>
+					</div>
+
+					<div class="divider-space"></div>
+
+					<div class="content-box lazy-loading">
+						<img data-src="images/lazy-load3.jpg" alt="" class="lazy lazy-fade-in demo-lazy">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sunt, sit quod autem! Necessitatibus esse rerum maiores numquam quo culpa doloribus repudiandae, adipisci consequuntur eveniet? Temporibus at nulla corporis omnis.</p>
+					</div>
+
+					<div class="divider-space"></div>
+
+					<div class="content-box lazy-loading">
+						<img data-src="images/lazy-load1.jpg" alt="" class="lazy lazy-fade-in demo-lazy">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sunt, sit quod autem! Necessitatibus esse rerum maiores numquam quo culpa doloribus repudiandae, adipisci consequuntur eveniet? Temporibus at nulla corporis omnis.</p>
+					</div>
+
+					<div class="divider-space"></div>
+
+					<div class="content-box lazy-loading">
+						<img data-src="images/lazy-load4.jpg" alt="" class="lazy lazy-fade-in demo-lazy">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sunt, sit quod autem! Necessitatibus esse rerum maiores numquam quo culpa doloribus repudiandae, adipisci consequuntur eveniet? Temporibus at nulla corporis omnis.</p>
+					</div>
+				</div>
+			</div>
+			<!-- end lazy load -->
+
+		</div>
+
+	</div>
+</template>
+
+<script>
+	return {
+		data: function () {
+		},
+		methods: {
+		},
+		on: {
+			lazyLoad: function (el) {
+				console.log(el);
+			},
+			lazyLoaded: function (el) {
+				console.log(el);
+			},
+			lazyError: function (el) {
+				console.log(el);
+			},
+		}
+	}
+</script>
