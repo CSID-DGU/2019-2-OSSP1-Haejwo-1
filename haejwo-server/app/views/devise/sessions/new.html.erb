@@ -1,0 +1,43 @@
+<%= render 'shared/navbar', title: '로그인', back: true %>
+
+<div class="page-content">
+  <div class="block">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="list no-hairlines custom-form contact-form">
+        <ul>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-input-wrap">
+                <%= f.email_field :email, autocomplete: "email", placeholder: "이메일" %>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-input-wrap">
+                <%= f.password_field :password, autocomplete: "current-password", placeholder: "비밀번호" %>
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="margin-bottom">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, "로그인 정보 기억하기" %>
+        </div>
+        <%= f.submit "로그인", class: "big-button button button-fill link margin-bottom", id: 'submit-button' %>
+        <%= link_to "회원가입", new_user_registration_path, class: "big-button button button-outline w-100" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= content_for :init do %>
+$$('#submit-button').on('click', function(){
+  app.preloader.show();
+  setTimeout(function(){
+    app.preloader.hide();
+  }, 2000);
+});
+<% end %>
