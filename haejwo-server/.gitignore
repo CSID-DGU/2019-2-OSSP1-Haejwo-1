@@ -5,25 +5,25 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/haejwo-server/.bundle
+/.bundle
 
 # Ignore all logfiles and tempfiles.
-/haejwo-server/log/*
-/haejwo-server/tmp/*
-!/haejwo-server/log/.keep
-!/haejwo-server/tmp/.keep
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
 
 # Ignore uploaded files in development
-/haejwo-server/storage/*
-!/haejwo-server/storage/.keep
+/storage/*
+!/storage/.keep
 
-/haejwo-server/node_modules
-/haejwo-server/yarn-error.log
+/node_modules
+/yarn-error.log
 
-/haejwo-server/public/uploads
-/haejwo-server/public/assets
-/haejwo-server/public/uploads
+/public/uploads
+/public/assets
+/public/uploads
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
-/haejwo-server/config/master.key
+/config/master.key
