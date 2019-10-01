@@ -1,243 +1,270 @@
 package kr.rails;
 
-import android.Manifest;
-import android.annotation.TargetApi;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
+import java.io.File;
 import android.app.Activity;
-import android.os.Message;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.CookieManager;
+import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebSettings.PluginState;
 import android.widget.Toast;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
+import android.annotation.TargetApi;
+import android.support.v4.content.FileProvider;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import android.text.TextUtils;
 
-import java.io.File;
-import java.net.URISyntaxException;
 
-public class MainActivity extends AppCompatActivity {
-    kr.rails.VideoEnabledWebView mWebView; // 웹뷰 선언
-    private String mUrl = "https://rails.kr?platform=android";
-    private Uri cameraImageUri = null;
 
-    public ValueCallback<Uri> filePathCallbackNormal;
-    public ValueCallback<Uri[]> filePathCallbackLollipop;
+public class MainActivity extends Activity {
+
+    //private Button button;
+    private WebView webView;
+    final Activity activity = this;
+    public Uri imageUri;
+
+    private static final int FILECHOOSER_RESULTCODE   = 2888;
+    private ValueCallback<Uri> mUploadMessage;
+    public ValueCallback<Uri[]> mFilePathCallback;
+    private Uri mCapturedImageURI = null;
     public final static int FILECHOOSER_NORMAL_REQ_CODE = 2001;
     public final static int FILECHOOSER_LOLLIPOP_REQ_CODE = 2002;
+    private Uri cameraImageUri = null;
+    private String mCameraPhotoPath;
+    private static final String TYPE_IMAGE = "image/*";
+    public static final int INPUT_FILE_REQUEST_CODE = 1;
 
-    private static final String TAG = MainActivity.class.getSimpleName();
 
-//    public void setUserId(String userId) {
-//        String token = BaseUtil.getStringPref(getApplicationContext(), "token", "");
-//        Log.d("DEVICE TOKEN", userId + " " + token);
-//
-//        if (token != "") {
-//            new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/" + userId + "/token?token=" + token + "&device_type=android");
-//        }
-//    }
+    public void onCreate(Bundle savedInstanceState) {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        // 웹뷰 시작
-        mWebView = (kr.rails.VideoEnabledWebView) findViewById(R.id.webView);
-        final WebSettings mWebSettings = mWebView.getSettings();
+        //Get webview
+        webView = (kr.rails.VideoEnabledWebView) findViewById(R.id.webView);
 
-        mWebView.setWebViewClient(new WebViewClient()); // 클릭시 새창 안뜨게
-        mWebSettings.setJavaScriptEnabled(true); // 웹페이지 자바스크립트 허용 여부
-        mWebSettings.setSupportMultipleWindows(false); // 새창 띄우기 허용 여부
-        mWebSettings.setJavaScriptCanOpenWindowsAutomatically(false); // 자바스크립트 새창 띄우기(멀티뷰) 허용 여부
-        mWebSettings.setLoadWithOverviewMode(true); // 메타태그 허용 여부
-        mWebSettings.setUseWideViewPort(true); // 화면 사이즈 맞추기 허용 여부
-        mWebSettings.setSupportZoom(false); // 화면 줌 허용 여부
-        mWebSettings.setBuiltInZoomControls(false); // 화면 확대 축소 허용 여부
-        mWebSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN); // 컨텐츠 사이즈 맞추기
-        mWebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); // 브라우저 캐시 허용 여부
-        mWebSettings.setDomStorageEnabled(true); // 로컬저장소 허용 여부
-        mWebSettings.setAllowFileAccessFromFileURLs(true);
-        mWebSettings.setAllowUniversalAccessFromFileURLs(true);
-
-        CookieManager cookieManager = CookieManager.getInstance();
-        cookieManager.setAcceptCookie(true);
-
-        final int sdk = android.os.Build.VERSION.SDK_INT;
-        if(sdk >= Build.VERSION_CODES.LOLLIPOP) {
-            Log.d(TAG, "onCreate: lollipop");
-            mWebSettings.setMixedContentMode(mWebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-            cookieManager.setAcceptThirdPartyCookies(mWebView, true);
-        } else {
-            Log.d(TAG, "onCreate: not lollipop");
-        }
-
-//        if (!BaseUtil.getBoolPref(this, "pushChecked", false)) {
-//            BaseUtil.makeAlert(this, "마케팅 수신 동의", "앱 전용 혜택, 실시간 할인 정보 등의 유용한 정보를 받아보시겠습니까", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    BaseUtil.setBoolPref(MainActivity.this, "push", true);
-//                }
-//            }, new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    BaseUtil.setBoolPref(MainActivity.this, "push", false);
-//                }
-//            }, R.string.yes, R.string.no);
-//            BaseUtil.setBoolPref(this, "pushChecked", true);
-//        }
+        // Define url that will open in webview
+        String webViewUrl = "https://rails.kr?platform=android";
 
 
 
-        View nonVideoLayout = findViewById(R.id.nonVideoLayout); // Your own view, read class comments
-        ViewGroup videoLayout = (ViewGroup)findViewById(R.id.videoLayout); // Your own view, read class comments
-        //noinspection all
-        View loadingView = getLayoutInflater().inflate(R.layout.view_loading_video, null);
+        // Javascript inabled on webview
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setSupportMultipleWindows(false);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false); // 자바스크립트 새창 띄우기(멀티뷰) 허용 여부
 
-//        mWebView.addJavascriptInterface(new WebAppInterface(MainActivity.this), "Android");
-        mWebView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        kr.rails.VideoEnabledWebChromeClient webClient = new kr.rails.VideoEnabledWebChromeClient(nonVideoLayout, videoLayout, loadingView, mWebView) {
-            @Override
-            public boolean onJsAlert(WebView view, String url, String message, final android.webkit.JsResult result)
-            {
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("알림 메시지")
-                        .setMessage(message)
-                        .setPositiveButton(android.R.string.ok,
-                                new AlertDialog.OnClickListener()
-                                {
-                                    public void onClick(DialogInterface dialog, int which)
-                                    {
-                                        result.confirm();
-                                    }
-                                })
-                        .setCancelable(false)
-                        .create()
-                        .show();
+        // Other webview options
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
 
+        //Other webview settings
+        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        webView.setScrollbarFadingEnabled(false);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setPluginState(PluginState.ON);
+        webView.getSettings().setDomStorageEnabled(true); // 로컬저장소 허용 여부
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setCacheMode(webView.getSettings().LOAD_NO_CACHE);
+
+        //Load url in webview
+        webView.loadUrl(webViewUrl);
+
+        checkVerify();
+
+        // Define Webview manage classes
+        startWebView();
+
+    }
+
+    private void startWebView() {
+
+
+
+        // Create new webview Client to show progress dialog
+        // Called When opening a url or click on link
+        // You can create external class extends with WebViewClient
+        // Taking WebViewClient as inner class
+
+        webView.setWebViewClient(new WebViewClient() {
+            ProgressDialog progressDialog;
+
+            //If you will not use this method url links are open in new brower not in webview
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+                // Check if Url contains ExternalLinks string in url
+                // then open url in new browser
+                // else all webview links will open in webview browser
+
+
+                // Stay within this webview and load url
+                view.loadUrl(url);
                 return true;
+
+
             }
 
-            public void openFileChooser( ValueCallback<Uri> uploadMsg) {
-                Log.d("MainActivity", "3.0 <");
-                openFileChooser(uploadMsg, "");
-            }
 
-            // For Android 3.0+
-            public void openFileChooser( ValueCallback<Uri> uploadMsg, String acceptType) {
-                Log.d("MainActivity", "3.0+");
-                MainActivity.this.filePathCallbackNormal = uploadMsg;
-                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-                i.addCategory(Intent.CATEGORY_OPENABLE);
-                i.setType("image/*");
-                MainActivity.this.startActivityForResult(Intent.createChooser(i, "File Chooser"), MainActivity.this.FILECHOOSER_NORMAL_REQ_CODE);
-            }
 
-            // For Android 4.1+
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
-                Log.d("MainActivity", "4.1+");
-                openFileChooser(uploadMsg, acceptType);
-            }
+            //Show loader on url load
+            public void onLoadResource (WebView view, String url) {
 
-            // For Android 5.0+
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            public boolean onShowFileChooser(
-                    WebView webView, ValueCallback<Uri[]> filePathCallback,
-                    FileChooserParams fileChooserParams) {
-                Log.d("MainActivity", "5.0+");
+                // if url contains string androidexample
+                // Then show progress  Dialog
+                if (progressDialog == null && url.contains("any Text If you want")
+                ) {
 
-                // Callback 초기화 (중요!)
-                if (filePathCallbackLollipop != null) {
-                    filePathCallbackLollipop.onReceiveValue(null);
-                    filePathCallbackLollipop = null;
+                    // in standard case YourActivity.this
+                    progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setMessage("Loading...");
+                    progressDialog.show();
                 }
-                filePathCallbackLollipop = filePathCallback;
-
-                boolean isCapture = fileChooserParams.isCaptureEnabled();
-                runCamera(isCapture);
-                return true;
             }
 
-            @Override
-            public boolean onCreateWindow(WebView view, boolean isDialog,
-                                          boolean isUserGesture, Message resultMsg) {
-                WebView targetWebView = new WebView(MainActivity.this); // pass a context
-                WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-                transport.setWebView(targetWebView);
-                resultMsg.sendToTarget();
-                return true;
-            }
-        };
+            // Called when all page resources loaded
+            public void onPageFinished(WebView view, String url) {
 
-        mWebView.setWebChromeClient(webClient);
-        mWebView.setWebViewClient(new WebViewClient() {
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-                //여기서 URL 바뀔 때 원하는 동작 하면 된다
-//                if(url.contains("http://lifecoach.insomenia.com/conversations")){
-//                    Util.getInstance().setIgnorePushFlag(true);
-//                }else{
-//                    Util.getInstance().setIgnorePushFlag(false);
-//                }
+                try{
+                    // Close progressDialog
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                        progressDialog = null;
+                    }
+                }catch(Exception exception){
+                    exception.printStackTrace();
+                }
             }
+
         });
 
 
-        mWebView.loadUrl(mUrl); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
-        checkVerify();
+        // You can create external class extends with WebChromeClient
+        // Taking WebViewClient as inner class
+        // we will define openFileChooser for select file from camera or sdcard
+
+        webView.setWebChromeClient(new WebChromeClient() {
+
+            // For Android Version < 3.0
+            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
+                //System.out.println("WebViewActivity OS Version : " + Build.VERSION.SDK_INT + "\t openFC(VCU), n=1");
+                mUploadMessage = uploadMsg;
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType(TYPE_IMAGE);
+                startActivityForResult(intent, INPUT_FILE_REQUEST_CODE);
+            }
+
+            // For 3.0 <= Android Version < 4.1
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
+                //System.out.println("WebViewActivity 3<A<4.1, OS Version : " + Build.VERSION.SDK_INT + "\t openFC(VCU,aT), n=2");
+                openFileChooser(uploadMsg, acceptType, "");
+            }
+
+            // For 4.1 <= Android Version < 5.0
+            public void openFileChooser(ValueCallback<Uri> uploadFile, String acceptType, String capture) {
+                Log.d(getClass().getName(), "openFileChooser : "+acceptType+"/"+capture);
+                mUploadMessage = uploadFile;
+                imageChooser();
+            }
+
+
+            // For Android Version 5.0+
+            public boolean onShowFileChooser(WebView webView,
+                                             ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+                System.out.println("WebViewActivity A>5, OS Version : " + Build.VERSION.SDK_INT + "\t onSFC(WV,VCUB,FCP), n=3");
+                if (mFilePathCallback != null) {
+                    mFilePathCallback.onReceiveValue(null);
+                }
+                mFilePathCallback = filePathCallback;
+                imageChooser();
+                return true;
+            }
+
+
+            // The webPage has 2 filechoosers and will send a
+            // console message informing what action to perform,
+            // taking a photo or updating the file
+
+            public boolean onConsoleMessage(ConsoleMessage cm) {
+
+                onConsoleMessage(cm.message(), cm.lineNumber(), cm.sourceId());
+                return true;
+            }
+
+            public void onConsoleMessage(String message, int lineNumber, String sourceID) {
+                //Log.d("androidruntime", "Show console messages, Used for debugging: " + message);
+
+            }
+        });   // End setWebChromeClient
+
     }
 
-    private void runCamera(boolean _isCapture)
-    {
-        Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        File path = getFilesDir();
-        File file = new File(path, "image.png");
-        // File 객체의 URI 를 얻는다.
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-        {
-            String strpa = getApplicationContext().getPackageName();
-//            cameraImageUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".fileprovider", file);
-            cameraImageUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", file);
+
+// Return here when file selected from camera or from SDcard
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == INPUT_FILE_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                if (mFilePathCallback == null) {
+                    super.onActivityResult(requestCode, resultCode, data);
+                    return;
+                }
+                Uri[] results = new Uri[]{getResultUri(data)};
+
+                mFilePathCallback.onReceiveValue(results);
+                mFilePathCallback = null;
+            } else {
+                if (mUploadMessage == null) {
+                    super.onActivityResult(requestCode, resultCode, data);
+                    return;
+                }
+                Uri result = getResultUri(data);
+
+                Log.d(getClass().getName(), "openFileChooser : "+result);
+                mUploadMessage.onReceiveValue(result);
+                mUploadMessage = null;
+            }
+        } else {
+            if (mFilePathCallback != null) mFilePathCallback.onReceiveValue(null);
+            if (mUploadMessage != null) mUploadMessage.onReceiveValue(null);
+            mFilePathCallback = null;
+            mUploadMessage = null;
+            super.onActivityResult(requestCode, resultCode, data);
         }
-        else
-        {
-            cameraImageUri = Uri.fromFile(file);
+    }
+
+// Open previous opened link from history on webview when back button pressed
+
+    @Override
+// Detect when the back button is pressed
+    public void onBackPressed() {
+
+        if(webView.canGoBack()) {
+
+            webView.goBack();
+
+        } else {
+            // Let the system handle the back button
+            super.onBackPressed();
         }
-        Log.d("RUN CAMERA", cameraImageUri.toString());
-        intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, cameraImageUri);
-
-        Intent pickIntent = new Intent(Intent.ACTION_PICK);
-        pickIntent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-        pickIntent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-        String pickTitle = "사진 가져올 방법을 선택하세요.";
-        Intent chooserIntent = Intent.createChooser(pickIntent, pickTitle);
-
-        // 카메라 intent 포함시키기..
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Parcelable[]{intentCamera});
-        startActivityForResult(chooserIntent, FILECHOOSER_LOLLIPOP_REQ_CODE);
     }
 
 
@@ -268,151 +295,83 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == 1)
-        {
-            if (grantResults.length > 0)
-            {
-                for (int i=0; i<grantResults.length; ++i)
-                {
-                    if (grantResults[i] == PackageManager.PERMISSION_DENIED)
-                    {
-                        // 하나라도 거부한다면.
-                        new AlertDialog.Builder(this).setTitle("알림").setMessage("권한을 허용해주셔야 앱을 이용할 수 있습니다.")
-                                .setPositiveButton("종료", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        finish();
-                                    }
-                                }).setNegativeButton("권한 설정", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                                        .setData(Uri.parse("package:" + getApplicationContext().getPackageName()));
-                                getApplicationContext().startActivity(intent);
-                            }
-                        }).setCancelable(false).show();
-
-                        return;
-                    }
-                }
-                //Toast.makeText(this, "Succeed Read/Write external storage !", Toast.LENGTH_SHORT).show();
-                //startApp();
+    private void imageChooser() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+                takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                Log.e(getClass().getName(), "Unable to create Image File", ex);
             }
-        }
-    }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        switch (requestCode)
-        {
-            case FILECHOOSER_NORMAL_REQ_CODE:
-                if (resultCode == RESULT_OK)
-                {
-                    Log.d("ACTIVITY RESULT", "파일 첨부");
-                    if (filePathCallbackNormal == null) return;
-                    Uri result = (data == null || resultCode != RESULT_OK) ? null : data.getData();
-                    filePathCallbackNormal.onReceiveValue(result);
-                    filePathCallbackNormal = null;
-                }
-                break;
-            case FILECHOOSER_LOLLIPOP_REQ_CODE:
-                if (resultCode == RESULT_OK)
-                {
-                    if (filePathCallbackLollipop == null) return;
-                    if (data == null)
-                        data = new Intent();
-                    if (data.getData() == null)
-                        data.setData(cameraImageUri);
-                    Log.d("ACTIVITY RESULT", "롤리팝 파일 첨부" + cameraImageUri.toString());
-
-                    filePathCallbackLollipop.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data));
-                    filePathCallbackLollipop = null;
-                }
-                else
-                {
-                    if (filePathCallbackLollipop != null)
-                    {
-                        filePathCallbackLollipop.onReceiveValue(null);
-                        filePathCallbackLollipop = null;
-                    }
-
-                    if (filePathCallbackNormal != null)
-                    {
-                        filePathCallbackNormal.onReceiveValue(null);
-                        filePathCallbackNormal = null;
-                    }
-                }
-                break;
-            default:
-
-                break;
-        }
-
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-
-    public class BackPressCloseHandler {
-
-        private long backKeyPressedTime = 0;
-        private Toast toast;
-        private Activity activity;
-
-        public BackPressCloseHandler(Activity context) {
-            this.activity = context;
-        }
-
-        public void onBackPressed() {
-            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-                backKeyPressedTime = System.currentTimeMillis();
-                showGuide();
-                return;
-            }
-            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-                activity.finish();
-                toast.cancel();
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                mCameraPhotoPath = "file:"+photoFile.getAbsolutePath();
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+            } else {
+                takePictureIntent = null;
             }
         }
 
-        public void showGuide() {
-            toast = Toast.makeText(activity, "뒤로 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
-            toast.show();
+        Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        contentSelectionIntent.setType(TYPE_IMAGE);
+        contentSelectionIntent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        Intent[] intentArray;
+        if(takePictureIntent != null) {
+            intentArray = new Intent[]{takePictureIntent};
+        } else {
+            intentArray = new Intent[0];
         }
 
+        String pickTitle = "사진 가져올 방법을 선택하세요.";
+        Intent chooserIntent = Intent.createChooser(contentSelectionIntent, pickTitle);
+
+        // 카메라 intent 포함시키기..
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
+        startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE);
+
     }
 
 
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File imageFile = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        return imageFile;
+    }
 
-    BackPressCloseHandler backPressCloseHandler = new BackPressCloseHandler(this);
-
-
-    @Override
-    public void onBackPressed() {
-        if (mWebView.getOriginalUrl().equalsIgnoreCase(mUrl)) {
-            backPressCloseHandler.onBackPressed();
-        }else if(mWebView.canGoBack()){
-            mWebView.goBack();
-        }else{
-            super.onBackPressed();
+    private Uri getResultUri(Intent data) {
+        Uri result = null;
+        if(data == null || TextUtils.isEmpty(data.getDataString())) {
+            // If there is not data, then we may have taken a photo
+            if(mCameraPhotoPath != null) {
+                result = Uri.parse(mCameraPhotoPath);
+            }
+        } else {
+            String filePath = "";
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                filePath = data.getDataString();
+            } else {
+                filePath = "file:" + RealPathUtil.getRealPath(this, data.getData());
+            }
+            result = Uri.parse(filePath);
         }
+
+        return result;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        registerReceivers();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        unregisterReceivers();
-    }
 }
