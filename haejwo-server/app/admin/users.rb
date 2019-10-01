@@ -14,10 +14,14 @@ ActiveAdmin.register User do
     column :image do |user|
       image_tag(user.thumbnail_url ,class: 'admin-index-image')
     end
+    column :image do |user|
+      image_tag(user.student_card_image_url, class: 'admin-index-image')
+    end
     column :email
     column :sign_in_count
     column :name
     column :phone
+
     column :created_at
     actions
   end
@@ -30,9 +34,6 @@ ActiveAdmin.register User do
       row :email
       row :name
       row :phone
-      row :address1
-      row :address2
-      row :zipcode
 
       row :created_at
       row :updated_at

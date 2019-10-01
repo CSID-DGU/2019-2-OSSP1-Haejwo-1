@@ -22,6 +22,7 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :student_card_image
     end
     f.actions
   end

@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: :update
 
   def mypage
+    name = :name
+    email = :email
+    phone = :phone
   end
 
   def update
@@ -9,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def thumbnail_params
     params.require(:user).permit(:thumbnail)
   end
