@@ -1,0 +1,278 @@
+<template>
+	<div class="page">
+		<!-- navbar -->
+		<div class="navbar navbar-page">
+			<div class="navbar-inner sliding">
+				<div class="left">
+					<a href="#" class="link back">
+						<i class="icon icon-back"></i>
+						<span class="if-not-md">Back</span>
+					</a>
+				</div>
+				<div class="title">
+					Product Details
+				</div>
+			</div>
+		</div>
+		<!-- end navbar -->
+		<div class="page-content">
+
+			<!-- product details -->
+			<div class="segments-page">
+				<div class="container">
+
+					<div class="product-details">
+						<div class="wrap-action">
+							<div class="row">
+								<div class="col-15">
+									<div class="content-icon">
+										<a href="#" @click="addWishlit"><i class="fas fa-heart"></i></a>
+									</div>
+								</div>
+								<div class="col-15">
+									<div class="content-icon">
+										<a href="#" @click="addCart"><i class="fas fa-shopping-cart"></i></a>
+									</div>
+								</div>
+								<div class="col-15">
+									<div class="content-icon">
+										<a href="#" class="link popup-open" data-popup=".popup-grid"><i class="fas fa-share-alt"></i></a>
+									</div>
+								</div>
+								<div class="col-55">
+									<div class="content-button">
+										<button class="buttons">Buy Now $29</button>
+									</div>
+								</div>
+							</div>
+
+							<div class="share-popup">
+								<div class="popup popup-grid">
+									<div class="row">
+										<div class="col-33">
+											<div class="content">
+												<a href="#"><i class="fab fa-facebook-f"></i></a>
+											</div>
+										</div>
+										<div class="col-33">
+											<div class="content">
+												<a href="#"><i class="fab fa-twitter"></i></a>
+											</div>
+										</div>
+										<div class="col-33">
+											<div class="content">
+												<a href="#"><i class="fab fa-google"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="header-image">
+							<div class="swiper-container swiper-init demo-swiper" data-slides-per-view="auto" data-space-between="10" data-centered-slides="false">
+								<div class="swiper-wrapper swiper-overlap">
+									<div class="swiper-slide">
+										<img src="images/product1.jpg" alt="">
+									</div>
+									<div class="swiper-slide">
+										<img src="images/product2.jpg" alt="">
+									</div>
+									<div class="swiper-slide">
+										<img src="images/product3.jpg" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="divider-space"></div>
+						<div class="product-title">
+							<h4>Hoodie Pullover Men Long Sleeves</h4>
+							<span class="price">$29</span>
+						</div>
+
+						<div class="wrap-title">
+							<h3>Description</h3>
+						</div>
+						<div class="product-description">
+							<div class="content-box">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus a voluptate ad mollitia porro eius, quidem at quae minima voluptates.</p>
+								<div class="divider-space-text"></div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, quisquam.</p>
+							</div>
+						</div>
+
+						<div class="wrap-title">
+							<h3>Product Information</h3>
+						</div>
+						<div class="product-information">
+							<div class="content-box">
+								<ul>
+									<li>Condition
+										<span>New</span>
+									</li>
+									<li>Weight
+										<span>100 gr</span>
+									</li>
+									<li>Categories
+										<span>Fashion</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="wrap-title">
+							<h3>Product Details</h3>
+						</div>
+						<div class="details-information">
+							<div class="content-box">
+								<ul>
+									<li>Material
+										<span>Cotton</span>
+									</li>
+									<li>Color
+										<span>Multi</span>
+									</li>
+									<li>Machine Wash
+										<span>Machine Cold</span>
+									</li>
+									<li>Status
+										<span>Local Product</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="divider-space"></div>
+						<div class="author-store content-box">
+							<a href="#">
+								<img src="images/user.png" alt="">
+								<div class="title-name">
+									<h4>Doe Complete Store</h4>
+									<span>New York</span>
+								</div>
+							</a>
+						</div>
+
+						<div class="wrap-title">
+							<h3>Review</h3>
+						</div>
+						<div class="content-box">
+							<div class="product-review">
+								<img src="images/people1.png" alt="">
+								<div class="content-text">
+									<h5>Gery</h5>
+									<span>3 minute ago</span>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, temporibus?</p>
+								</div>
+							</div>
+							<div class="divider-space"></div>
+							<div class="product-review">
+								<img src="images/people2.png" alt="">
+								<div class="content-text">
+									<h5>Gery</h5>
+									<span>3 minute ago</span>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, temporibus?</p>
+								</div>
+							</div>
+
+							<div class="divider-space"></div>
+							<div class="product-review">
+								<img src="images/people3.png" alt="">
+								<div class="content-text">
+									<h5>Gery</h5>
+									<span>3 minute ago</span>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, temporibus?</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="wrap-title">
+							<h3>Leave a Reply</h3>
+						</div>
+						<div class="comment-form">
+							<form class="list no-hairlines-md list-box">
+								<ul>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-title item-label">Name</div>
+											<div class="item-input-wrap">
+												<input type="text" placeholder="Enter your name">
+												<span class="input-clear-button"></span>
+											</div>
+										</div>
+									</li>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-title item-label">Email</div>
+											<div class="item-input-wrap">
+												<input type="email" placeholder="Enter your email">
+												<span class="input-clear-button"></span>
+											</div>
+										</div>
+									</li>
+									<li class="item-content item-input">
+										<div class="item-inner">
+											<div class="item-title item-label">Comment</div>
+											<div class="item-input-wrap">
+												<textarea placeholder="Enter your comment here"></textarea>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</form>
+							<button class="buttons">Send Comment</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- end product details -->
+
+		</div>
+
+	</div>
+</template>
+
+<script>
+	return {
+		methods: {
+			addWishlit: function () {
+				var self = this;
+        		// Create toast
+        		if (!self.toastWishlist) {
+        			self.toastWishlist = self.$app.toast.create({
+        				text: 'Product Added to Wishlist',
+        				closeTimeout: 1500,
+        			});
+        		}
+        		// Open it
+        		self.toastWishlist.open();
+        	},
+
+        	addCart: function () {
+        		var self = this;
+        		// Create toast
+        		if (!self.toastCart) {
+        			self.toastCart = self.$app.toast.create({
+        				text: 'Product Added to Cart',
+        				closeTimeout: 1500,
+        			});
+        		}
+        		// Open it
+        		self.toastCart.open();
+        	},
+
+        },
+        on: {
+        	pageBeforeOut: function () {
+        		var self = this;
+        		self.$app.toast.close();
+        	},
+        	pageBeforeRemove: function () {
+        		var self = this;
+        // Destroy toasts when page removed
+        if (self.toastBottom) self.toastBottom.destroy();
+    },
+}
+}
+</script>

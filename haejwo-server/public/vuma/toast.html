@@ -1,0 +1,158 @@
+<template>
+	<div class="page">
+		<!-- navbar -->
+		<div class="navbar navbar-page">
+			<div class="navbar-inner sliding">
+				<div class="left">
+					<a href="#" class="link back">
+						<i class="icon icon-back"></i>
+						<span class="if-not-md">Back</span>
+					</a>
+				</div>
+				<div class="title">
+					Toast
+				</div>
+			</div>
+		</div>
+		<!-- end navbar -->
+
+		<div class="page-content">
+			<div class="segments-page">
+				<div class="container">
+
+					<!-- toast -->
+					<div class="content-box toast-wrapper">
+						<a href="#" @click="showToastBottom" class="buttons">
+							Toast on Bottom
+						</a>
+
+						<div class="divider-space"></div>
+
+						<a href="#" @click="showToastTop" class="buttons">
+							Toast on Top
+						</a>
+
+						<div class="divider-space"></div>
+
+						<a href="#" @click="showToastCenter" class="buttons">
+							Toast on Center
+						</a>
+
+						<div class="divider-space"></div>
+
+						<a href="#" @click="showToastIcon" class="buttons">
+							Toast With Icon
+						</a>
+
+						<div class="divider-space"></div>
+
+						<a href="#" @click="showToastWithButton" class="buttons">
+							Toast With Close Button
+						</a>
+
+						<div class="divider-space"></div>
+
+						<a href="#" @click="showToastWithCallback" class="buttons">
+							Toast With Callback on Close
+						</a>
+					</div>
+					<!-- end toast -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+	return {
+		methods: {
+			showToastBottom: function () {
+				var self = this;
+		        // Create toast
+		        if (!self.toastBottom) {
+		        	self.toastBottom = self.$app.toast.create({
+		        		text: 'Toast Bottom - Default',
+		        		closeTimeout: 1500,
+		        	});
+		        }
+		        // Open it
+		        self.toastBottom.open();
+		    },
+
+		    showToastTop: function () {
+		    	var self = this;
+		        // Create toast
+		        if (!self.toastTop) {
+		        	self.toastTop = self.$app.toast.create({
+		        		text: 'Toast Top',
+		        		position: 'top',
+		        		closeTimeout: 1500,
+		        	});
+		        }
+		        // Open it
+		        self.toastTop.open();
+		    },
+
+		    showToastCenter: function () {
+		    	var self = this;
+		        // Create toast
+		        if (!self.toastCenter) {
+		        	self.toastCenter = self.$app.toast.create({
+		        		text: 'Toast Center',
+		        		position: 'center',
+		        		closeTimeout: 1500,
+		        	});
+		        }
+		        // Open it
+		        self.toastCenter.open();
+		    },
+
+		    showToastIcon: function () {
+		    	var self = this;
+		        // Create toast
+		        if (!self.toastIcon) {
+		        	self.toastIcon = self.$app.toast.create({
+		        		icon: self.$theme.ios || self.$theme.aurora ? '<i class="fas fa-bell"></i>' : '<i class="material-icons">star</i>',
+		        		text: 'Toast With Icon',
+		        		position: 'center',
+		        		closeTimeout: 1500,
+		        	});
+		        }
+		        // Open it
+		        self.toastIcon.open();
+		    },
+
+		    showToastWithButton: function () {
+		    	var self = this;
+		        // Create toast
+		        if (!self.toastWithButton) {
+		        	self.toastWithButton = self.$app.toast.create({
+		        		text: 'Toast Wit Button Close',
+		        		closeButton: true,
+		        		closeButtonText: 'Close',
+		        	});
+		        }
+		        // Open it
+		        self.toastWithButton.open();
+		    },
+
+		    showToastWithCallback: function () {
+		    	var self = this;
+		        // Create toast
+		        if (!self.toastWithCallback) {
+		        	self.toastWithCallback = self.$app.toast.create({
+		        		text: 'Toast With Callback on Close',
+		        		closeButton: true,
+		        		on: {
+		        			close: function () {
+		        				self.$app.dialog.alert('Toast closed');
+		        			},
+		        		}
+		        	});
+		        }
+		        // Open it
+		        self.toastWithCallback.open();
+		    },
+		},
+	}
+</script>

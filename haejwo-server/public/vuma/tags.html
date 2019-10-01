@@ -1,0 +1,277 @@
+<template>
+	<div class="page">
+		<!-- navbar -->
+		<div class="navbar navbar-page">
+			<div class="navbar-inner sliding">
+				<div class="left">
+					<a href="#" class="link back">
+						<i class="icon icon-back"></i>
+						<span class="if-not-md">Back</span>
+					</a>
+				</div>
+				<div class="title">
+					Chips / Tags
+				</div>
+			</div>
+		</div>
+		<!-- end navbar -->
+		<div class="page-content">
+
+			<!-- chips or tags -->
+			<div class="segments-page">
+				<div class="container">
+
+					<div class="wrap-title wrap-title-first">
+						<h3>Simple Tags</h3>
+					</div>
+
+					<!-- simple tags -->
+					<div class="content-box">
+						<div class="chip">
+							<div class="chip-label">Tag One</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Two</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Three</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Four</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Five</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Six</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Vuma</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Eight</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Nine</div>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Tag Ten</div>
+						</div>
+					</div>
+					<!-- end simple tags -->
+
+					<div class="wrap-title">
+						<h3>Outline Tags</h3>
+					</div>
+
+					<!-- outline tags -->
+					<div class="content-box">
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag One</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Two</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Three</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Four</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Five</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Six</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Vuma</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Eight</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Nine</div>
+						</div>
+						<div class="chip chip-outline">
+							<div class="chip-label">Tag Ten</div>
+						</div>
+					</div>
+					<!-- endoutline tags -->
+
+					<div class="wrap-title">
+						<h3>Tags With Icon</h3>
+					</div>
+
+					<!-- tags with icon -->
+					<div class="content-box">
+						<div class="chip chip-icon">
+							<div class="chip-media">
+								<i class="fas fa-bell"></i>
+							</div>
+							<div class="chip-label">Notification</div>
+						</div>
+						<div class="chip chip-icon">
+							<div class="chip-media">
+								<i class="fas fa-heart"></i>
+							</div>
+							<div class="chip-label">Like</div>
+						</div>
+						<div class="chip chip-icon">
+							<div class="chip-media">
+								<i class="fas fa-comment"></i>
+							</div>
+							<div class="chip-label">Comment</div>
+						</div>
+						<div class="chip chip-icon">
+							<div class="chip-media">
+								<i class="fas fa-upload"></i>
+							</div>
+							<div class="chip-label">Upload</div>
+						</div>
+						<div class="chip chip-icon">
+							<div class="chip-media">
+								<i class="fas fa-bookmark"></i>
+							</div>
+							<div class="chip-label">Bookmark</div>
+						</div>
+						<div class="chip chip-icon">
+							<div class="chip-media">
+								<i class="fas fa-times"></i>
+							</div>
+							<div class="chip-label">Close</div>
+						</div>
+					</div>
+					<!-- end tags with icon -->
+
+					<div class="wrap-title">
+						<h3>Contact Chip</h3>
+					</div>
+					<!-- contact chip -->
+					<div class="content-box">
+						<div class="chip contact-chip">
+							<div class="chip-media">
+								<img src="images/people1.png" alt="">
+							</div>
+							<div class="chip-label">John Doe</div>
+						</div>
+						<div class="chip contact-chip">
+							<div class="chip-media">
+								<img src="images/people2.png" alt="">
+							</div>
+							<div class="chip-label">Jack Doe</div>
+						</div>
+						<div class="chip contact-chip">
+							<div class="chip-media bg-color-blue">
+								T
+							</div>
+							<div class="chip-label">Theo Frade</div>
+						</div>
+						<div class="chip contact-chip">
+							<div class="chip-media bg-color-green">
+								A
+							</div>
+							<div class="chip-label">Andy Smith</div>
+						</div>
+						<div class="chip contact-chip">
+							<div class="chip-media bg-color-pink">
+								E
+							</div>
+							<div class="chip-label">Elly Queen</div>
+						</div>
+					</div>
+					<!-- end contact chip -->
+
+					<div class="wrap-title">
+						<h3>Delete Chip</h3>
+					</div>
+					<!-- delete chip -->
+					<div class="content-box">
+						<div class="chip">
+							<div class="chip-label">Notification</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">John Doe</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Design</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Graphic</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Mockup</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Color</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Laptop</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">LED</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">Mouse</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+						<div class="chip">
+							<div class="chip-label">CEO</div><a href="#" class="chip-delete" @click="deleteChip"></a>
+						</div>
+					</div>
+					<!-- end delete chip -->
+
+					<div class="wrap-title">
+						<h3>Color Tags</h3>
+					</div>
+					<!-- color tags -->
+					<div class="content-box">
+						<div class="chip color-red">
+							<div class="chip-label">Red</div>
+						</div>
+						<div class="chip color-blue">
+							<div class="chip-label">Blue</div>
+						</div>
+						<div class="chip color-green">
+							<div class="chip-label">Green</div>
+						</div>
+						<div class="chip color-orange">
+							<div class="chip-label">Orange</div>
+						</div>
+						<div class="chip color-pink">
+							<div class="chip-label">Pink</div>
+						</div>
+						<div class="chip color-yellow">
+							<div class="chip-label">Yellow</div>
+						</div>
+						<div class="chip color-purple">
+							<div class="chip-label">Purple</div>
+						</div>
+						<div class="chip color-teal">
+							<div class="chip-label">Teal</div>
+						</div>
+						<div class="chip color-lime">
+							<div class="chip-label">Lime</div>
+						</div>
+					</div>
+					<!-- end color tags -->
+				</div>
+			</div>
+			<!-- end chips or tags -->
+
+		</div>
+
+	</div>
+</template>
+<script>
+	return {
+		methods: {
+			deleteChip(e) {
+				var $ = this.$;
+				var app = this.$app;
+				app.dialog.confirm('Do you want to delete this tiny demo Chip?', function () {
+					$(e.target).parents('.chip').remove();
+				});
+			}
+		}
+	}
+</script>

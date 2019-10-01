@@ -1,0 +1,295 @@
+ko:
+  attributes:
+    id: ID
+    user: 사용자
+    name: 이름
+    email: 이메일
+    phone: 전화번호
+    password: 비밀번호
+    password_confirmation: 비밀번호 확인
+    address1: 기본주소
+    address2: 상세주소
+    zipcode: 우편번호
+    summary: 요약 설명
+    description: 상세 설명
+    note: 메모
+    bank_account: 계좌번호
+    title: 제목
+    body: 내용
+    item: 상품
+    quantity: 수량
+    total: 총 금액
+    state: 상태
+    order_number: 주문 번호
+    paid_at: 결제 시간
+    cancelled_at: 결제 취소 시간
+    payment_method: 결제 방법
+    expires_at: "만료 시간"
+    image: "이미지"
+    position: "순서"
+    birthday: "생년월일"
+    created_at: "생성된 시간"
+    updated_at: "수정된 시간"
+    deleted_at: "삭제된 시간"
+    reserve_at: "예약 시간"
+    reserved_at: "예약 시간"
+    price: "가격"
+    amount: "상품수량"
+    conversation_type: "코칭종류"
+    start_at: "시작시간"
+    end_at: "종료시간"
+    status: "상태"
+    status_str: "상태"
+    review: "리뷰"
+    level: 등급
+    coupon_rule: "쿠폰규칙"
+    number: "번호"
+    used: "사용됨"
+    url: "URL"
+    current_sign_in_at: "최근 로그인"
+    sign_in_count: "로그인 횟수"
+    object_type: "타입"
+    is_private: "비공개"
+    publish_date: "공개일"
+    view_count: 조회수
+    title: 제목
+    content: 내용
+    remark: 비고
+    holder: 예금주
+
+  activerecord:
+    attributes:
+      user:
+        account_type: 계정타입
+        point: 적립금
+      item:
+        sale_rate: 할인율
+        category: 카테고리
+        real_price: 실제판매가격
+        name: 상품명
+        nation: 원산지
+        dp_name: 상품명-목록
+        dp_image: 상품이미지-목록
+        Lprice: 달러정가
+        Sprice: 달러판매가
+        description: 상품상세정보
+        maker: 제조사
+        shipping_fee: 배송비
+        stock_yes: 재고여부
+        view_yes: 보이기 여부
+        delete_yes: 삭제 여부
+        brand: 브랜드
+      option:
+        name: 옵션명
+        additional_price: 추가금액
+      category:
+        title: 카테고리명
+      order:
+        name: 주문자명
+        phone: 사용자전화번호
+        quantity: 주문상품 수량
+        deposit_user_name: 무통장입금자명
+        point: 적립금사용
+        total: 총결제금액
+        total_without_shipping: 배송비제외 결제금액
+      line_item:
+        price: 상품가격
+        option: 옵션
+      refund:
+        order: 주문
+        total: 환불 총액
+        point: 환불 포인트
+
+      post:
+        content: 내용
+      comment:
+        user: 작성자
+        body: 내용
+      qna:
+        parent: 질문글
+        user: 사용자
+        is_secret: 비밀글여부
+      notice:
+        position: 순서
+      faq:
+        title: 질문
+        content: 대답
+      banner:
+        title: 배너타이틀
+        content: 배너내용
+        path: 배너경로
+        image: 배너 이미지
+      point_history:
+        amount: 포인트
+        state: 형태
+        created_at: 시간
+      delivery:
+        order: 주문
+        brand: 브랜드
+        state: 배송 상태
+        shipping_fee: 배송비
+        shipping_number: 운송장 번호
+        delivery_number: 배송번호
+        total: 배송상품 총금액
+      brand:
+        name_ko: 한글 브랜드명
+        country_name: 국가
+        country_name_ko: 한글 국가
+        promotion: 프로모션
+        name: 브랜드명
+        image: 브랜드 이미지
+        shipping_fee: 배송비용
+        free_standard: 무료배송기준
+        exchange_fee: 교환비용
+        return_fee: 반송비용
+        delivery_brand: 배송사
+        jeju_fee: 제주지역 배송비
+        land_fee: 산간지역 배송비
+        shipping_fee_type: 배송비타입
+      bank:
+        name: 은행명
+        holder: 예금주
+        number: 계좌번호
+      magazine:
+        subtitle: 부제목
+        start_date: 시작날짜
+        end_date: 종료날짜
+        category: 카테고리
+
+
+
+    models:
+      dashboard: 대시보드
+      user: "사용자"
+      admin_user: 어드민
+      brand: 브랜드
+      category: 카테고리
+      item: 상품
+      line_item: 주문상품
+      option: 옵션
+      order: 주문
+      refund: 환불
+      delivery: 배송
+      post_comment: 댓글
+      post_image: 게시글 이미지
+      qna: Q&A
+      notice: 공지사항
+      faq: FAQ
+      banner: 배너
+
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "항목이 비어있습니다"
+            gender: "성별"
+            birthday: "생일"
+            allow_email: "이메일수신"
+            allow_sms: "SMS수신"
+            birthday:
+              blank: "항목이 비어있습니다"
+            phone: "휴대폰번호"
+            phone:
+              blank: "항목이 비어있습니다"
+            password: "비밀번호"
+            password:
+              blank: "항목이 비어있습니다"
+            username: "닉네임"
+            username:
+              blank: "항목이 비어있습니다"
+            email:
+              blank: "항목이 비어있습니다"
+            gender:
+              blank: "항목이 비어있습니다"
+            company:
+              blank: "항목이 비어있습니다"
+            job:
+              blank: "항목이 비어있습니다"
+
+
+  enum:
+    item:
+      state:
+        active: 활성
+        disabled: 비활성
+        sold_out: 품절
+    order:
+      state:
+        cart: 장바구니
+        direct: 바로주문
+        ready: 입금 대기
+        paid: 결제완료
+        complete: 구매확정
+        cancel: 주문취소
+        request_cancel: 취소요청
+        partial_cancel: 부분취소
+        error: 결제오류
+        checked: 결제확인
+        before_delivery: 상품준비중
+      payment_method:
+        card: 카드
+        vbank: 가상계좌
+        deposit: 무통장 입금
+        all: 전체
+    user:
+      role: 구분
+      account_type:
+        default: 일반유저
+        kakao: 카카오
+        facebook: 페이스북
+        naver: 네이버
+    pointhistory:
+      state:
+        accumulate: 적립
+        usage: 사용
+        rollback: 차감
+        refund: 환불
+    qna:
+      state:
+        item: 상품문의
+        delivery: 배송문의
+        return: 반품문의
+        exchange: 교환문의
+        change_cancel: 주문변경/취소문의
+        check: 입금확인문의
+    delivery:
+      state:
+        ready: 배송준비
+        shipping: 배송중
+        complete: 배송완료
+        total: 배송상품총액
+    brand:
+      shipping_fee_type:
+        fixed: 고정 배송비
+        conditional: 조건부 무료배송
+        free: 무료배송
+
+  time:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%Y-%m-%d"
+      long: "%Y-%m-%d %H:%M"
+  date:
+    month_names:
+    -
+    - 1월
+    - 2월
+    - 3월
+    - 4월
+    - 5월
+    - 6월
+    - 7월
+    - 8월
+    - 9월
+    - 10월
+    - 11월
+    - 12월
+    formats:
+      default: "%Y-%m-%d"
+      short: "%Y-%m-%d"
+      long: "%Y-%m-%d"
+    order:
+      - :year
+      - :month
+      - :day

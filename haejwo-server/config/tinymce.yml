@@ -1,0 +1,18 @@
+relative_urls : false
+remove_script_host : false
+convert_urls : true
+
+height: 700
+
+branding: false
+
+toolbar:
+  - styleselect fontselect fontsizeselect | bold italic | undo redo media link | uploadimage | codesample | alignleft aligncenter alignright | charmap
+plugins:
+  - link
+  - uploadimage
+  - codesample
+  - charmap
+  - media
+
+icons: material
