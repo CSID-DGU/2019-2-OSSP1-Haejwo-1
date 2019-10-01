@@ -1,7 +1,3 @@
-# YUI 템플릿 확인
-
-http://localhost:3000/yui/
-
 # master.key 다시 생성하기
 
 프로젝트 처음 생성한 후
