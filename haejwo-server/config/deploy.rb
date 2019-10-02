@@ -3,8 +3,9 @@ lock "~> 3.11.0"
 
 
 
-set :application, "haejwo"
-set :repo_url, "git@github.com:CSID-DGU/2019-2-OSSP1-Haejwo-1.git/haejwo-server"
+set :application, 'haejwo'
+set :repo_url, 'git@github.com:CSID-DGU/2019-2-OSSP1-Haejwo-1.git'
+set :repo_tree, 'haejwo-server'
 set :deploy_to, '/home/deploy/haejwo'
 
 append :linked_files, "config/master.key"
