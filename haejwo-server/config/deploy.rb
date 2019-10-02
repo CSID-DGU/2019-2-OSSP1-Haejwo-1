@@ -11,8 +11,6 @@ set :deploy_to, '/home/deploy/haejwo'
 append :linked_files, 'config/master.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
 
-before "deploy:assets:precompile" do
-  run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-end
+before "deploy:assets:precompile", "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 ## 배포 후 쓰이지 않는 gem 정리
 after 'deploy:published', 'bundler:clean'
