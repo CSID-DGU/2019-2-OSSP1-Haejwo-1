@@ -15,6 +15,8 @@
 - [Google Maps API](https://developers.google.com/maps/documentation)
 - [Sendgrid API](https://sendgrid.com/docs/API_Reference/api_getting_started.html)
 - [FireBase](https://firebase.google.com/)
+- [Kakao Rest API](https://developers.kakao.com/docs/restapi)
+- [Facebook Rest API](https://developers.facebook.com/docs/facebook-login/web?locale=ko_KR)
 
 ## 팀원
 - [장성원(팀장)](https://github.com/godwon2095)  
