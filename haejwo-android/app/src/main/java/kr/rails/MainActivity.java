@@ -25,6 +25,7 @@ import android.annotation.TargetApi;
 import android.support.v4.content.FileProvider;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import android.text.TextUtils;
 
@@ -295,6 +296,8 @@ public class MainActivity extends Activity {
         }
     }
 
+
+
     private void imageChooser() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -318,10 +321,8 @@ public class MainActivity extends Activity {
             }
         }
 
-        Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
-        contentSelectionIntent.setType(TYPE_IMAGE);
-        contentSelectionIntent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent contentSelectionIntent = new Intent(Intent.ACTION_PICK);
+        contentSelectionIntent.setType(MediaStore.Images.Media.CONTENT_TYPE);
 
         Intent[] intentArray;
         if(takePictureIntent != null) {
@@ -373,5 +374,4 @@ public class MainActivity extends Activity {
 
         return result;
     }
-
 }
