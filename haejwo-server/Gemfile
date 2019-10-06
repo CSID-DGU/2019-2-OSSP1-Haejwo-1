@@ -13,6 +13,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'faker'
 gem 'exception_notification'
+gem 'cancancan'
 
 gem 'sendgrid-actionmailer'
 gem 'carrierwave'

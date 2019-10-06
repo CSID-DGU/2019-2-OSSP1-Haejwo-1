@@ -11,8 +11,7 @@ class User < ApplicationRecord
     thumbnail.url.present? ? thumbnail.url : '/vuma/images/profile.png'
   end
 
-
-  def student_card_image
+  def student_card_image_url
     student_card_image.url.present? ? student_card_image.url : '/vuma/images/profile.png'
   end
 
