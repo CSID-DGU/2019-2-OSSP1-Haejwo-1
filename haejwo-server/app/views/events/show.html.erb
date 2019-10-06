@@ -1,0 +1,114 @@
+<%= render 'shared/navbar_nomenu', title: '심부름 상세보기', back: true %>
+
+
+	<div class="page-content">
+
+		<!-- order-history -->
+		<div class="segments-page">
+			<div class="container">
+
+				<div class="order-history">
+					<div class="accordion">
+						<div class="list accordion-list">
+							<ul>
+								<li class="accordion-item accordion-item-opened list-box">
+									<a href="#" class="item-content item-link">
+										<div class="item-inner">
+											<div class="item-title"><%= @event.title %>
+												<span><% if @event.state == 'matching' %><i class="fas fa-check"></i><% end %></span>
+											</div>
+										</div>
+									</a>
+									<div class="accordion-item-content">
+										<div class="row">
+											<div class="col-30">
+												<div class="content">
+													<span>작성자</span>
+												</div>
+											</div>
+											<div class="col-70">
+												<div class="content">
+													<span><%= @event.user.name %></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-30">
+												<div class="content">
+													<span>상태</span>
+												</div>
+											</div>
+											<div class="col-70">
+												<div class="content">
+													<span><%= @event.state %></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-30">
+												<div class="content">
+													<span>보상금액</span>
+												</div>
+											</div>
+											<div class="col-70">
+												<div class="content">
+													<span class="price"><%= @event.reward %>원</span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-30">
+												<div class="content">
+													<span>심부름 받을 위치</span>
+												</div>
+											</div>
+											<div class="col-70">
+												<div class="content">
+													<span><%= @event.place %> <%= @event.detail_place %></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-30">
+												<div class="content">
+													<span>제한시간</span>
+												</div>
+											</div>
+											<div class="col-70">
+												<div class="content">
+													<span class="price"><%= @event.time_limit.strftime("%Y-%m-%d %H:%M") %>까지</span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<button class="buttons">심부름 수행하기</button>
+										</div>
+
+										<% if @event.user == current_user %>
+											<div class="row">
+												<div class="col">
+													<%= link_to "글 수정하기", edit_event_path(@event), class: "button button-outline-ios" %>
+												</div>
+												<div class="col">
+													<%= link_to "글 삭제하기", event_path(@event), method: :delete, class: "button button-outline-ios" %>
+												</div>
+											</div>
+										<% end %>
+
+									</div>
+								</li>
+
+								<li class="divider-space-text"></li>
+
+
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- end order-history -->
+
+	</div>

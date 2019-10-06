@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/mypage' => 'users#mypage'
 
   resources :users, only: :update
-  resources :events, only: %i[index new show]
+  resources :events
   resources :maps, only: :index
   resources :notifications
 
