@@ -15,6 +15,7 @@ ActiveAdmin.setup do |config|
     admin.build_menu do |menu|
       menu.add label: '사용자관리', priority: 1
       menu.add label: '사이트관리', priority: 2
+      menu.add label: '인증관리', priority: 3
     end
   end
 

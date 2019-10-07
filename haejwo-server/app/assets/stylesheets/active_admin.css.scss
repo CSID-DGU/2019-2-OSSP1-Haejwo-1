@@ -2,3 +2,8 @@ $am-theme-primary: #94D439;
 @import 'activeadmin_addons/all';
 @import 'activeadmin_addons/material';
 @import 'imageviewer';
+
+.admin-index-image {
+  width: 100px;
+  height: 100px;
+}
