@@ -7,6 +7,8 @@ class User < ApplicationRecord
   mount_uploader :thumbnail, ImageUploader
   mount_uploader :student_card_image, ImageUploader
 
+  has_many :events, dependent: :destroy
+
   def thumbnail_url
     thumbnail.url.present? ? thumbnail.url : '/vuma/images/profile.png'
   end
