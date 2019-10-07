@@ -46,4 +46,12 @@ ActiveAdmin.register User do
       row :encrypted_password
     end
   end
+
+  form do |f|
+    f.inputs do
+      f.input :email
+      f.input :gender
+      f.input :status
+    end
+  end
 end
