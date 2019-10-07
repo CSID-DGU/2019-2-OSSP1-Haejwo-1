@@ -49,36 +49,6 @@
 
         <li class="item-content item-input">
           <div class="item-inner">
-            <%= f.label :zipcode, '우편번호*', class: 'item-title item-label' %>
-            <div class="item-input-wrap row">
-              <div class="col-50 zipcode-col">
-                <%= f.text_field :zipcode, readonly: true %>
-              </div>
-              <div class="col-50 zipcode-col">
-                <button type="button" id="zipcode-btn" class="button button-outline">검색</button>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="item-content item-input">
-          <div class="item-inner">
-            <%= f.label :address1, '주소*', class: 'item-title item-label' %>
-            <div class="item-input-wrap">
-              <%= f.text_field :address1, readonly: true %>
-            </div>
-          </div>
-        </li>
-        <li class="item-content item-input">
-          <div class="item-inner">
-            <%= f.label :address2, '상세주소', class: 'item-title item-label' %>
-            <div class="item-input-wrap">
-              <%= f.text_field :address2 %>
-            </div>
-          </div>
-        </li>
-
-        <li class="item-content item-input">
-          <div class="item-inner">
             <%= f.label :password, '비밀번호*', class: 'item-title item-label' %>
             <div class="item-input-wrap">
               <%= f.password_field :password, autocomplete: "new-password", required: true %>
@@ -96,6 +66,15 @@
           </div>
         </li>
 
+        <li class="item-content item-input">
+          <div class="item-inner">
+            <%= f.label :student_card_image, '학생증 확인', class: 'item-title item-label' %>
+            <div class="item-input-wrap">
+              <%= f.file_field :student_card_image %>
+              <label for="thumbnail-new" class="icon-upload"><i class="fas fa-camera"></i></label>
+            </div>
+          </div>
+        </li>
         <div class="divider-space"></div>
 
         <div id="terms_of_services">
