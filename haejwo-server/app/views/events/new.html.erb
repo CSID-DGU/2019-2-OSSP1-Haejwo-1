@@ -1,69 +1,29 @@
-<%= render 'shared/navbar_nomenu', title: '심부름생성', back: true %>
+<div class="navbar no-shadow">
+  <div class="navbar-inner">
+    <div class="left">
+      <a href="#" id="popup-close-button">
+        <i class="icon fas fa-times"></i>
+      </a>
+    </div>
+    <div class="title">심부름 생성</div>
+  </div>
+</div>
+
 
 <div class="page-content">
   <div class="segments-page">
     <div class="container">
 
       <div class="content-box">
-        <form class="list no-hairlines-md" action="/events" method="POST">
-          <ul>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-floating-label">글제목</div>
-                <div class="item-input-wrap">
-                  <input type="text" name="title" placeholder="글제목" required>
-                  <span class="input-clear-button"></span>
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-floating-label">심부름 받을 건물</div>
-                <div class="item-input-wrap">
-                  <input type="text" name="place" placeholder="건물이름" required>
-                  <span class="input-clear-button"></span>
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-floating-label">상세위치</div>
-                <div class="item-input-wrap">
-                  <input type="text" name="detail_place" placeholder="층수, 강의실 등">
-                  <span class="input-clear-button"></span>
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-label">보상금액</div>
-                <div class="item-input-wrap">
-                  <input type="number" name="reward" value="0" min="0" step="100" required>
-                  <span class="input-clear-button"></span>
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-label">제한시간</div>
-                <div class="item-input-wrap">
-                  <input type="datetime-local" name="time_limit" placeholder="Choose" required>
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-floating-label">심부름 내용</div>
-                <div class="item-input-wrap">
-                  <textarea placeholder="내용을 입력하세요..." name="content" required></textarea>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <input type="submit" class="button button-fill-ios button-w-icon button-full" value="심부름 요청하기">
-        </form>
+        <%= render 'form' %>
       </div>
 
     </div>
   </div>
 </div>
+
+<%= content_for :init do %>
+$$('#popup-close-button').click(function(){
+  app.popup.close();
+});
+<% end %>

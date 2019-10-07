@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  # before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 	before_action :load_event, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -12,12 +12,7 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		@user = User.first
-		@event = Event.new(set_params)
-		@event.user = @user
-		@event.save
-
-		redirect_to event_path(@event)
+		@event = current_user.events.create!(set_params)
 	end
 
 	# 심부름 상세보기
@@ -30,7 +25,6 @@ class EventsController < ApplicationController
 
 	def update
 		@event.update!(set_params)
-		redirect_to event_path(@event)
 	end
 
 	# 심부름 삭제

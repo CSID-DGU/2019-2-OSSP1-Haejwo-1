@@ -37,11 +37,17 @@
       <div class="views tabs">
         <div class="toolbar tabbar tabbar-labels toolbar-bottom no-shadow">
           <div class="toolbar-inner">
-            <a href="#home-tab" class="tab-link"><i class="icon fas fa-home"></i><span class="tabbar-label">홈</span></a>
+            <a href="#home-tab" class="tab-link tab-link-active"><i class="icon fas fa-home"></i><span class="tabbar-label">홈</span></a>
             <a href="#map-tab" class="tab-link"><i class="icon fas fa-map"></i><span class="tabbar-label">학교지도</span></a>
-            <a href="<%= new_event_path %>" class="tab-link" id="create-event-button"><i class="far fa-plus-square" id="create-errand"></i></a>
-            <a href="#noti-chat-tab" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
-            <a href="#mypage" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
+            <% if user_signed_in? %>
+              <a href="#" class="tab-link" id="create-event-popup-button"><i class="far fa-plus-square" id="create-errand"></i></a>
+              <a href="#noti-chat-tab" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
+              <a href="#mypage" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
+            <% else %>
+            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link"><i class="far fa-plus-square" id="create-errand"></i></a>
+            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
+            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
+            <% end %>
           </div>
         </div>
         <div class="panel panel-right panel-cover">
@@ -87,10 +93,13 @@
 
         <div class="view tab tab-active view-main view-init" id="home-tab" data-url="<%= root_path %>&main=true"></div>
         <div class="view tab view-init" id="map-tab" data-url="<%= maps_path %>&main=true"></div>
-        <div class="view tab view-init" id="mypage" data-url="<%= mypage_path %>&main=true"></div>
-        <%# if user_signed_in? %>
+        <% if user_signed_in? %>
+          <div class="view tab view-init" id="mypage" data-url="<%= mypage_path %>&main=true"></div>
           <div class="view tab view-init" id="noti-chat-tab" data-url="<%= notifications_path %>&main=true"></div>
-        <%# end %>
+          <div class="popup popup-show">
+            <div class="view view-init" data-url="<%= new_event_path %>?main=true"></div>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -108,15 +117,26 @@
           xhrCache: false,
           stackPages: true,
           pushState: false,
-        }
+        },
+        lazy: {
+          threshold: 50,
+          sequential: false,
+        },
+        dialog: {
+          buttonOk: '확인',
+          buttonCancel: '취소',
+          touch: {
+            disableContextMenu: false,
+          }
+        },
       });
 
       $$(".panel a").on("click", function(){
        app.tab.show(`#${$$(".view-main").prop("id")}`);
       });
 
-      $$('#create-event-button').on('click', function(){
-        app.tab.show(`#${$$(".view-main").prop("id")}`);
+      $$('#create-event-popup-button').click(function(){
+        app.popup.open(".popup-show");
       });
 
       $$('#sign-out-button').on('click', function(){

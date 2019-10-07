@@ -73,3 +73,18 @@
   line-height: 40px;
   color: #94D439;
 }
+
+.popup {
+  padding: 0;
+}
+
+img.demo-lazy {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+div.demo-lazy {
+  background: #aaa;
+  background-size: cover;
+  height: 60vw;
+}

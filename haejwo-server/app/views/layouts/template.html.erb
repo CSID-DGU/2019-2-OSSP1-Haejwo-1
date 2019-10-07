@@ -18,6 +18,20 @@
     on: {
       pageInit: function(e) {
         window.history.pushState('forward', null, '/#' + '<%= data_name %>');
+        var notice = '<%= params[:notice] %>';
+        var splittedNotice = notice.split('+');
+        var joinedNotice = splittedNotice.join(' ');
+        if (notice !== '') {
+          const notificationFull = app.notification.create({
+            icon: '<i class="icon far fa-bell"></i>',
+            title: '알림',
+            titleRightText: '<%= Time.current %>',
+            subtitle: joinedNotice,
+            text: '',
+            closeTimeout: 1200,
+          });
+          notificationFull.open();
+        }
         <%= yield :init %>
       },
       pageAfterIn: function() {

@@ -1,11 +1,11 @@
-<%= form_for(@event) do |f| %>
+<%= form_for(@event, html: {class: 'list no-hairlines-md'}, remote: true) do |f| %>
   <ul>
     <li class="item-content item-input">
       <div class="item-inner">
         <div class="item-title item-floating-label">글제목</div>
         <div class="item-input-wrap">
           <!-- <input type="text" name="title" placeholder="글제목" required> -->
-          <%= f.text_field :title, placeholder: "글제목", required: true, autofocus: true %>
+          <%= f.text_field :title, placeholder: "글제목", autofocus: true %>
           <span class="input-clear-button"></span>
         </div>
       </div>
@@ -15,7 +15,7 @@
         <div class="item-title item-floating-label">심부름 받을 건물</div>
         <div class="item-input-wrap">
           <!-- <input type="text" name="place" placeholder="건물이름" required> -->
-          <%= f.text_field :place, placeholder: "건물이름", required: true %>
+          <%= f.text_field :place, placeholder: "건물이름" %>
           <span class="input-clear-button"></span>
         </div>
       </div>
@@ -35,7 +35,7 @@
         <div class="item-title item-label">보상금액</div>
         <div class="item-input-wrap">
           <!-- <input type="number" name="reward" value="0" min="0" step="1000" required> -->
-          <%= f.number_field :reward, min: 0, step: 100, required: true %>
+          <%= f.number_field :reward, min: 0, step: 100 %>
           <span class="input-clear-button"></span>
         </div>
       </div>
@@ -45,7 +45,7 @@
         <div class="item-title item-label">제한시간</div>
         <div class="item-input-wrap">
           <!-- <input type="datetime-local" name="time_limit" placeholder="Choose"> -->
-          <%= f.datetime_local_field :time_limit, required: true %>
+          <%= f.datetime_local_field :time_limit %>
         </div>
       </div>
     </li>
@@ -54,7 +54,7 @@
         <div class="item-title item-floating-label">심부름 내용</div>
         <div class="item-input-wrap">
           <!-- <textarea placeholder="내용을 입력하세요..." name="content" required></textarea> -->
-          <%= f.text_area :content, placeholder: "내용을 입력하세요...", required: true %>
+          <%= f.text_area :content, placeholder: "내용을 입력하세요..." %>
         </div>
       </div>
     </li>

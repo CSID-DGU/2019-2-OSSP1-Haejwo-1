@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "852723962329",
+    "firebase_url": "https://haejwo-93aec.firebaseio.com",
+    "project_id": "haejwo-93aec",
+    "storage_bucket": "haejwo-93aec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852723962329:android:7ac84ef8ec9981ec9ac9c8",
+        "android_client_info": {
+          "package_name": "kr.rails"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852723962329-4bqpqg18jd8jflrqd7o06scts3f2fp00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoGuZblqepprIyXF5sCu3194c3uWQQSz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852723962329-4bqpqg18jd8jflrqd7o06scts3f2fp00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852723962329:android:32d93adea473e8eb9ac9c8",
+        "android_client_info": {
+          "package_name": "kr.rails"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852723962329-4bqpqg18jd8jflrqd7o06scts3f2fp00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoGuZblqepprIyXF5sCu3194c3uWQQSz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852723962329-4bqpqg18jd8jflrqd7o06scts3f2fp00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -21,7 +21,7 @@
             <a href="">
               <div class="content-box">
                 <div class="user-forum">
-                  <img src='/vuma/images/profile.png' alt="">
+                  <img data-src="<%= event.user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
                   <div class="title-name">
                     <h4><%= event.user&.name %></h4>
                     <span><i class="fas fa-coins"></i> <%= event.reward %>원</span>
