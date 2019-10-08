@@ -18,7 +18,6 @@
       <div class="forum">
         <% if @events.present? %>
           <% @events.each do |event| %>
-            <%#= link_to event_path(event) do %>
               <div class="content-box">
                 <div class="user-forum">
                   <img data-src="<%= event.user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
@@ -38,7 +37,6 @@
               				</div>
                     <% elsif user_signed_in? && event.state == 'matching' %>
                       <%= link_to '내가 하기!', event_perform_path(event), method: :post, class: "button button-fill-ios", style: "float: right;" %>
-                      <!-- <button class="button button-fill-ios" style="float: right; width: 30%;">내가 하기!</button> -->
                     <% end %>
                     <div><h5><%= event.title %></h5></div>
                     <span><i class="fas fa-coins"></i> <%= event.reward %>원</span>
@@ -50,7 +48,6 @@
                   <a href="#"><h4><%= event.content %></h4></a>
                 </div>
               </div>
-            <%# end %>
 
             <div class="divider-space"></div>
           <% end %>
