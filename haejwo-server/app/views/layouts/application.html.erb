@@ -44,9 +44,9 @@
               <a href="#noti-chat-tab" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
               <a href="#mypage" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
             <% else %>
-            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link"><i class="far fa-plus-square" id="create-errand"></i></a>
-            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
-            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
+            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link navigate_to_login"><i class="far fa-plus-square" id="create-errand"></i></a>
+            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link navigate_to_login"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
+            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link navigate_to_login"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
             <% end %>
           </div>
         </div>
@@ -132,7 +132,11 @@
       });
 
       $$(".panel a").on("click", function(){
-       app.tab.show(`#${$$(".view-main").prop("id")}`);
+       app.tab.show('#home-tab');
+      });
+
+      $$(".navigate_to_login").click(function(){
+        app.tab.show('#home-tab');
       });
 
       $$('#create-event-popup-button').click(function(){
