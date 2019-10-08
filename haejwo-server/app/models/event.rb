@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   STATES = %i[matching matched]
 
   belongs_to :user
+  belongs_to :performer, class_name: "User", optional: true
 
   # validates :title, presence: true
   # validates :place, presence: true

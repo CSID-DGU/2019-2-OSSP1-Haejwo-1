@@ -18,22 +18,39 @@
       <div class="forum">
         <% if @events.present? %>
           <% @events.each do |event| %>
-            <a href="">
+            <%#= link_to event_path(event) do %>
               <div class="content-box">
                 <div class="user-forum">
                   <img data-src="<%= event.user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
                   <div class="title-name">
-                    <h4><%= event.user&.name %></h4>
+                    <span><%= event.user&.name %></span>
+                    <% if event.user == current_user %>
+                      <a href="#" class="link popover-open" data-popover=".popover-links" style="float: right;"><i class="fa fa-ellipsis-h"></i></a>
+                      <div class="popover popover-links event-popover">
+              					<div class="popover-inner">
+              						<div class="list simple-list">
+              							<ul>
+              								<li><%= link_to "수정", edit_event_path(event), class: "list-button item-link popover-close" %></li>
+              								<li><%= link_to "삭제", event_path(event), method: :delete, class: "list-button item-link popover-close" %></li>
+              							</ul>
+              						</div>
+              					</div>
+              				</div>
+                    <% elsif user_signed_in? && event.state == 'matching' %>
+                      <%= link_to '내가 하기!', event_perform_path(event), method: :post, class: "button button-fill-ios", style: "float: right;" %>
+                      <!-- <button class="button button-fill-ios" style="float: right; width: 30%;">내가 하기!</button> -->
+                    <% end %>
+                    <div><h5><%= event.title %></h5></div>
                     <span><i class="fas fa-coins"></i> <%= event.reward %>원</span>
-                    <span><i class='far fa-clock'></i> <%= event.time_limit.strftime("%Y-%m-%d %H:%M") %>까지</span><span><i class='fas fa-map-marker-alt'></i> <%= event.place %></span>
+                    <span><i class='far fa-clock'></i> <%= event.time_limit.strftime("%Y-%m-%d %H:%M") %>까지</span>
+                    <span><i class='fas fa-map-marker-alt'></i> <%= event.place %> <%= event.detail_place %></span>
                   </div>
                 </div>
                 <div class="content-text">
-                  <a href="#"><h5><%= event.content %></h5></a>
-                  <%= link_to 'more...', event_path(event) %>
+                  <a href="#"><h4><%= event.content %></h4></a>
                 </div>
               </div>
-            </a>
+            <%# end %>
 
             <div class="divider-space"></div>
           <% end %>

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/jbuilder.git
-  revision: 44bc207ff15fb9f0c1a58138b90122c0d300dff3
+  revision: fd65c7140d3142270d5723c6294c4c6cf035cadf
   branch: master
   specs:
     jbuilder (2.9.1)
@@ -405,4 +405,4 @@ RUBY VERSION
    ruby 2.6.4p104
 
 BUNDLED WITH
-   1.17.2
+   2.0.2

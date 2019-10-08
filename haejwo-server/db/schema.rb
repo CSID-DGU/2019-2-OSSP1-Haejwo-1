@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_065219) do
+ActiveRecord::Schema.define(version: 2019_10_08_044843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_10_07_065219) do
     t.integer "reward", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "performer_id"
+    t.index ["performer_id"], name: "index_events_on_performer_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -112,4 +114,5 @@ ActiveRecord::Schema.define(version: 2019_10_07_065219) do
   end
 
   add_foreign_key "events", "users"
+  add_foreign_key "events", "users", column: "performer_id"
 end

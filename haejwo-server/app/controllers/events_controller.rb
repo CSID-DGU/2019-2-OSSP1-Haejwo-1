@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-	before_action :load_event, only: [:show, :edit, :update, :destroy]
+	before_action :load_event, only: [:show, :edit, :update, :destroy, :perform]
 
 	def index
 		@events = Event.all
@@ -25,6 +25,7 @@ class EventsController < ApplicationController
 
 	def update
 		@event.update!(set_params)
+    redirect_to root_path
 	end
 
 	# 심부름 삭제
@@ -32,6 +33,14 @@ class EventsController < ApplicationController
 		@event.destroy
 		redirect_to root_path
 	end
+
+  # 심부름 수행
+  def perform
+    @event.performer_id = current_user.id
+    @event.state = 1
+    @event.save
+    redirect_to root_path
+  end
 
 	private
 	def load_event
