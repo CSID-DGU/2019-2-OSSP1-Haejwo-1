@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :notifications
 
   post '/tinymce_assets' => 'tinymce_assets#create'
+
+  post '/events/perform/:id' => 'events#perform', as: :event_perform
 end
