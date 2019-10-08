@@ -53,5 +53,5 @@
       </div>
     </li>
   </ul>
-  <%= f.submit "심부름 요청하기", class: "button button-fill-ios button-w-icon button-full", id: "event-submit-button" %>
+  <%= f.submit action_name == 'new' ? "심부름 요청하기" : "심부름 수정하기", class: "button button-fill-ios button-w-icon button-full", id: "event-submit-button" %>
 <% end %>
