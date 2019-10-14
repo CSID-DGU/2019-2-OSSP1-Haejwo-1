@@ -146,10 +146,9 @@
 
       $(function() {
         <% if current_user %>
-          alert('hello1');
           if (window.Android) {
-            alert('hello1');
             let android = window.Android;
+            alert(android);
             !!android['setUserId'] && android.setUserId('<%= current_user.id %>');
           }
           try {
