@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">해줘</string>
+    <string name="url">http://rails.kr?platform=android</string>
+    <string name="domain">http://rails.kr</string>
+    <string name="yes">네</string>
+    <string name="no">아니오</string>
 </resources>

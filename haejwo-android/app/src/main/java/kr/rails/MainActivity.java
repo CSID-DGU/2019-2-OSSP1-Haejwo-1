@@ -49,6 +49,15 @@ public class MainActivity extends Activity {
     private static final String TYPE_IMAGE = "image/*";
     public static final int INPUT_FILE_REQUEST_CODE = 1;
 
+    public void setUserId(String userId) {
+        String token = BaseUtil.getStringPref(getApplicationContext(), "token", "");
+        Log.d("DEVICE TOKEN", userId + " " + token);
+
+        if (token != "") {
+            new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/" + userId + "/token?token=" + token + "&device_type=android");
+        }
+    }
+
 
     public void onCreate(Bundle savedInstanceState) {
 
