@@ -17,6 +17,14 @@ class UsersController < ApplicationController
     head 200
   end
 
+  def check_email
+    email = params[:email] if params[:email].present?
+    already_exist = User.find_by(email: email).present?
+    format_wrong = (email =~ /\A[^@\s]+@[^@\s]+\z/) != 0
+    result = (already_exist || format_wrong)  ? 0 : 1
+    render json: {result: result}
+  end
+
   private
 
   def thumbnail_params

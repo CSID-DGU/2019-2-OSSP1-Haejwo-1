@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
 	before_action :load_event, only: [:show, :edit, :update, :destroy, :perform]
 
 	def index
+    # redirect_to new_user_session_path if !user_signed_in?
 		@events = Event.all
 	end
 

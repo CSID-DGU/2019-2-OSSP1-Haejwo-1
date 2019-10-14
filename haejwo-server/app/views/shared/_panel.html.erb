@@ -1,0 +1,40 @@
+<div class="panel panel-right panel-cover">
+  <div class="view">
+    <div class="page">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="title">
+            메뉴
+          </div>
+        </div>
+      </div>
+      <div class="page-content">
+        <div class="list virtual-list">
+          <ul>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to edit_user_registration_path, class: 'panel-close item-link item-content' do %>
+                  회원정보
+                <% end %>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'panel-close item-link item-content', id: 'sign-out-button' do %>
+                  로그아웃
+                <% end %>
+               </li>
+            <% else %>
+              <li>
+                <%= link_to new_user_session_path, class: 'panel-close item-link item-content' do %>
+                  로그인
+                <% end %>
+               </li>
+              <li>
+                <%= link_to new_user_registration_path, class: 'panel-close item-link item-content' do %>
+                  회원가입
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery-ui
 //= require activestorage
+//= require throttle
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
