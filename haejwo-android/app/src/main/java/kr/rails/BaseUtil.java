@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -136,6 +137,8 @@ public class BaseUtil {
     }
 
     public static String getStringPref(Context context, String key, String value) {
+        Log.d("DEVICE key", key);
+        Log.d("DEVICE result", getPref(context).getString(key, value));
         return getPref(context).getString(key, value);
     }
 

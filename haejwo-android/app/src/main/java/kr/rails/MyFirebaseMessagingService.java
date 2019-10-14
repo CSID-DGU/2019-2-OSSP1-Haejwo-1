@@ -6,45 +6,25 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import kr.rails.R;
 
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-    private static final String TAG = "MyFMService";
 
-//    @Override
-//    public void handleIntent(Intent intent) {
-//        super.handleIntent(intent);
-//        if (intent.getExtras() != null)
-//        {
-//            RemoteMessage.Builder builder = new RemoteMessage.Builder("MyFirebaseMessagingService");
-//
-//            for (String key : intent.getExtras().keySet())
-//            {
-//                builder.addData(key, intent.getExtras().get(key).toString());
-//            }
-//
-//            onMessageReceived(builder.build());
-//        }
-//        else
-//        {
-//            super.handleIntent(intent);
-//        }
-//    }
+    @Override
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+        Log.e("NEW_TOKEN",s);
+    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {

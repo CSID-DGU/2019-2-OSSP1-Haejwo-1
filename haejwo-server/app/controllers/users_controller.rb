@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: :update
+  skip_before_action :verify_authenticity_token, only: :token
 
   def mypage
     name = :name
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def token
+    Rails.logger.info('generate a new token')
     user = User.find(params[:id])
     user.update_attributes!(device_token: params[:token], device_type: params[:device_type])
     head 200

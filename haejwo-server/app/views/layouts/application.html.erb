@@ -70,7 +70,7 @@
       const $$ = Dom7;
       const app = new Framework7({
         root: "#app",
-        name: "BLUE",
+        name: "Haejwo",
         theme: "ios",
         id: "com.insomenia.mobile",
         routes: <%= rails_routes.to_json.html_safe %>,
@@ -148,7 +148,8 @@
         <% if current_user %>
           if (window.Android) {
             let android = window.Android;
-            alert(android);
+            console.log(android);
+            console.log(android['setUserId']);
             !!android['setUserId'] && android.setUserId('<%= current_user.id %>');
           }
           try {
