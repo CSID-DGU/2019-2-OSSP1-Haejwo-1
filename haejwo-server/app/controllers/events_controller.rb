@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 	before_action :load_event, only: [:show, :edit, :update, :destroy, :perform]
 
 	def index
-		@events = Event.all
+		@events = Event.all.order("created_at DESC")
 	end
 
 	# 심부름 생성하기
