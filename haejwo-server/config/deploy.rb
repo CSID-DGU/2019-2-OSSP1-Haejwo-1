@@ -8,6 +8,7 @@ set :deploy_to, '/home/deploy/haejwo'
 
 append :linked_files, 'config/database.yml'
 append :linked_files, 'config/master.key'
+append :linked_files, 'config/application.yml'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
 
 ## 배포 후 쓰이지 않는 gem 정리
