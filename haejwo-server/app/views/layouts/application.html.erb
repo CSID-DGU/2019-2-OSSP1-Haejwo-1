@@ -34,25 +34,30 @@
     <div id="app">
       <div class="statusbar"></div>
       <% if user_signed_in? %>
-        <div class="views tabs">
-          <div class="toolbar tabbar tabbar-labels toolbar-bottom no-shadow">
-            <div class="toolbar-inner">
-              <a href="#home-tab" class="tab-link tab-link-active"><i class="icon fas fa-home"></i><span class="tabbar-label">홈</span></a>
-              <a href="#map-tab" class="tab-link"><i class="icon fas fa-map"></i><span class="tabbar-label">학교지도</span></a>
-              <a href="#" class="tab-link" id="create-event-popup-button"><i class="far fa-plus-square" id="create-errand"></i></a>
-              <a href="#noti-chat-tab" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
-              <a href="#mypage" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
+        <% if current_user.unapproved? %>
+          <div class="view view-init view-main" data-url="<%= select_certification_users_path %>">
+          </div>
+        <% else %>
+          <div class="views tabs">
+            <div class="toolbar tabbar tabbar-labels toolbar-bottom no-shadow">
+              <div class="toolbar-inner">
+                <a href="#home-tab" class="tab-link tab-link-active"><i class="icon fas fa-home"></i><span class="tabbar-label">홈</span></a>
+                <a href="#map-tab" class="tab-link"><i class="icon fas fa-map"></i><span class="tabbar-label">학교지도</span></a>
+                <a href="#" class="tab-link" id="create-event-popup-button"><i class="far fa-plus-square" id="create-errand"></i></a>
+                <a href="#noti-chat-tab" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
+                <a href="#mypage" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
+              </div>
+            </div>
+            <%= render 'shared/panel' %>
+            <div class="view tab tab-active view-main view-init" id="home-tab" data-url="<%= root_path %>&main=true"></div>
+            <div class="view tab view-init" id="map-tab" data-url="<%= maps_path %>&main=true"></div>
+            <div class="view tab view-init" id="mypage" data-url="<%= mypage_path %>&main=true"></div>
+            <div class="view tab view-init" id="noti-chat-tab" data-url="<%= notifications_path %>&main=true"></div>
+            <div class="popup popup-show">
+              <div class="view view-init" data-url="<%= new_event_path %>?main=true"></div>
             </div>
           </div>
-          <%= render 'shared/panel' %>
-          <div class="view tab tab-active view-main view-init" id="home-tab" data-url="<%= root_path %>&main=true"></div>
-          <div class="view tab view-init" id="map-tab" data-url="<%= maps_path %>&main=true"></div>
-          <div class="view tab view-init" id="mypage" data-url="<%= mypage_path %>&main=true"></div>
-          <div class="view tab view-init" id="noti-chat-tab" data-url="<%= notifications_path %>&main=true"></div>
-          <div class="popup popup-show">
-            <div class="view view-init" data-url="<%= new_event_path %>?main=true"></div>
-          </div>
-        </div>
+        <% end %>
       <% else %>
         <%= render 'shared/panel' %>
         <div class="view view-init view-main" data-url="<%= new_user_session_path %>">
@@ -137,7 +142,7 @@
         });
       }
 
-      const currentUser = <%= raw current_user.to_json %>
+      const currentUser = <%= raw current_user.to_json %>;
 
       $(function() {
         <% if current_user %>

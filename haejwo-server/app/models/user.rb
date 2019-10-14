@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
 
   enum gender: [:no_select, :man, :woman]
-  enum status: [:approved, :waiting, :unapproved]
+  enum certification_state: [:unapproved, :waiting, :approved]
   enum device_type: [:android, :ios]
 
   mount_uploader :thumbnail, ImageUploader

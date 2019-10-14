@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: :update do
     collection do
+      get :select_certification
       post :check_email
     end
     member do

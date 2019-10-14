@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     current_user.update_attributes!(thumbnail_params)
   end
 
+  def select_certification
+  end
+
   def token
     user = User.find(params[:id])
     user.update_attributes!(device_token: params[:token], device_type: params[:device_type])
