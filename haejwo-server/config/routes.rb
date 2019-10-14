@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   post '/tinymce_assets' => 'tinymce_assets#create'
 
   post '/events/perform/:id' => 'events#perform', as: :event_perform
+
+  resources :chatrooms
+  resources :messages
 end

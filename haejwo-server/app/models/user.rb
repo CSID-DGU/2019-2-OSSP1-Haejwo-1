@@ -3,6 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :events, dependent: :destroy
+  has_many :messages
+  has_many :chatrooms, through: :messages
 
   enum gender: [:no_select, :man, :woman]
   enum certification_state: [:unapproved, :waiting, :approved]

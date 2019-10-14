@@ -3,8 +3,7 @@ class EventsController < ApplicationController
 	before_action :load_event, only: [:show, :edit, :update, :destroy, :perform]
 
 	def index
-    # redirect_to new_user_session_path if !user_signed_in?
-		@events = Event.all
+		@events = Event.all.order("created_at DESC")
 	end
 
 	# 심부름 생성하기

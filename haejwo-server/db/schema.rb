@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_10_14_072634) do
 
   # These are extensions that must be enabled in order to support this database
@@ -41,6 +42,13 @@ ActiveRecord::Schema.define(version: 2019_10_14_072634) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_chatrooms_on_event_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
@@ -55,6 +63,16 @@ ActiveRecord::Schema.define(version: 2019_10_14_072634) do
     t.bigint "performer_id"
     t.index ["performer_id"], name: "index_events_on_performer_id"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "chatroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -115,6 +133,9 @@ ActiveRecord::Schema.define(version: 2019_10_14_072634) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chatrooms", "events"
   add_foreign_key "events", "users"
   add_foreign_key "events", "users", column: "performer_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
 end
