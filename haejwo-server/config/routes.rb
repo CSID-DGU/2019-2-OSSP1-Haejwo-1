@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   devise_for :users
   get '/mypage' => 'users#mypage'
 
-  resources :users, only: :update
+  resources :users, only: :update do
+    post :token
+    get :token
+  end
   resources :events
   resources :maps, only: :index
   resources :notifications

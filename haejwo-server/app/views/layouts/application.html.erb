@@ -179,6 +179,22 @@
         });
       }
 
+      const currentUser = <%= raw current_user.to_json %>
+
+      $(function() {
+        <% if current_user %>
+          if (window.Android) {
+            let android = window.Android;
+            !!android['setUserId'] && android.setUserId('<%= current_user.id %>');
+          }
+          try {
+            webkit.messageHandlers.callbackHandler.postMessage("<%= current_user.id %>");
+          } catch(err) {
+            console.log('The native context does not exist yet');
+          }
+        <% end %>
+      });
+
       <% if notice || alert %>
         const notificationFull = app.notification.create({
           icon: '<i class="icon far fa-bell"></i>',
