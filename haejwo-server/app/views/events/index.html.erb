@@ -16,6 +16,7 @@
     <div class="container">
 
       <div class="forum">
+        <%= link_to '채팅방', chatrooms_path %>
         <% if @events.present? %>
           <% @events.each do |event| %>
               <div class="content-box">
@@ -61,3 +62,9 @@
     </div>
   </div>
 </div>
+
+<%= content_for :style do %>
+  .event-popover {
+    width: 25%;
+  }
+<% end %>
