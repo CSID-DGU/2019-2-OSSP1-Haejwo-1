@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_10_14_072634) do
+ActiveRecord::Schema.define(version: 2019_10_14_104536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +45,11 @@ ActiveRecord::Schema.define(version: 2019_10_14_072634) do
     t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "request_user_id"
+    t.bigint "perform_user_id"
     t.index ["event_id"], name: "index_chatrooms_on_event_id"
+    t.index ["perform_user_id"], name: "index_chatrooms_on_perform_user_id"
+    t.index ["request_user_id"], name: "index_chatrooms_on_request_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -134,6 +137,8 @@ ActiveRecord::Schema.define(version: 2019_10_14_072634) do
   end
 
   add_foreign_key "chatrooms", "events"
+  add_foreign_key "chatrooms", "users", column: "perform_user_id"
+  add_foreign_key "chatrooms", "users", column: "request_user_id"
   add_foreign_key "events", "users"
   add_foreign_key "events", "users", column: "performer_id"
   add_foreign_key "messages", "chatrooms"
