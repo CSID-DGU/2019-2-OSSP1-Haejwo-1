@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
@@ -15,19 +14,17 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebSettings.PluginState;
-import android.widget.Toast;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.annotation.TargetApi;
-import android.support.v4.content.FileProvider;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import android.text.TextUtils;
+import android.support.v7.app.AlertDialog;
+import android.content.DialogInterface;
 
 
 
@@ -54,11 +51,12 @@ public class MainActivity extends Activity {
         Log.d("DEVICE TOKEN", userId + " " + token);
 
         if (token != "") {
+            Log.d("Url", getString(R.string.domain));
             new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/" + userId + "/token?token=" + token + "&device_type=android");
         }
     }
 
-
+    @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -67,10 +65,6 @@ public class MainActivity extends Activity {
 
         //Get webview
         webView = (kr.rails.VideoEnabledWebView) findViewById(R.id.webView);
-
-        // Define url that will open in webview
-        String webViewUrl = "https://rails.kr?platform=android";
-
 
 
         // Javascript inabled on webview
@@ -92,9 +86,30 @@ public class MainActivity extends Activity {
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setCacheMode(webView.getSettings().LOAD_NO_CACHE);
+        webView.addJavascriptInterface(new WebAppInterface(MainActivity.this), "Android");
+
+        if (!BaseUtil.getBoolPref(this, "pushChecked", false)) {
+            BaseUtil.makeAlert(this, "마케팅 수신 동의", "앱 전용 혜택, 실시간 할인 정보 등의 유용한 정보를 받아보시겠습니까", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    BaseUtil.setBoolPref(MainActivity.this, "push", true);
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    BaseUtil.setBoolPref(MainActivity.this, "push", false);
+                }
+            }, R.string.yes, R.string.no);
+            BaseUtil.setBoolPref(this, "pushChecked", true);
+        }
 
         //Load url in webview
-        webView.loadUrl(webViewUrl);
+        String url = checkMessage(getIntent());
+        if(url == null) {
+            webView.loadUrl(getResources().getString(R.string.url));
+        }else {
+            webView.loadUrl(url);
+        }
 
         checkVerify();
 
@@ -147,20 +162,6 @@ public class MainActivity extends Activity {
                 }
             }
 
-            // Called when all page resources loaded
-            public void onPageFinished(WebView view, String url) {
-
-                try{
-                    // Close progressDialog
-                    if (progressDialog.isShowing()) {
-                        progressDialog.dismiss();
-                        progressDialog = null;
-                    }
-                }catch(Exception exception){
-                    exception.printStackTrace();
-                }
-            }
-
         });
 
 
@@ -169,6 +170,27 @@ public class MainActivity extends Activity {
         // we will define openFileChooser for select file from camera or sdcard
 
         webView.setWebChromeClient(new WebChromeClient() {
+
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message, final android.webkit.JsResult result)
+            {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("알림 메시지")
+                        .setMessage(message)
+                        .setPositiveButton(android.R.string.ok,
+                                new AlertDialog.OnClickListener()
+                                {
+                                    public void onClick(DialogInterface dialog, int which)
+                                    {
+                                        result.confirm();
+                                    }
+                                })
+                        .setCancelable(false)
+                        .create()
+                        .show();
+
+                return true;
+            }
 
             // For Android Version < 3.0
             public void openFileChooser(ValueCallback<Uri> uploadMsg) {
@@ -383,4 +405,16 @@ public class MainActivity extends Activity {
 
         return result;
     }
+
+    private String checkMessage(Intent intent) {
+        String url = null;
+        if(intent != null){
+            Bundle bundle = intent.getExtras();
+            if(bundle != null){
+                url = bundle.getString("url");
+            }
+        }
+        return url;
+    }
+
 }
