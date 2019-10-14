@@ -148,7 +148,6 @@
         <% if current_user %>
           if (window.Android) {
             let android = window.Android;
-            alert(android);
             !!android['setUserId'] && android.setUserId('<%= current_user.id %>');
           }
           try {
