@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root 'events#index'
   devise_for :users
+  root 'events#index'
   get '/mypage' => 'users#mypage'
 
   resources :users, only: :update do
-    post :token
-    get :token
+    collection do
+      get :select_certification
+      post :check_email
+    end
+    member do
+      post :token
+      get :token
+    end
   end
   resources :events
   resources :maps, only: :index

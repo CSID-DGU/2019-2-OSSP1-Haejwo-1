@@ -5,7 +5,7 @@
     <div class="container">
       <div class="profile-edit">
         <div class="content-edit">
-          <div class="profile-user">
+          <div class="profile-user" style="margin-bottom: 40px;">
             <div class="content-image">
               <%= image_tag('/vuma/images/profile.png', id: 'user-thumbnail') %>
               <label for="thumbnail-new" class="icon-upload"><i class="fas fa-camera"></i></label>
@@ -21,27 +21,29 @@
       <ul>
         <li class="item-content item-input">
           <div class="item-inner">
+            <label for="user[email]" class="item-title item-label">
+             이메일* <span id="regis_new__check_email"></span>
+            </label>
+            <div class="item-input-wrap">
+              <%= f.email_field :email, class: 'required', id: 'new_user_email',data: {name: '이메일'} %>
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input">
+          <div class="item-inner">
             <%= f.label :name, '사용자명*', class: 'item-title item-label' %>
             <div class="item-input-wrap">
-              <%= f.text_field :name, required: true %>
+              <%= f.text_field :name, required: true, data: {name: '사용자명'} %>
               <span class="input-clear-button"></span>
             </div>
           </div>
         </li>
         <li class="item-content item-input">
           <div class="item-inner">
-            <%= f.label :email, '이메일*', class: 'item-title item-label' %>
+            <%= f.label :phone, '전화번호*', class: 'item-title item-label', data: {name: '휴대폰번호'} %>
             <div class="item-input-wrap">
-              <%= f.email_field :email, autocomplete: "email", required: true %>
-              <span class="input-clear-button"></span>
-            </div>
-          </div>
-        </li>
-        <li class="item-content item-input">
-          <div class="item-inner">
-            <%= f.label :phone, '전화번호*', class: 'item-title item-label' %>
-            <div class="item-input-wrap">
-              <%= f.text_field :phone, autofocus: true, required: true %>
+              <%= f.text_field :phone, required: true %>
               <span class="input-clear-button"></span>
             </div>
           </div>
@@ -49,7 +51,7 @@
 
         <li class="item-content item-input">
           <div class="item-inner">
-            <%= f.label :password, '비밀번호*', class: 'item-title item-label' %>
+            <%= f.label :password, '비밀번호*', class: 'item-title item-label', data: {name: '비밀번호'} %>
             <div class="item-input-wrap">
               <%= f.password_field :password, autocomplete: "new-password", required: true %>
               <span class="input-clear-button"></span>
@@ -58,23 +60,16 @@
         </li>
         <li class="item-content item-input">
           <div class="item-inner">
-            <%= f.label :password, '비밀번호 확인*', class: 'item-title item-label' %>
+            <label for="user[password_confirmation]" class="item-title item-label">
+             비밀번호 확인* <span id="regis_new__check_password"></span>
+            </label>
             <div class="item-input-wrap">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+              <%= f.password_field :password_confirmation, id: 'new_user_password_confirmation', autocomplete: "new-password password_field", class: 'required', data: {name: '비밀번호 확인'} %>
               <span class="input-clear-button"></span>
             </div>
           </div>
         </li>
 
-        <li class="item-content item-input">
-          <div class="item-inner">
-            <%= f.label :student_card_image, '학생증 확인', class: 'item-title item-label' %>
-            <div class="item-input-wrap">
-              <%= f.file_field :student_card_image %>
-              <label for="thumbnail-new" class="icon-upload"><i class="fas fa-camera"></i></label>
-            </div>
-          </div>
-        </li>
         <div class="divider-space"></div>
 
         <div id="terms_of_services">
@@ -89,10 +84,6 @@
           <div class="checkbox_block">
             <input type="checkbox" id="agree_private">
             <label for="agree_private" class="check_box_label">개인정보 취급방침에 동의 (필수)</label>
-          </div>
-          <div class="checkbox_block">
-            <input type="checkbox" id="agree_shopping">
-            <label for="agree_shopping" class="check_box_label">쇼핑정보 수신동의 (필수)</label>
           </div>
           <div class="row">
             <div class="col-50">
@@ -113,9 +104,9 @@
         </li>
       </ul>
     </div>
-
   <% end %>
   <%= render "devise/shared/links" %>
+  <br><br><br><br>
 </div>
 
 <%= content_for :style do %>
@@ -157,15 +148,91 @@
     color: grey;
     border-color: grey;
   }
+
+  #regis_new__check_email {
+    color: #94D439;
+  }
+
+  #regis_new__check_password {
+    color: red;
+  }
 <% end %>
 
 <%= content_for :init do %>
   phoneNumberFix($('#user_phone'));
-  $$('#regis-new-button').on('click', function(){
+
+  let emailValid = false;
+  let samePassword = false;
+
+  // 이메일 유효성 검사하는 부분
+  $$('#new_user_email').keyup($.debounce(600, function(e) {
+    const email = $$(this).val();
+    Rails.ajax({
+      url: `<%= check_email_users_path %>&email=${email}`,
+      type: 'post',
+      success: function(response) {
+        let msg = "";
+        if (response.result === 0) {
+          msg = '이미 있거나 유효하지 않은 이메일입니다.';
+          emailValid = false;
+        } else {
+          msg = '사용가능한 이메일입니다.';
+          emailValid = true;
+        }
+        $$('#regis_new__check_email').html(msg);
+      },
+      error: function(response) {
+        app.dialog.alert('에러가 발생했습니다. 앱 종료 후 다시 실행시켜주세요.', '');
+      }
+    });
+  }));
+
+  // 비밀번호 일치 확인하는 부분
+  $$('#new_user_password_confirmation').keyup($.debounce(600, function(e) {
+    const password = $$('.page-current #user_password').val();
+    const passwordConfirmation = $$(this).val();
+    let msg = "";
+    if (password === passwordConfirmation) {
+      msg = "";
+      samePassword = true;
+    } else {
+      msg = "불일치";
+      samePassword = false;
+    }
+    $$('#regis_new__check_password').html(msg);
+  }));
+
+  // 비어있는 값 required 처리
+  $$('#regis-new-button').click(function(e){
     app.preloader.show();
-    setTimeout(function(){
+    if (!emailValid) {
+      e.preventDefault();
       app.preloader.hide();
-    }, 2000);
+      app.dialog.alert('이미 있거나 유효하지 않은 이메일입니다.', '');
+    } else if (!samePassword) {
+      e.preventDefault();
+      app.preloader.hide();
+      app.dialog.alert('비밀번호가 일치하지 않습니다.', '');
+    } else {
+      $$('.page-current .required').forEach(function(){
+        const target = $$(this);
+        if (target.val() === "") {
+          app.preloader.hide();
+          e.preventDefault();
+          const fieldName = target.data('name');
+          app.dialog.alert(`${fieldName}은 필수입력 사항입니다.`, "");
+          return false;
+        }
+      });
+      $$('.page-current .password_field').forEach(function(){
+        if ($$(this).val() !== "" && $$(this).val().length < 6) {
+          app.preloader.hide();
+          e.preventDefault();
+          app.dialog.alert(`비밀번호는 6자리 이상이어야 합니다.`, "");
+          return false;
+        }
+      });
+    }
   });
 <% end %>
 <%= javascript_include_tag 'terms_of_services.js' %>

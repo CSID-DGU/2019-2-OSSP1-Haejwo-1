@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :chatrooms, through: :messages
 
   enum gender: [:no_select, :man, :woman]
-  enum status: [:approved, :waiting, :unapproved]
+  enum certification_state: [:unapproved, :waiting, :approved]
   enum device_type: [:android, :ios]
 
   mount_uploader :thumbnail, ImageUploader
@@ -31,7 +31,9 @@ class User < ApplicationRecord
         }
       }
       response = fcm.send(registration_ids, options)
-      puts "푸시 결과 #{response.to_yaml}"
+      msg = "푸시 결과 #{response.to_yaml}"
+      puts mgs
+      Rails.logger.info msg
     end
   end
 end

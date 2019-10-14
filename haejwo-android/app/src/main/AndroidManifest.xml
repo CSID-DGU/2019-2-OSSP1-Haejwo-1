@@ -32,7 +32,15 @@
             </intent-filter>
         </activity>
         <service
-            android:name="kr.rails.FirebaseInstanceIDService"
+            android:name="kr.rails.MyFirebaseMessagingService"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="kr.rails.MyFirebaseInstanceIdService"
             android:stopWithTask="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

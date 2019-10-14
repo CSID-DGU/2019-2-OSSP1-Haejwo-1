@@ -33,73 +33,36 @@
   <body>
     <div id="app">
       <div class="statusbar"></div>
-      <div class="views tabs">
-        <div class="toolbar tabbar tabbar-labels toolbar-bottom no-shadow">
-          <div class="toolbar-inner">
-            <a href="#home-tab" class="tab-link tab-link-active"><i class="icon fas fa-home"></i><span class="tabbar-label">홈</span></a>
-            <a href="#map-tab" class="tab-link"><i class="icon fas fa-map"></i><span class="tabbar-label">학교지도</span></a>
-            <% if user_signed_in? %>
-              <a href="#" class="tab-link" id="create-event-popup-button"><i class="far fa-plus-square" id="create-errand"></i></a>
-              <a href="#noti-chat-tab" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
-              <a href="#mypage" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
-            <% else %>
-            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link navigate_to_login"><i class="far fa-plus-square" id="create-errand"></i></a>
-            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link navigate_to_login"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
-            <a href="<%= new_user_session_path(notice: '로그인 후 사용 가능합니다.') %>" class="tab-link navigate_to_login"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
-            <% end %>
+      <% if user_signed_in? %>
+        <% if current_user.unapproved? %>
+          <div class="view view-init view-main" data-url="<%= select_certification_users_path %>">
           </div>
-        </div>
-        <div class="panel panel-right panel-cover">
-          <div class="view">
-            <div class="page">
-              <div class="navbar">
-                <div class="navbar-inner">
-                  <div class="title">
-                    메뉴
-                  </div>
-                </div>
-              </div>
-              <div class="page-content">
-                <div class="list virtual-list">
-                  <ul>
-                    <% if user_signed_in? %>
-                      <li>
-                        <%= link_to edit_user_registration_path, class: 'panel-close item-link item-content' do %>
-                          회원정보
-                        <% end %>
-                        <%= link_to destroy_user_session_path, method: :delete, class: 'panel-close item-link item-content', id: 'sign-out-button' do %>
-                          로그아웃
-                        <% end %>
-                       </li>
-                    <% else %>
-                      <li>
-                        <%= link_to new_user_session_path, class: 'panel-close item-link item-content' do %>
-                          로그인
-                        <% end %>
-                       </li>
-                      <li>
-                        <%= link_to new_user_registration_path, class: 'panel-close item-link item-content' do %>
-                          회원가입
-                        <% end %>
-                      </li>
-                    <% end %>
-                  </ul>
-                </div>
+        <% else %>
+          <div class="views tabs">
+            <div class="toolbar tabbar tabbar-labels toolbar-bottom no-shadow">
+              <div class="toolbar-inner">
+                <a href="#home-tab" class="tab-link tab-link-active"><i class="icon fas fa-home"></i><span class="tabbar-label">홈</span></a>
+                <a href="#map-tab" class="tab-link"><i class="icon fas fa-map"></i><span class="tabbar-label">학교지도</span></a>
+                <a href="#" class="tab-link" id="create-event-popup-button"><i class="far fa-plus-square" id="create-errand"></i></a>
+                <a href="#noti-chat-tab" class="tab-link"><i class="icon fa fa-bell"></i><span class="tabbar-label">알림채팅</span></a>
+                <a href="#mypage" class="tab-link"><i class="icon fa fa-user"></i><span class="tabbar-label">마이페이지</span></a>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="view tab tab-active view-main view-init" id="home-tab" data-url="<%= root_path %>&main=true"></div>
-        <div class="view tab view-init" id="map-tab" data-url="<%= maps_path %>&main=true"></div>
-        <% if user_signed_in? %>
-          <div class="view tab view-init" id="mypage" data-url="<%= mypage_path %>&main=true"></div>
-          <div class="view tab view-init" id="noti-chat-tab" data-url="<%= notifications_path %>&main=true"></div>
-          <div class="popup popup-show">
-            <div class="view view-init" data-url="<%= new_event_path %>?main=true"></div>
+            <%= render 'shared/panel' %>
+            <div class="view tab tab-active view-main view-init" id="home-tab" data-url="<%= root_path %>&main=true"></div>
+            <div class="view tab view-init" id="map-tab" data-url="<%= maps_path %>&main=true"></div>
+            <div class="view tab view-init" id="mypage" data-url="<%= mypage_path %>&main=true"></div>
+            <div class="view tab view-init" id="noti-chat-tab" data-url="<%= notifications_path %>&main=true"></div>
+            <div class="popup popup-show">
+              <div class="view view-init" data-url="<%= new_event_path %>?main=true"></div>
+            </div>
           </div>
         <% end %>
-      </div>
+      <% else %>
+        <%= render 'shared/panel' %>
+        <div class="view view-init view-main" data-url="<%= new_user_session_path %>">
+        </div>
+      <% end %>
     </div>
 
     <script src="/javascripts/f7.min.js"></script>
@@ -179,11 +142,13 @@
         });
       }
 
-      const currentUser = <%= raw current_user.to_json %>
+      const currentUser = <%= raw current_user.to_json %>;
 
       $(function() {
         <% if current_user %>
+          alert('hello1');
           if (window.Android) {
+            alert('hello1');
             let android = window.Android;
             !!android['setUserId'] && android.setUserId('<%= current_user.id %>');
           }
