@@ -35,8 +35,12 @@
               						</div>
               					</div>
               				</div>
-                    <% elsif user_signed_in? && event.state == 'matching' %>
-                      <%= link_to '내가 하기!', event_perform_path(event), method: :post, class: "button button-fill-ios", style: "float: right;" %>
+                    <% elsif user_signed_in? %>
+                      <% if event.state == 'matching' %>
+                        <%= link_to '내가 하기!', event_perform_path(event), method: :post, class: "button button-fill-ios", style: "float: right;" %>
+                      <% else %>
+                        <span style="float: right;"><i class="fas fa-check"></i></span>
+                      <% end %>
                     <% end %>
                     <div><h5><%= event.title %></h5></div>
                     <span><i class="fas fa-coins"></i> <%= event.reward %>원</span>
