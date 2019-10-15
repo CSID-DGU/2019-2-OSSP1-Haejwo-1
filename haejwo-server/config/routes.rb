@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
   post '/events/perform/:id' => 'events#perform', as: :event_perform
 
+  # Serve websocket cable requests in-process
+  mount ActionCable.server => '/cable'
+
   resources :chatrooms
   resources :messages
 end
