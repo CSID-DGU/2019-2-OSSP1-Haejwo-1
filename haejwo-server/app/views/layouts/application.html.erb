@@ -35,6 +35,7 @@
       <div class="statusbar"></div>
       <% if user_signed_in? %>
         <% if current_user.unapproved? %>
+          <%= render 'shared/panel' %>
           <div class="view view-init view-main" data-url="<%= select_certification_users_path %>">
           </div>
         <% else %>
