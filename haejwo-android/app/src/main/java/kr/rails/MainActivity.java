@@ -50,30 +50,36 @@ public class MainActivity extends Activity {
     public static final int INPUT_FILE_REQUEST_CODE = 1;
 
     public void setUserId(String userId) {
-        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
-        String token = prefs.getString("token", "");
-
-        if (TextUtils.isEmpty(token)) {
-            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
-                @Override
-                public void onSuccess(InstanceIdResult instanceIdResult) {
-                    String newToken = instanceIdResult.getToken();
-                    Log.e("newToken", newToken);
-                    SharedPreferences.Editor editor = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE).edit();
-                    if (newToken!=null){
-                        editor.putString("token", newToken);
-                        editor.apply();
-                    }
-                }
-            });
-        }
-
+        String token = BaseUtil.getStringPref(getApplicationContext(), "token", "");
         Log.d("DEVICE TOKEN", userId + " " + token);
 
         if (token != "") {
-            Log.d("Url", getString(R.string.domain));
             new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/" + userId + "/token?token=" + token + "&device_type=android");
         }
+//        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
+//        String token = prefs.getString("token", "");
+//
+//        if (TextUtils.isEmpty(token)) {
+//            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
+//                @Override
+//                public void onSuccess(InstanceIdResult instanceIdResult) {
+//                    String newToken = instanceIdResult.getToken();
+//                    Log.e("newToken", newToken);
+//                    SharedPreferences.Editor editor = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE).edit();
+//                    if (newToken!=null){
+//                        editor.putString("token", newToken);
+//                        editor.apply();
+//                    }
+//                }
+//            });
+//        }
+//
+//        Log.d("DEVICE TOKEN", userId + " " + token);
+//
+//        if (token != "") {
+//            Log.d("Url", getString(R.string.domain));
+//            new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/" + userId + "/token?token=" + token + "&device_type=android");
+//        }
     }
 
     @Override
@@ -83,10 +89,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-//        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
-//        String token = prefs.getString("token", "");
-//
-//        Log.e("NEW_INACTIVITY_TOKEN", token);
+        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
+        String token = prefs.getString("token", "");
+
+        Log.e("NEW_INACTIVITY_TOKEN", token);
 
 
         //Get webview

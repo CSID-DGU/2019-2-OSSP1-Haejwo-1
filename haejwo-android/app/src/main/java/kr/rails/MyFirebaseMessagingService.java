@@ -26,6 +26,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public static int NOTIFICATION_ID = 1;
     @Override
     public void onNewToken(String s) {
+        Log.e("wowowowowowowowowowo","wowowowowowowowowowowowowowowowowowowowo");
         super.onNewToken(s);
         Log.e("NEW_TOKEN",s);
     }
