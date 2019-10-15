@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "776395504244-6g301gn8toc6rbmmvh0i9cehas4mdh8a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.rails",
+            "certificate_hash": "423b8d5d30d03c72420f86dd2ca95e7e24663cc9"
+          }
+        },
+        {
           "client_id": "776395504244-1gicu4tv82hdaj2evpune0ab6f9bbqin.apps.googleusercontent.com",
           "client_type": 3
         }

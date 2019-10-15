@@ -14,7 +14,6 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebSettings.PluginState;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -107,7 +106,6 @@ public class MainActivity extends Activity {
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.setScrollbarFadingEnabled(false);
         webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setPluginState(PluginState.ON);
         webView.getSettings().setDomStorageEnabled(true); // 로컬저장소 허용 여부
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
