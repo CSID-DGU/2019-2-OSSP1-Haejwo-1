@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "100936763015",
-    "firebase_url": "https://haejwo-b9c11.firebaseio.com",
-    "project_id": "haejwo-b9c11",
-    "storage_bucket": "haejwo-b9c11.appspot.com"
+    "project_number": "776395504244",
+    "firebase_url": "https://haejwo-8cc75.firebaseio.com",
+    "project_id": "haejwo-8cc75",
+    "storage_bucket": "haejwo-8cc75.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:100936763015:android:10d992384465fae7c25a22",
+        "mobilesdk_app_id": "1:776395504244:android:8b20dca2bc93d9bbf82f21",
         "android_client_info": {
           "package_name": "kr.rails"
         }
       },
       "oauth_client": [
         {
-          "client_id": "100936763015-re6uvuu93kfhs1jq6d10imgc16ltqt6q.apps.googleusercontent.com",
+          "client_id": "776395504244-1gicu4tv82hdaj2evpune0ab6f9bbqin.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA9Fa-EX97Kly8S4J7b0irzTNpX_HF7Dc8"
+          "current_key": "AIzaSyDdaU6M4lZfvfc1UgqwFB3b3eV2QIXwFWE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "100936763015-re6uvuu93kfhs1jq6d10imgc16ltqt6q.apps.googleusercontent.com",
+              "client_id": "776395504244-1gicu4tv82hdaj2evpune0ab6f9bbqin.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
