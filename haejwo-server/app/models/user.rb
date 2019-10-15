@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  FCM_KEY = 'AAAAF4BMxoc:APA91bFynfNccZQiH7bAmeAR_tbpTfbNzwXNlFES1tVpwHvUmlAWklRrmixCP7a2VyppaigRlOfVRf6QR3OPlF-r5iUBB3KTFY87gzd5cuBsQa-g2LdbyPO-0wmyIoCRr9PN_LLIP9_R'
+  FCM_KEY = 'AAAABmpdm8g:APA91bGfzoqDHLE14hh86r3YaYsla0xwTuJbqzsnzAoiUnpbYEjUhHLGIdpeZuVxeV0NSB4v98AzxpIHYZELouhBjYuWSfeAJsYwfJDaGzvz52z_2XHySNqxgQigUN8gFOJXkfgh4Drf'
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable
 
