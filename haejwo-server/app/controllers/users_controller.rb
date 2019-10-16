@@ -17,9 +17,11 @@ class UsersController < ApplicationController
 
   def token
     Rails.logger.info("first")
-    if current_user.present?
-      Rails.logger.info("second")
+    Rails.logger.info("second")
+    begin
       current_user.update_attributes!(device_token: params[:token], device_type: params[:device_type])
+    rescue => e
+      Rails.logger.info e
     end
     Rails.logger.info("third")
     head 200
