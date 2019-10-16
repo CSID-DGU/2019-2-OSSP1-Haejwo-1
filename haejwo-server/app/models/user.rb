@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  FCM_KEY = 'AAAABmpdm8g:APA91bGfzoqDHLE14hh86r3YaYsla0xwTuJbqzsnzAoiUnpbYEjUhHLGIdpeZuVxeV0NSB4v98AzxpIHYZELouhBjYuWSfeAJsYwfJDaGzvz52z_2XHySNqxgQigUN8gFOJXkfgh4Drf'
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable
 
@@ -24,7 +23,7 @@ class User < ApplicationRecord
 
   def send_push(body)
     if device_token.present? && device_type.present?
-      fcm = FCM.new(FCM_KEY)
+      fcm = FCM.new(ENV['FCM_KEY'])
       registration_ids = [device_token]
       options = { 'notification': {
         'title': '알림메시지',
