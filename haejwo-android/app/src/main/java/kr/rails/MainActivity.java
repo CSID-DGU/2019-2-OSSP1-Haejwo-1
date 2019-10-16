@@ -2,8 +2,6 @@ package kr.rails;
 
 import java.io.File;
 import android.app.Activity;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,7 +28,6 @@ import android.support.v7.app.AlertDialog;
 import android.content.DialogInterface;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
@@ -56,36 +53,23 @@ public class MainActivity extends Activity {
     public static final int INPUT_FILE_REQUEST_CODE = 1;
 
     public void setUserId(String userId) {
-        String token = BaseUtil.getStringPref(getApplicationContext(), "token", "");
-        Log.d("DEVICE TOKEN", userId + " " + token);
+        final String user_id = userId;
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
 
-        if (token != "") {
-            new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/" + userId + "/token?token=" + token + "&device_type=android");
-        }
-//        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
-//        String token = prefs.getString("token", "");
-//
-//        if (TextUtils.isEmpty(token)) {
-//            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
-//                @Override
-//                public void onSuccess(InstanceIdResult instanceIdResult) {
-//                    String newToken = instanceIdResult.getToken();
-//                    Log.e("newToken", newToken);
-//                    SharedPreferences.Editor editor = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE).edit();
-//                    if (newToken!=null){
-//                        editor.putString("token", newToken);
-//                        editor.apply();
-//                    }
-//                }
-//            });
-//        }
-//
-//        Log.d("DEVICE TOKEN", userId + " " + token);
-//
-//        if (token != "") {
-//            Log.d("Url", getString(R.string.domain));
-//            new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/" + userId + "/token?token=" + token + "&device_type=android");
-//        }
+                        if(task.isSuccessful()){
+                            String token = task.getResult().getToken();
+                            String url = getString(R.string.domain) + "/users/" + user_id + "/token?token=" + token + "&device_type=android";
+                            if (token != "") {
+                                new BaseUtil.GetUrlContentTask().execute(url);
+                            }
+                        } else{
+                            //
+                        }
+                    }
+                });
     }
 
     @Override
@@ -93,25 +77,6 @@ public class MainActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-
-                        if(task.isSuccessful()){
-
-                            String token = task.getResult().getToken();
-                            if (token != "") {
-                                new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/token?token=" + token + "&device_type=android");
-                            }
-                        } else{
-                            //
-                        }
-                    }
-                });
-
-
 
         //Get webview
         webView = (kr.rails.VideoEnabledWebView) findViewById(R.id.webView);
@@ -135,7 +100,7 @@ public class MainActivity extends Activity {
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setCacheMode(webView.getSettings().LOAD_NO_CACHE);
-//        webView.addJavascriptInterface(new WebAppInterface(MainActivity.this), "Android");
+        webView.addJavascriptInterface(new WebAppInterface(MainActivity.this), "Android");
 
         if (!BaseUtil.getBoolPref(this, "pushChecked", false)) {
             BaseUtil.makeAlert(this, "마케팅 수신 동의", "앱 전용 혜택, 실시간 할인 정보 등의 유용한 정보를 받아보시겠습니까", new DialogInterface.OnClickListener() {
@@ -224,7 +189,7 @@ public class MainActivity extends Activity {
             public boolean onJsAlert(WebView view, String url, String message, final android.webkit.JsResult result)
             {
                 new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("알림 메시지")
+                        .setTitle("해줘")
                         .setMessage(message)
                         .setPositiveButton(android.R.string.ok,
                                 new AlertDialog.OnClickListener()
