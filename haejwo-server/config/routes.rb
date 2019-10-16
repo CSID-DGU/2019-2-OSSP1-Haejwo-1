@@ -9,10 +9,7 @@ Rails.application.routes.draw do
     collection do
       get :select_certification
       post :check_email
-    end
-    member do
       post :token
-      get :token
     end
   end
   resources :events
