@@ -21,12 +21,12 @@ class User < ApplicationRecord
     student_card_image.url.present? ? student_card_image.url : '/vuma/images/profile.png'
   end
 
-  def send_push(body)
+  def send_push(title, body)
     if device_token.present? && device_type.present?
       fcm = FCM.new(ENV['FCM_KEY'])
       registration_ids = [device_token]
       options = { 'notification': {
-        'title': '알림메시지',
+        'title': title,
         'body': body
         }
       }
