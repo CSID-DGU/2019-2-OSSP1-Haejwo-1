@@ -7,13 +7,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class BaseUtil {
@@ -125,7 +132,7 @@ public class BaseUtil {
     }
 
     public static SharedPreferences getPref(Context context) {
-        return context.getSharedPreferences(Constants.PACKAGE_NAME, Context.MODE_PRIVATE);
+        return context.getSharedPreferences(Constants.PACKAGE_NAME, MODE_PRIVATE);
     }
 
     public static SharedPreferences.Editor getPrefEditor(Context context) {
@@ -137,6 +144,23 @@ public class BaseUtil {
     }
 
     public static String getStringPref(Context context, String key, String value) {
+//        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
+//        String token = prefs.getString("token", "");
+//
+//        if (TextUtils.isEmpty(token)) {
+//            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
+//                @Override
+//                public void onSuccess(InstanceIdResult instanceIdResult) {
+//                    String newToken = instanceIdResult.getToken();
+//                    Log.e("newToken", newToken);
+//                    SharedPreferences.Editor editor = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE).edit();
+//                    if (newToken!=null){
+//                        editor.putString("token", newToken);
+//                        editor.apply();
+//                    }
+//                }
+//            });
+//        }
         Log.d("DEVICE key", key);
         Log.d("DEVICE result", getPref(context).getString(key, value));
         return getPref(context).getString(key, value);

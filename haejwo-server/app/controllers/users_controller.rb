@@ -16,14 +16,9 @@ class UsersController < ApplicationController
   end
 
   def token
-    Rails.logger.info("first")
-    Rails.logger.info("second")
-    begin
-      current_user.update_attributes!(device_token: params[:token], device_type: params[:device_type])
-    rescue => e
-      Rails.logger.info e
-    end
-    Rails.logger.info("third")
+    Rails.logger.info('generate a new token')
+    user = User.find(params[:id])
+    user.update_attributes!(device_token: params[:token], device_type: params[:device_type])
     head 200
   end
 

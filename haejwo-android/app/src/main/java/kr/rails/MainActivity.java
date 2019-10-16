@@ -2,6 +2,8 @@ package kr.rails;
 
 import java.io.File;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -26,9 +29,12 @@ import android.text.TextUtils;
 import android.support.v7.app.AlertDialog;
 import android.content.DialogInterface;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class MainActivity extends Activity {
@@ -88,11 +94,23 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
 
-        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
-        String token = prefs.getString("token", "");
+                        if(task.isSuccessful()){
 
-        Log.e("NEW_INACTIVITY_TOKEN", token);
+                            String token = task.getResult().getToken();
+                            if (token != "") {
+                                new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/token?token=" + token + "&device_type=android");
+                            }
+                        } else{
+                            //
+                        }
+                    }
+                });
+
 
 
         //Get webview
@@ -117,7 +135,7 @@ public class MainActivity extends Activity {
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setCacheMode(webView.getSettings().LOAD_NO_CACHE);
-        webView.addJavascriptInterface(new WebAppInterface(MainActivity.this), "Android");
+//        webView.addJavascriptInterface(new WebAppInterface(MainActivity.this), "Android");
 
         if (!BaseUtil.getBoolPref(this, "pushChecked", false)) {
             BaseUtil.makeAlert(this, "마케팅 수신 동의", "앱 전용 혜택, 실시간 할인 정보 등의 유용한 정보를 받아보시겠습니까", new DialogInterface.OnClickListener() {
