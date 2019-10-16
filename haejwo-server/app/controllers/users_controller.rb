@@ -16,7 +16,9 @@ class UsersController < ApplicationController
   end
 
   def token
-    current_user.update_attributes!(device_token: params[:token], device_type: params[:device_type]) if user_signed_in?
+    if current_user.present?
+      current_user.update_attributes!(device_token: params[:token], device_type: params[:device_type])
+    end
     head 200
   end
 
