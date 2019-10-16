@@ -1,0 +1,44 @@
+<%#= render 'shared/navbar', title: '채팅방', back: true %>
+
+<div class="subnavbar">
+  <form class="searchbar searchbar-init" data-search-container=".search-list" data-search-in=".item-title">
+    <div class="searchbar-inner">
+      <div class="searchbar-input-wrap">
+        <input type="search" placeholder="심부름 제목으로 검색해주세요.">
+        <i class="searchbar-icon"></i>
+        <span class="input-clear-button"></span>
+      </div>
+      <span class="searchbar-disable-button">Cancel</span>
+    </div>
+  </form>
+</div>
+
+<div class="page-content hide-toolbar-on-scroll">
+  <div class="segments-page">
+    <div class="container">
+
+      <div class="forum">
+        <% if @chatrooms.present? %>
+          <% @chatrooms.each do |room| %>
+            <%= link_to(room) do %>
+              <div class="content-box">
+                <div class="user-forum">
+                  <img data-src="<%= room.request_user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
+                  <div class="title-name">
+                    <span><%= room.event.title %> <br> <%= room.request_user&.name %></span>
+                  </div>
+                </div>
+                <div class="content-text">
+                  <h4><%= room.event.content %></h4>
+                </div>
+              </div>
+
+              <div class="divider-space"></div>
+            <% end %>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
