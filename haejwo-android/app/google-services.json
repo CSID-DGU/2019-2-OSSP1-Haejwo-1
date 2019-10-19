@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "100936763015",
-    "firebase_url": "https://haejwo-b9c11.firebaseio.com",
-    "project_id": "haejwo-b9c11",
-    "storage_bucket": "haejwo-b9c11.appspot.com"
+    "project_number": "27554323400",
+    "firebase_url": "https://haejwo-second.firebaseio.com",
+    "project_id": "haejwo-second",
+    "storage_bucket": "haejwo-second.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:100936763015:android:10d992384465fae7c25a22",
+        "mobilesdk_app_id": "1:27554323400:android:b1c709dd671bca05023efd",
         "android_client_info": {
           "package_name": "kr.rails"
         }
       },
       "oauth_client": [
         {
-          "client_id": "100936763015-re6uvuu93kfhs1jq6d10imgc16ltqt6q.apps.googleusercontent.com",
+          "client_id": "27554323400-tuqripond3lpjiid49mmvc8uodar2llc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA9Fa-EX97Kly8S4J7b0irzTNpX_HF7Dc8"
+          "current_key": "AIzaSyCTYvUFJHNW3BzoJPhWZRns2l0HfZOjJhw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "100936763015-re6uvuu93kfhs1jq6d10imgc16ltqt6q.apps.googleusercontent.com",
+              "client_id": "27554323400-tuqripond3lpjiid49mmvc8uodar2llc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

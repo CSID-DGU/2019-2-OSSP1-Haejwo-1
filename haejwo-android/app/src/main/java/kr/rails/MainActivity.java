@@ -9,12 +9,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebSettings.PluginState;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -27,9 +27,11 @@ import android.text.TextUtils;
 import android.support.v7.app.AlertDialog;
 import android.content.DialogInterface;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class MainActivity extends Activity {
@@ -51,30 +53,23 @@ public class MainActivity extends Activity {
     public static final int INPUT_FILE_REQUEST_CODE = 1;
 
     public void setUserId(String userId) {
-        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
-        String token = prefs.getString("token", "");
+        final String user_id = userId;
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
 
-        if (TextUtils.isEmpty(token)) {
-            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
-                @Override
-                public void onSuccess(InstanceIdResult instanceIdResult) {
-                    String newToken = instanceIdResult.getToken();
-                    Log.e("newToken", newToken);
-                    SharedPreferences.Editor editor = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE).edit();
-                    if (newToken!=null){
-                        editor.putString("token", newToken);
-                        editor.apply();
+                        if(task.isSuccessful()){
+                            String token = task.getResult().getToken();
+                            String url = getString(R.string.domain) + "/users/" + user_id + "/token?token=" + token + "&device_type=android";
+                            if (token != "") {
+                                new BaseUtil.GetUrlContentTask().execute(url);
+                            }
+                        } else{
+                            //
+                        }
                     }
-                }
-            });
-        }
-
-        Log.d("DEVICE TOKEN", userId + " " + token);
-
-        if (token != "") {
-            Log.d("Url", getString(R.string.domain));
-            new BaseUtil.GetUrlContentTask().execute(getString(R.string.domain) + "/users/" + userId + "/token?token=" + token + "&device_type=android");
-        }
+                });
     }
 
     @Override
@@ -82,13 +77,6 @@ public class MainActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-//        SharedPreferences prefs = getSharedPreferences("TOKEN_PREF", MODE_PRIVATE);
-//        String token = prefs.getString("token", "");
-//
-//        Log.e("NEW_INACTIVITY_TOKEN", token);
-
 
         //Get webview
         webView = (kr.rails.VideoEnabledWebView) findViewById(R.id.webView);
@@ -107,7 +95,6 @@ public class MainActivity extends Activity {
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.setScrollbarFadingEnabled(false);
         webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setPluginState(PluginState.ON);
         webView.getSettings().setDomStorageEnabled(true); // 로컬저장소 허용 여부
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
@@ -202,7 +189,7 @@ public class MainActivity extends Activity {
             public boolean onJsAlert(WebView view, String url, String message, final android.webkit.JsResult result)
             {
                 new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("알림 메시지")
+                        .setTitle("해줘")
                         .setMessage(message)
                         .setPositiveButton(android.R.string.ok,
                                 new AlertDialog.OnClickListener()
