@@ -39,7 +39,13 @@ class EventsController < ApplicationController
     @event.performer_id = current_user.id
     @event.state = 1
     @event.save
-    redirect_to root_path
+
+    @chatroom = Chatroom.new()
+    @chatroom.event_id = params[:id]
+    @chatroom.request_user = @event.user
+    @chatroom.perform_user = @event.performer
+    @chatroom.save
+    redirect_to chatroom_path(@chatroom)
   end
 
 	private
