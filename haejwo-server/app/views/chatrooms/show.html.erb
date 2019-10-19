@@ -64,7 +64,9 @@
                   <div class="message-text"><%= msg.content %></div>
                   <!-- <div class="message-text-footer">Text footer</div> -->
                 </div>
-                <!-- <div class="message-footer">Message footer</div> -->
+                <% if msg.next.nil? or msg.next.user == current_user %>
+                  <div class="message-footer"><%= msg.created_at.strftime("%m월 %d일 %H:%M") %></div>
+                <% end %>
               </div>
             </div>
           <% end %>
