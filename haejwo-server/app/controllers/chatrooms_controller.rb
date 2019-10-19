@@ -19,7 +19,8 @@ class ChatroomsController < ApplicationController
   # 채팅방 상세보기
   def show
     @chatroom = Chatroom.find params[:id]
-    # @message = Message.new
+    @message = Message.new
+    @messages = @chatroom.messages
   end
 
   def edit

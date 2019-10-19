@@ -42,6 +42,7 @@ class EventsController < ApplicationController
     @event.state = 1
     @event.save
 
+    # 채팅방 생성
     @chatroom = Chatroom.new()
     @chatroom.event_id = params[:id]
     @chatroom.request_user = @event.user
