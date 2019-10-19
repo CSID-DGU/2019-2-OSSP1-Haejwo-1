@@ -5,9 +5,9 @@ class ChatroomsController < ApplicationController
   end
 
   def new
-    @chatroom = Chatroom.new
   end
 
+  # 채팅방 개설
   def create
     # @chatroom = Chatroom.new(@event)
     # @chatroom.request_user = params[:event][:user]
