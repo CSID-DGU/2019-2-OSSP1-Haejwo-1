@@ -13,6 +13,8 @@ class EventsController < ApplicationController
 
 	def create
 		@event = current_user.events.create!(set_params)
+    @event.tag_list.add(params[:event][:tag_list], parse: true)
+    @event.save
 	end
 
 	# 심부름 상세보기
