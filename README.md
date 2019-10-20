@@ -12,6 +12,7 @@
 ## 참고한 오픈소스
 - [Framework7](https://github.com/framework7io/framework7/)
 - [Rails](https://github.com/rails/rails)
+- [ActiveAdmin](https://github.com/activeadmin/activeadmin)
 - [Capistrano](https://capistranorb.com)
 - [Google Maps API](https://developers.google.com/maps/documentation)
 - [Sendgrid API](https://sendgrid.com/docs/API_Reference/api_getting_started.html)
