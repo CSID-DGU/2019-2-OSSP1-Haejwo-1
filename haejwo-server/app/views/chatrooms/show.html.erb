@@ -9,9 +9,14 @@
   </div>
   <div class="toolbar messagebar">
     <div class="toolbar-inner">
-      <div class="messagebar-area">
-        <textarea class="resizable" placeholder="Message"></textarea>
-      </div><a class="link send-link" href="#">Send</a>
+      <%= form_for(@message, url: chatroom_messages_path(@chatroom), remote: true, id: "message-form") do |f| %>
+        <div class="messagebar-area">
+          <!-- <textarea class="resizable" placeholder="Message"></textarea> -->
+          <%= f.text_area :content, class: "resizable", placeholder: "Message" %>
+        </div><!-- <a class="link send-link" href="#">전송</a> -->
+        <%= f.submit "전송", class: "link send-link" %>
+        <%#= link_to "전송", chatroom_messages_path(@chatroom), id: "message-submit-link", class: "link send-link", method: :post %>
+      <% end %>
     </div>
   </div>
   <div class="page-content messages-content">
@@ -25,7 +30,6 @@
         <div class="col-80 margin-auto">
           <div class="grids">
             <div class="card">
-              <img src="images/grid1.jpg" alt="">
               <div class="content-text">
                 <span><b><%= @chatroom.perform_user.name %></b>님이 <b><%= @chatroom.request_user.name %></b>님이 올린 <b><br><%= @chatroom.event.title %></b> 요청을 수락했습니다.</span>
               </div>
@@ -44,7 +48,7 @@
                 <div class="message-text"><%= msg.content %></div>
               </div>
               <% if msg.next.blank? %>
-                <div class="message-footer">읽음</div>
+                <!-- <div class="message-footer">읽음</div> -->
               <% end %>
             </div>
           </div>
@@ -60,7 +64,9 @@
                   <div class="message-text"><%= msg.content %></div>
                   <!-- <div class="message-text-footer">Text footer</div> -->
                 </div>
-                <!-- <div class="message-footer">Message footer</div> -->
+                <% if msg.next.nil? or msg.next.user == current_user %>
+                  <div class="message-footer"><%= msg.created_at.strftime("%m월 %d일 %H:%M") %></div>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -129,7 +135,7 @@
     if (!text.length) return;
 
     // Clear area
-    messagebar.clear();
+    //messagebar.clear();
 
     // Return focus to area
     messagebar.focus();
@@ -141,7 +147,7 @@
 
     if (responseInProgress) return;
     // Receive dummy message
-    receiveMessage();
+    //receiveMessage();
   });
 
   // Dummy response
@@ -196,6 +202,11 @@
       }, 4000);
     }, 1000);
   }
+
+
+  $(document).on("click", "#message-submit-link", function(){
+    $("#message-form").submit();
+  });
 </script>
 
 <%= content_for :style do %>

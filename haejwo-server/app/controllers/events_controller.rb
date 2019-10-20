@@ -13,6 +13,8 @@ class EventsController < ApplicationController
 
 	def create
 		@event = current_user.events.create!(set_params)
+    @event.tag_list.add(params[:event][:tag_list], parse: true)
+    @event.save
 	end
 
 	# 심부름 상세보기
@@ -39,7 +41,14 @@ class EventsController < ApplicationController
     @event.performer_id = current_user.id
     @event.state = 1
     @event.save
-    redirect_to root_path
+
+    # 채팅방 생성
+    @chatroom = Chatroom.new()
+    @chatroom.event_id = params[:id]
+    @chatroom.request_user = @event.user
+    @chatroom.perform_user = @event.performer
+    @chatroom.save
+    redirect_to chatroom_path(@chatroom)
   end
 
 	private
