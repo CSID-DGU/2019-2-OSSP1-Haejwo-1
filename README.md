@@ -27,3 +27,13 @@
 - [장성원(팀장)](https://github.com/godwon2095)  
 - [연제훈](https://github.com/YJHoon)  
 - [이주영](https://github.com/JuYeong0413)
+
+## Design (Class Diagram)
+
+# Rails
+
+<object data="/haejwo-server/erd.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/haejwo-server/erd.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/haejwo-server/erd.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
