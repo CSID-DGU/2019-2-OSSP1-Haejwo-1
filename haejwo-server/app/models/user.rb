@@ -31,9 +31,6 @@ class User < ApplicationRecord
         }
       }
       response = fcm.send(registration_ids, options)
-      # msg = "푸시 결과 #{response.to_yaml}"
-      # puts mgs
-      # Rails.logger.info msg
     end
   end
 end
