@@ -28,9 +28,9 @@
 - [연제훈](https://github.com/YJHoon)  
 - [이주영](https://github.com/JuYeong0413)
 
-## Design (Class Diagram)
+# Design (Class Diagram)
 
-# Rails
+## Rails
 
 <object data="/haejwo-server/erd.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/haejwo-server/erd.pdf">
