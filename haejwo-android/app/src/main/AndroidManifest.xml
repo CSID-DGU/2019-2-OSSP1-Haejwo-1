@@ -25,10 +25,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <service
-            android:name=".MyService"
-            android:enabled="true"
-            android:exported="true"></service>
-        <service
             android:name=".MyFirebaseMessagingService"
             android:stopWithTask="false">
             <intent-filter>
