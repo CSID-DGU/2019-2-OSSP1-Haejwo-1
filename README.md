@@ -41,6 +41,4 @@
 
 ## Android
 
-
-
-- [Google Maps API](https://developers.google.com/maps/documentation)
+![class_diagram](./haejwo-android/class_diagram.png)
