@@ -31,7 +31,7 @@
 
 # Design (Class Diagram)
 
-## Rails
+## Rails ER DIAGRAM
 
 <object data="/haejwo-server/erd.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/haejwo-server/erd.pdf">
