@@ -35,7 +35,7 @@
 
 <object data="/haejwo-server/erd.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/haejwo-server/erd.pdf">
-        <p>Rails Class Diagram 보기: <a href="/haejwo-server/erd.pdf">Download PDF</a>.</p>
+        <p>Rails ER Diagram 보기: <a href="/haejwo-server/erd.pdf">Download PDF</a>.</p>
     </embed>
 </object>
 
