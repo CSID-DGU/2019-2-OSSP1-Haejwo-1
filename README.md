@@ -8,6 +8,7 @@
 - Rails 5.2.3
 - Ruby 2.6.4
 - Android Studio 6.0
+- Swift 5.1
 
 ## 참고한 오픈소스
 - [Framework7](https://github.com/framework7io/framework7/)
