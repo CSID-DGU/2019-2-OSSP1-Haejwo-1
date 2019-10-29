@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		961028042366BEDE00F01987 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961028032366BEDE00F01987 /* AppDelegate.swift */; };
-		961028062366BEDE00F01987 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961028052366BEDE00F01987 /* SceneDelegate.swift */; };
-		961028082366BEDE00F01987 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961028072366BEDE00F01987 /* ContentView.swift */; };
-		9610280A2366BEE200F01987 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961028092366BEE200F01987 /* Assets.xcassets */; };
-		9610280D2366BEE200F01987 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9610280C2366BEE200F01987 /* Preview Assets.xcassets */; };
-		961028102366BEE200F01987 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9610280E2366BEE200F01987 /* LaunchScreen.storyboard */; };
+		96C2AECC2367F48C00C8603C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2AECB2367F48C00C8603C /* AppDelegate.swift */; };
+		96C2AECE2367F48C00C8603C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2AECD2367F48C00C8603C /* SceneDelegate.swift */; };
+		96C2AED02367F48C00C8603C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2AECF2367F48C00C8603C /* ViewController.swift */; };
+		96C2AED32367F48C00C8603C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C2AED12367F48C00C8603C /* Main.storyboard */; };
+		96C2AED52367F48C00C8603C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C2AED42367F48C00C8603C /* Assets.xcassets */; };
+		96C2AED82367F48C00C8603C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96C2AED62367F48C00C8603C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		961028002366BEDE00F01987 /* haejwo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "haejwo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		961028032366BEDE00F01987 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		961028052366BEDE00F01987 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		961028072366BEDE00F01987 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		961028092366BEE200F01987 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9610280C2366BEE200F01987 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		9610280F2366BEE200F01987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		961028112366BEE200F01987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96C2AEC82367F48C00C8603C /* haejwo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "haejwo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96C2AECB2367F48C00C8603C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		96C2AECD2367F48C00C8603C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		96C2AECF2367F48C00C8603C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		96C2AED22367F48C00C8603C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		96C2AED42367F48C00C8603C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96C2AED72367F48C00C8603C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		96C2AED92367F48C00C8603C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		961027FD2366BEDE00F01987 /* Frameworks */ = {
+		96C2AEC52367F48C00C8603C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,54 +37,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		961027F72366BEDE00F01987 = {
+		96C2AEBF2367F48C00C8603C = {
 			isa = PBXGroup;
 			children = (
-				961028022366BEDE00F01987 /* haejwo-ios */,
-				961028012366BEDE00F01987 /* Products */,
+				96C2AECA2367F48C00C8603C /* haejwo-ios */,
+				96C2AEC92367F48C00C8603C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		961028012366BEDE00F01987 /* Products */ = {
+		96C2AEC92367F48C00C8603C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				961028002366BEDE00F01987 /* haejwo-ios.app */,
+				96C2AEC82367F48C00C8603C /* haejwo-ios.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		961028022366BEDE00F01987 /* haejwo-ios */ = {
+		96C2AECA2367F48C00C8603C /* haejwo-ios */ = {
 			isa = PBXGroup;
 			children = (
-				961028032366BEDE00F01987 /* AppDelegate.swift */,
-				961028052366BEDE00F01987 /* SceneDelegate.swift */,
-				961028072366BEDE00F01987 /* ContentView.swift */,
-				961028092366BEE200F01987 /* Assets.xcassets */,
-				9610280E2366BEE200F01987 /* LaunchScreen.storyboard */,
-				961028112366BEE200F01987 /* Info.plist */,
-				9610280B2366BEE200F01987 /* Preview Content */,
+				96C2AECB2367F48C00C8603C /* AppDelegate.swift */,
+				96C2AECD2367F48C00C8603C /* SceneDelegate.swift */,
+				96C2AECF2367F48C00C8603C /* ViewController.swift */,
+				96C2AED12367F48C00C8603C /* Main.storyboard */,
+				96C2AED42367F48C00C8603C /* Assets.xcassets */,
+				96C2AED62367F48C00C8603C /* LaunchScreen.storyboard */,
+				96C2AED92367F48C00C8603C /* Info.plist */,
 			);
 			path = "haejwo-ios";
-			sourceTree = "<group>";
-		};
-		9610280B2366BEE200F01987 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				9610280C2366BEE200F01987 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		961027FF2366BEDE00F01987 /* haejwo-ios */ = {
+		96C2AEC72367F48C00C8603C /* haejwo-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 961028142366BEE200F01987 /* Build configuration list for PBXNativeTarget "haejwo-ios" */;
+			buildConfigurationList = 96C2AEDC2367F48C00C8603C /* Build configuration list for PBXNativeTarget "haejwo-ios" */;
 			buildPhases = (
-				961027FC2366BEDE00F01987 /* Sources */,
-				961027FD2366BEDE00F01987 /* Frameworks */,
-				961027FE2366BEDE00F01987 /* Resources */,
+				96C2AEC42367F48C00C8603C /* Sources */,
+				96C2AEC52367F48C00C8603C /* Frameworks */,
+				96C2AEC62367F48C00C8603C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -92,25 +84,25 @@
 			);
 			name = "haejwo-ios";
 			productName = "haejwo-ios";
-			productReference = 961028002366BEDE00F01987 /* haejwo-ios.app */;
+			productReference = 96C2AEC82367F48C00C8603C /* haejwo-ios.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		961027F82366BEDE00F01987 /* Project object */ = {
+		96C2AEC02367F48C00C8603C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "장성원";
 				TargetAttributes = {
-					961027FF2366BEDE00F01987 = {
+					96C2AEC72367F48C00C8603C = {
 						CreatedOnToolsVersion = 11.1;
 					};
 				};
 			};
-			buildConfigurationList = 961027FB2366BEDE00F01987 /* Build configuration list for PBXProject "haejwo-ios" */;
+			buildConfigurationList = 96C2AEC32367F48C00C8603C /* Build configuration list for PBXProject "haejwo-ios" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -118,47 +110,55 @@
 				en,
 				Base,
 			);
-			mainGroup = 961027F72366BEDE00F01987;
-			productRefGroup = 961028012366BEDE00F01987 /* Products */;
+			mainGroup = 96C2AEBF2367F48C00C8603C;
+			productRefGroup = 96C2AEC92367F48C00C8603C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				961027FF2366BEDE00F01987 /* haejwo-ios */,
+				96C2AEC72367F48C00C8603C /* haejwo-ios */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		961027FE2366BEDE00F01987 /* Resources */ = {
+		96C2AEC62367F48C00C8603C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961028102366BEE200F01987 /* LaunchScreen.storyboard in Resources */,
-				9610280D2366BEE200F01987 /* Preview Assets.xcassets in Resources */,
-				9610280A2366BEE200F01987 /* Assets.xcassets in Resources */,
+				96C2AED82367F48C00C8603C /* LaunchScreen.storyboard in Resources */,
+				96C2AED52367F48C00C8603C /* Assets.xcassets in Resources */,
+				96C2AED32367F48C00C8603C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		961027FC2366BEDE00F01987 /* Sources */ = {
+		96C2AEC42367F48C00C8603C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961028042366BEDE00F01987 /* AppDelegate.swift in Sources */,
-				961028062366BEDE00F01987 /* SceneDelegate.swift in Sources */,
-				961028082366BEDE00F01987 /* ContentView.swift in Sources */,
+				96C2AED02367F48C00C8603C /* ViewController.swift in Sources */,
+				96C2AECC2367F48C00C8603C /* AppDelegate.swift in Sources */,
+				96C2AECE2367F48C00C8603C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9610280E2366BEE200F01987 /* LaunchScreen.storyboard */ = {
+		96C2AED12367F48C00C8603C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9610280F2366BEE200F01987 /* Base */,
+				96C2AED22367F48C00C8603C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		96C2AED62367F48C00C8603C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96C2AED72367F48C00C8603C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		961028122366BEE200F01987 /* Debug */ = {
+		96C2AEDA2367F48C00C8603C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -226,7 +226,7 @@
 			};
 			name = Debug;
 		};
-		961028132366BEE200F01987 /* Release */ = {
+		96C2AEDB2367F48C00C8603C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -280,14 +280,12 @@
 			};
 			name = Release;
 		};
-		961028152366BEE200F01987 /* Debug */ = {
+		96C2AEDD2367F48C00C8603C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"haejwo-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = YRU26CSDFQ;
-				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "haejwo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,14 +298,12 @@
 			};
 			name = Debug;
 		};
-		961028162366BEE200F01987 /* Release */ = {
+		96C2AEDE2367F48C00C8603C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"haejwo-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = YRU26CSDFQ;
-				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "haejwo-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -323,25 +319,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		961027FB2366BEDE00F01987 /* Build configuration list for PBXProject "haejwo-ios" */ = {
+		96C2AEC32367F48C00C8603C /* Build configuration list for PBXProject "haejwo-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				961028122366BEE200F01987 /* Debug */,
-				961028132366BEE200F01987 /* Release */,
+				96C2AEDA2367F48C00C8603C /* Debug */,
+				96C2AEDB2367F48C00C8603C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		961028142366BEE200F01987 /* Build configuration list for PBXNativeTarget "haejwo-ios" */ = {
+		96C2AEDC2367F48C00C8603C /* Build configuration list for PBXNativeTarget "haejwo-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				961028152366BEE200F01987 /* Debug */,
-				961028162366BEE200F01987 /* Release */,
+				96C2AEDD2367F48C00C8603C /* Debug */,
+				96C2AEDE2367F48C00C8603C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 961027F82366BEDE00F01987 /* Project object */;
+	rootObject = 96C2AEC02367F48C00C8603C /* Project object */;
 }

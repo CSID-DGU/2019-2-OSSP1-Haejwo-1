@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  haejwo-ios
 //
-//  Created by 장성원 on 2019/10/28.
+//  Created by 장성원 on 2019/10/29.
 //  Copyright © 2019 장성원. All rights reserved.
 //
 
