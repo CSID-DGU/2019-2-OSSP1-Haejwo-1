@@ -42,6 +42,7 @@
 		96C2AEBF2367F48C00C8603C = {
 			isa = PBXGroup;
 			children = (
+				96C2AEDF2367FC6700C8603C /* .gitignore */,
 				96C2AECA2367F48C00C8603C /* haejwo-ios */,
 				96C2AEC92367F48C00C8603C /* Products */,
 			);
@@ -65,7 +66,6 @@
 				96C2AED42367F48C00C8603C /* Assets.xcassets */,
 				96C2AED62367F48C00C8603C /* LaunchScreen.storyboard */,
 				96C2AED92367F48C00C8603C /* Info.plist */,
-				96C2AEDF2367FC6700C8603C /* .gitignore */,
 			);
 			path = "haejwo-ios";
 			sourceTree = "<group>";
