@@ -42,13 +42,15 @@ class EventsController < ApplicationController
     @event.state = 1
     @event.save
 
-    # 채팅방 생성
+    채팅방 생성
     @chatroom = Chatroom.new()
     @chatroom.event_id = params[:id]
     @chatroom.request_user = @event.user
     @chatroom.perform_user = @event.performer
     @chatroom.save
     redirect_to chatroom_path(@chatroom)
+
+    # redirect_to :controller => "chatrooms_controller", :action => "create", :id => @event.id
   end
 
 	private

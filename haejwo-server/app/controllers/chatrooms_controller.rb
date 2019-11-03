@@ -9,9 +9,10 @@ class ChatroomsController < ApplicationController
 
   # 채팅방 개설
   def create
+    # @event = Event.find params[:id]
     # @chatroom = Chatroom.new(@event)
-    # @chatroom.request_user = params[:event][:user]
-    # @chatroom.perform_user = params[:event][:performer]
+    # @chatroom.request_user = @event.user
+    # @chatroom.perform_user = @event.performer
     # @chatroom.save
     # redirect_to chatroom_path(@chatroom)
   end

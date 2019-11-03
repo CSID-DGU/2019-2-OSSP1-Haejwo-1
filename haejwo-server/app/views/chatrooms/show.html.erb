@@ -4,15 +4,16 @@
   <div class="navbar">
     <div class="navbar-bg"></div>
     <div class="navbar-inner">
-      <div class="title">Messages</div>
+      <div class="title">Messages</div><a href="#" class="tab-link" id="report-popup-button"><i class='fas fa-exclamation-circle'></i></a>
     </div>
+    <%#= render 'shared/navbar', title: '채팅방', back: true %>
   </div>
   <div class="toolbar messagebar">
     <div class="toolbar-inner">
       <%= form_for(@message, url: chatroom_messages_path(@chatroom), remote: true, id: "message-form") do |f| %>
         <div class="messagebar-area">
           <!-- <textarea class="resizable" placeholder="Message"></textarea> -->
-          <%= f.text_area :content, class: "resizable", placeholder: "Message" %>
+          <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content" %>
         </div><!-- <a class="link send-link" href="#">전송</a> -->
         <%= f.submit "전송", class: "link send-link" %>
         <%#= link_to "전송", chatroom_messages_path(@chatroom), id: "message-submit-link", class: "link send-link", method: :post %>
@@ -20,7 +21,7 @@
     </div>
   </div>
   <div class="page-content messages-content">
-    <div class="messages">
+    <div class="messages messages-init" data-new-messages-first="true">
       <!-- Messages title -->
       <div class="messages-title"><b><%= @chatroom.created_at.strftime("%Y년 %m월 %d일,") %></b> <%= @chatroom.created_at.strftime("%H:%M") %></div>
 
@@ -74,6 +75,10 @@
       <% end %>
       <!-- Messages -->
     </div>
+  </div>
+
+  <div class="popup popup-show">
+    <div class="view view-init" data-url="<%= new_report_path %>"></div>
   </div>
 </div>
 
@@ -207,10 +212,20 @@
   $(document).on("click", "#message-submit-link", function(){
     $("#message-form").submit();
   });
+
+
+  $$('#report-popup-button').click(function(){
+    app.popup.open(".popup-show");
+  });
+
 </script>
 
 <%= content_for :style do %>
   .margin-auto {
     margin: auto;
+  }
+
+  .title {
+    font-family: sans-serif;
   }
 <% end %>
