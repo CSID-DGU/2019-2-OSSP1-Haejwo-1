@@ -30,9 +30,7 @@
 - [이주영](https://github.com/JuYeong0413)
 
 
-# Design (Class Diagram)
-
-## Rails ER DIAGRAM
+# Rails Modeling ER DIAGRAM
 
 <object data="/haejwo-server/erd.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/haejwo-server/erd.pdf">
@@ -40,6 +38,10 @@
     </embed>
 </object>
 
+
+# Design (Class Diagram)
+
 ## Android
 
-![class_diagram](./haejwo-android/class_diagram.png)
+![class_diagram](./haejwo-android/class_dia1.png)
+![class_diagram](./haejwo-android/class_dia2.png)
