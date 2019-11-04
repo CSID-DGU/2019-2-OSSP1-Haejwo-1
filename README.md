@@ -41,6 +41,9 @@
 
 # Design (Class Diagram)
 
+## Rails Controller
+![rails_controller_diagram](./haejwo-server/doc/controllers_complete.svg)
+
 ## Android
 
 ![class_dia1](./haejwo-android/class_dia1.png)
