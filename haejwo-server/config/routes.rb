@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   resources :chatrooms do
     resources :messages, only: [:create, :destroy]
   end
+  post '/chatroom_create' => 'chatrooms#create', as: :chatroom_create
+
+  resources :reports, only: [:new, :create]
 end
