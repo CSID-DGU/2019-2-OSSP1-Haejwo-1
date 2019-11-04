@@ -43,5 +43,5 @@
 
 ## Android
 
-![class_diagram](./haejwo-android/class_dia1.png)
-![class_diagram](./haejwo-android/class_dia2.png)
+![class_dia1](./haejwo-android/class_dia1.png)
+![class_dia2](./haejwo-android/class_dia2.png)
