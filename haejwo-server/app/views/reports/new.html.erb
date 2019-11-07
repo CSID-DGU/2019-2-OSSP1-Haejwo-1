@@ -1,7 +1,7 @@
 <div class="navbar no-shadow">
   <div class="navbar-inner">
     <div class="left">
-      <a href="#" id="popup-close-button">
+      <a href="#" id="report-popup-close-button">
         <i class="icon fas fa-times"></i>
       </a>
     </div>
@@ -15,7 +15,7 @@
     <div class="container">
 
       <div class="content-box">
-        <%= form_for(@report, html: {class: 'list no-hairlines-md'}, remote: true) do |f| %>
+        <%= form_for(@report, html: {class: 'list no-hairlines-md'}, url: chatroom_reports_path, remote: true) do |f| %>
           <ul>
             <li class="item-content item-input">
               <div class="item-inner">
@@ -26,6 +26,7 @@
               </div>
             </li>
           </ul>
+          <%= f.hidden_field :event_id, value: @event.id %>
           <%= f.submit '신고하기', class: "button button-fill-ios button-w-icon button-full", id: "report-submit-button" %>
         <% end %>
       </div>
@@ -35,7 +36,7 @@
 </div>
 
 <%= content_for :init do %>
-$$('#popup-close-button').click(function(){
+$$('#report-popup-close-button').click(function(){
   app.popup.close();
 });
 <% end %>

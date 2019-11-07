@@ -1,12 +1,27 @@
-<%#= render 'shared/navbar', title: '채팅방', back: true %>
+<% back ||= true %>
+<div class="navbar no-shadow">
+  <div class="navbar-inner">
+    <div class="left">
+      <% if back %>
+        <a href="<%= no_back? ? '/' : '#' %>" class="link back" id="back-button">
+          <i class="icon fas fa-chevron-left"></i>
+        </a>
+      <% end %>
+    </div>
+    <div class="title">채팅방</div>
+    <div class="right">
+      <a href="#" class="tab-link" id="report-popup-button"><i class='fas fa-exclamation-circle'></i></a>
+    </div>
+  </div>
+</div>
+
 
 <div class="page">
   <div class="navbar">
     <div class="navbar-bg"></div>
     <div class="navbar-inner">
-      <div class="title">Messages</div><a href="#" class="tab-link" id="report-popup-button"><i class='fas fa-exclamation-circle'></i></a>
+
     </div>
-    <%#= render 'shared/navbar', title: '채팅방', back: true %>
   </div>
   <div class="toolbar messagebar">
     <div class="toolbar-inner">
@@ -78,7 +93,7 @@
   </div>
 
   <div class="popup popup-show">
-    <div class="view view-init" data-url="<%= new_report_path %>"></div>
+    <div class="view view-init" data-url="<%= new_chatroom_report_path(@chatroom) %>"></div>
   </div>
 </div>
 
