@@ -28,7 +28,7 @@
       <%= form_for(@message, url: chatroom_messages_path(@chatroom), remote: true, id: "message-form") do |f| %>
         <div class="messagebar-area">
           <!-- <textarea class="resizable" placeholder="Message"></textarea> -->
-          <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content" %>
+          <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content", required: true %>
         </div><!-- <a class="link send-link" href="#">전송</a> -->
         <%= f.submit "전송", class: "link send-link" %>
         <%#= link_to "전송", chatroom_messages_path(@chatroom), id: "message-submit-link", class: "link send-link", method: :post %>
