@@ -92,7 +92,7 @@
     </div>
   </div>
 
-  <div class="popup popup-show">
+  <div class="popup popup-show-report">
     <div class="view view-init" data-url="<%= new_chatroom_report_path(@chatroom) %>"></div>
   </div>
 </div>
@@ -230,7 +230,7 @@
 
 
   $$('#report-popup-button').click(function(){
-    app.popup.open(".popup-show");
+    app.popup.open(".popup-show-report");
   });
 
 </script>
