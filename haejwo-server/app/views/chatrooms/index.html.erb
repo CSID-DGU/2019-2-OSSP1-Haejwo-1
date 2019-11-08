@@ -1,14 +1,14 @@
 <%#= render 'shared/navbar', title: '채팅방', back: true %>
 
 <div class="subnavbar">
-  <form class="searchbar searchbar-init" data-search-container=".search-list" data-search-in=".item-title">
+  <form class="searchbar searchbar-init">
     <div class="searchbar-inner">
       <div class="searchbar-input-wrap">
         <input type="search" placeholder="심부름 제목으로 검색해주세요.">
         <i class="searchbar-icon"></i>
         <span class="input-clear-button"></span>
       </div>
-      <span class="searchbar-disable-button">Cancel</span>
+      <span class="searchbar-disable-button if-not-aurora">Cancel</span>
     </div>
   </form>
 </div>
@@ -16,8 +16,10 @@
 <div class="page-content hide-toolbar-on-scroll">
   <div class="segments-page">
     <div class="container">
+    <!-- Searchbar backdrop -->
+    <div class="searchbar-backdrop"></div>
 
-      <div class="forum">
+      <div class="forum searchbar-found">
         <% if @chatrooms.present? %>
           <% @chatrooms.each do |room| %>
             <%= link_to(room) do %>
@@ -25,7 +27,7 @@
                 <div class="user-forum">
                   <img data-src="<%= room.request_user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
                   <div class="title-name">
-                    <span><%= room.event.title %> <br> <%= room.request_user&.name %></span>
+                    <span><%= room.event.title %></span><br><span><%= room.request_user&.name %></span>
                   </div>
                 </div>
                 <div class="content-text">
@@ -44,9 +46,26 @@
         <% end %>
 
       </div>
+      <!-- Nothing found message -->
+      <div class="block searchbar-not-found">
+        <div class="block-inner">Nothing found</div>
+      </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var searchbar = app.searchbar.create({
+  el: '.searchbar',
+  searchContainer: '.forum',
+  searchIn: '.title-name',
+  on: {
+    search(sb, query, previousQuery) {
+      console.log(query, previousQuery);
+    }
+  }
+});
+</script>
 
 <%= content_for :style do %>
   .message-info {
