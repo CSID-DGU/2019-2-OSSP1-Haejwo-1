@@ -22,7 +22,7 @@
 - [Facebook Rest API](https://developers.facebook.com/docs/facebook-login/web?locale=ko_KR)
 
 ## 배포
-[AWS(https://aws.amazon.com)](https://aws.amazon.com)의 Ubuntu ec2 instance 서버 활용, elastic ip 설정 그리고 ubuntu 서버에 필요한 페키지 셋팅 후 레일즈 서버 연동작업, 도메일 연결 작업 진행. capistrano를 이용해 깃헙 레포지토리에 있는 rails server 소스코드 변경사항을 실서버에 자동 배포 작업가능하게 설정했다. local 환경에서 github master branch에 최신사항 반영후, cap production deploy라는 명령어로 배포 진행하였고, assets precompile, migrate, touch tmp/restart.txt 등등 자동 설정으로 빠른 테스트 진행 가능하도록 설정했다. 개인정보가 필요하므로, letsencrypt(certbot) 활용하여 https 셋팅.
+[Amazon Web Service(AWS)](https://aws.amazon.com)의 Ubuntu ec2 instance 서버 활용, elastic ip 설정 그리고 ubuntu 서버에 필요한 페키지 셋팅 후 레일즈 서버 연동작업, 도메일 연결 작업 진행. capistrano를 이용해 깃헙 레포지토리에 있는 rails server 소스코드 변경사항을 실서버에 자동 배포 작업가능하게 설정했다. local 환경에서 github master branch에 최신사항 반영후, cap production deploy라는 명령어로 배포 진행하였고, assets precompile, migrate, touch tmp/restart.txt 등등 자동 설정으로 빠른 테스트 진행 가능하도록 설정했다. 개인정보가 필요하므로, letsencrypt(certbot) 활용하여 https 셋팅.
 
 ## 팀원
 - [장성원(팀장)](https://github.com/godwon2095)  
