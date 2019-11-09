@@ -76,10 +76,11 @@ function readURL(input) {
 }
 
 function shortNoti(msg) {
+  const current_time = new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
   const notificationFull = app.notification.create({
     icon: '<i class="icon far fa-bell"></i>',
     title: '알림',
-    titleRightText: '<%= Time.current %>',
+    titleRightText: current_time,
     subtitle: msg,
     text: '',
     closeTimeout: 1000,
@@ -88,9 +89,11 @@ function shortNoti(msg) {
 }
 
 function longNoti(msg) {
+  const current_time = new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
   const notificationFull = app.notification.create({
     icon: '<i class="icon far fa-bell"></i>',
     title: '알림',
+    titleRightText: current_time,
     subtitle: msg,
     text: '',
     closeTimeout: 2000,

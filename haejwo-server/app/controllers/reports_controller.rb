@@ -1,4 +1,6 @@
 class ReportsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @chatroom = Chatroom.find params[:chatroom_id]
     @event = @chatroom.event

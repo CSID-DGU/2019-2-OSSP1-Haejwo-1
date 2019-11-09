@@ -1,7 +1,7 @@
 <%= render 'shared/navbar_notitle', title: '채팅방', back: true %>
 
 <div class="subnavbar">
-  <form class="searchbar searchbar-init" data-search-container=".forum" data-search-in=".event-title">
+  <form class="searchbar searchbar-init" data-search-container=".search-list" data-search-in=".event-title">
     <div class="searchbar-inner">
       <div class="searchbar-input-wrap">
         <input type="search" placeholder="심부름 제목으로 검색해주세요.">
@@ -19,7 +19,7 @@
     <!-- Searchbar backdrop -->
     <div class="searchbar-backdrop"></div>
 
-      <div class="forum searchbar-found">
+      <div class="forum search-list searchbar-found">
         <% if @chatrooms.present? %>
           <% @chatrooms.each do |room| %>
             <%= link_to(room) do %>
@@ -61,4 +61,18 @@
   .message-time {
     float: right;
   }
+<% end %>
+
+<%= content_for :init do %>
+  // create searchbar
+  var searchbar = app.searchbar.create({
+    el: '.searchbar',
+    searchContainer: '.search-list',
+    searchIn: '.event-title',
+    on: {
+      search(sb, query, previousQuery) {
+        console.log(query, previousQuery);
+      }
+    }
+  });
 <% end %>
