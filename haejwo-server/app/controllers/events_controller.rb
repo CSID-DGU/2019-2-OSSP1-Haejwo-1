@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-	before_action :load_event, only: %i[show edit update destroy perform check_valid]
+	before_action :load_event, only: %i[show edit update destroy perform]
 
 	def index
 		@events = Event.all.order("created_at DESC")

@@ -1,5 +1,13 @@
 <% if @valid %>
-  // form 의 액션 바꿔주고
+  var path = window.location.hash
+  if (path.includes("edit")) {
+    var eventId = path.split('-')[2];
+    $$('#event-form').attr("action", `/events/${eventId}`);
+    $$('#event-form').attr("method", "patch");
+  } else {
+    $$('#event-form').attr("action", "/events");
+  }
+
   $$('#event-submit-button').trigger('click');
 <% else %>
   app.dialog.alert('<%= @msg %>', "");

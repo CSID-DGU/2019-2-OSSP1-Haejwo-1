@@ -38,7 +38,7 @@
               				</div>
               			</div>
                   <% elsif user_signed_in? %>
-                    <div id="events__do_result_<%= event.id %>">
+                    <div id="events__do_result_<%= event.id %>" class="event-status">
                       <% if event.state == 'matching' %>
                         <%= link_to '내가 하기!', '#', id: 'events__do', class: "button button-fill-ios", style: "float: right;", data: {id: event.id} %>
                       <% else %>
@@ -70,10 +70,13 @@
   .event-popover {
     width: 25%;
   }
+
+  .event-status {
+    display: inline;
+  }
 <% end %>
 
 <%= content_for :init do %>
-
 // 내가하기 눌렀을 때
 $$('#events__do').click(function(){
   app.preloader.show();
@@ -85,7 +88,7 @@ $$('#events__do').click(function(){
       app.view.main.router.navigate(`/chatrooms/${response.chatroomId}`);
       $$('#events__do').remove();
       $$(`#events__do_result_${eventId}`).append(`<span style="float: right;"><i class="fas fa-check"></i></span>`);
-      shortNoti('성공적으로 매칭되었습니다! 심부름을 부탁한 사람과 이야기를 나누세요!');
+      longNoti('성공적으로 매칭되었습니다! 심부름을 부탁한 사람과 이야기를 나누세요!');
     }
   })
 });
