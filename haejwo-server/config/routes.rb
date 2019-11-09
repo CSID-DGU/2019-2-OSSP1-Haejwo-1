@@ -14,7 +14,9 @@ Rails.application.routes.draw do
       post :token
     end
   end
-  resources :events
+  resources :events do
+    post :check_valid, on: :collection
+  end
   resources :maps, only: :index
   resources :notifications
 

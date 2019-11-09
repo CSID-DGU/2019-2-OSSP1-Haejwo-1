@@ -244,3 +244,7 @@
     font-family: sans-serif;
   }
 <% end %>
+
+<%= content_for :init do %>
+app.preloader.hide();
+<% end %>

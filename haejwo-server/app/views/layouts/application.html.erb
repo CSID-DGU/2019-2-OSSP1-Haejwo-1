@@ -163,15 +163,7 @@
       });
 
       <% if notice || alert %>
-        const notificationFull = app.notification.create({
-          icon: '<i class="icon far fa-bell"></i>',
-          title: '알림',
-          titleRightText: '<%= Time.current %>',
-          subtitle: '<%= notice || alert %>',
-          text: '',
-          closeTimeout: 1000,
-        });
-        notificationFull.open();
+        shortNoti('<%= notice || alert %>');
       <% end %>
     </script>
   </body>

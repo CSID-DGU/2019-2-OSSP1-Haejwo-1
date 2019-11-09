@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   belongs_to :performer, class_name: 'User', optional: true
   has_one :chatroom, dependent: :destroy
 
-  # validates :title, presence: true
+  validates :title, presence: true
   # validates :place, presence: true
   # validates :detail_place, presence: true
   # validates :time_limit, presence: true

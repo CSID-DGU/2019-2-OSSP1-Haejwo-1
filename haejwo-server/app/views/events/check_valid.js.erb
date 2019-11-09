@@ -1,0 +1,6 @@
+<% if @valid %>
+  // form 의 액션 바꿔주고
+  $$('#event-submit-button').trigger('click');
+<% else %>
+  app.dialog.alert('<%= @msg %>', "");
+<% end %>

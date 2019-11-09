@@ -38,11 +38,13 @@
               				</div>
               			</div>
                   <% elsif user_signed_in? %>
-                    <% if event.state == 'matching' %>
-                      <%= link_to '내가 하기!', event_perform_path(event), method: :post, class: "button button-fill-ios", style: "float: right;" %>
-                    <% else %>
-                      <span style="float: right;"><i class="fas fa-check"></i></span>
-                    <% end %>
+                    <div id="events__do_result_<%= event.id %>">
+                      <% if event.state == 'matching' %>
+                        <%= link_to '내가 하기!', '#', id: 'events__do', class: "button button-fill-ios", style: "float: right;", data: {id: event.id} %>
+                      <% else %>
+                        <span style="float: right;"><i class="fas fa-check"></i></span>
+                      <% end %>
+                    </div>
                   <% end %>
                   <div><h5><%= event.title %></h5></div>
                     <span><i class="fas fa-coins"></i> <%= event.reward %>원</span>
@@ -68,4 +70,23 @@
   .event-popover {
     width: 25%;
   }
+<% end %>
+
+<%= content_for :init do %>
+
+// 내가하기 눌렀을 때
+$$('#events__do').click(function(){
+  app.preloader.show();
+  const eventId = $$(this).data("id");
+  Rails.ajax({
+    url: `/events/perform/${eventId}`,
+    type: "post",
+    success: function(response) {
+      app.view.main.router.navigate(`/chatrooms/${response.chatroomId}`);
+      $$('#events__do').remove();
+      $$(`#events__do_result_${eventId}`).append(`<span style="float: right;"><i class="fas fa-check"></i></span>`);
+      shortNoti('성공적으로 매칭되었습니다! 심부름을 부탁한 사람과 이야기를 나누세요!');
+    }
+  })
+});
 <% end %>

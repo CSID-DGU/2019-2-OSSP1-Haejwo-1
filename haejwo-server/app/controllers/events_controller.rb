@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-	before_action :load_event, only: [:show, :edit, :update, :destroy, :perform]
+	before_action :load_event, only: %i[show edit update destroy perform check_valid]
 
 	def index
 		@events = Event.all.order("created_at DESC")
@@ -27,7 +27,6 @@ class EventsController < ApplicationController
 
 	def update
 		@event.update!(event_params)
-    redirect_to root_path
 	end
 
 	# 심부름 삭제
@@ -38,22 +37,19 @@ class EventsController < ApplicationController
 
   # 심부름 수행
   def perform
-    @event.performer_id = current_user.id
-    @event.state = 1
-    @event.save
+    perform_event = PerformEvent.new(@event, current_user)
+    chatroom = perform_event.execute
+    render json: {chatroomId: chatroom.id}
+  end
 
-    # 채팅방 생성
-    @chatroom = Chatroom.new()
-    @chatroom.event_id = params[:id]
-    @chatroom.request_user = @event.user
-    @chatroom.perform_user = @event.performer
-    @chatroom.save
-    redirect_to chatroom_path(@chatroom)
-
-    # redirect_to :controller => "chatrooms_controller", :action => "create", :id => @event.id
+  def check_valid
+    changed_event = current_user.events.new(event_params)
+    @valid = changed_event.valid?
+    @msg = changed_event.errors.full_messages[0] if !@valid
   end
 
 	private
+
 	def load_event
 		@event = Event.find params[:id]
 	end

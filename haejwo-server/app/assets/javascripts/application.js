@@ -74,3 +74,15 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+function shortNoti(msg) {
+  const notificationFull = app.notification.create({
+    icon: '<i class="icon far fa-bell"></i>',
+    title: '알림',
+    titleRightText: '<%= Time.current %>',
+    subtitle: msg,
+    text: '',
+    closeTimeout: 1000,
+  });
+  notificationFull.open();
+}
