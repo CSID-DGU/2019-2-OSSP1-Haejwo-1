@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :authenticate_user!, only: :update
+  before_action :authenticate_user!, only: :update
   before_action :user_params, only: [:edit, :update]
   skip_before_action :verify_authenticity_token, only: :token
 

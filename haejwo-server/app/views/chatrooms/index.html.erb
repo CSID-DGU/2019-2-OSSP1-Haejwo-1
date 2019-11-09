@@ -63,7 +63,7 @@
   }
 <% end %>
 
-<script type="text/javascript">
+<%= content_for :init do %>
   // create searchbar
   var searchbar = app.searchbar.create({
     el: '.searchbar',
@@ -75,4 +75,4 @@
       }
     }
   });
-</script>
+<% end %>
