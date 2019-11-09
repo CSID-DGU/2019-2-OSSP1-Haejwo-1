@@ -3,7 +3,7 @@
   if (path.includes("edit")) {
     var eventId = path.split('-')[2];
     $$('#event-form').attr("action", `/events/${eventId}`);
-    $$('#event-form').attr("method", "patch");
+    $$('#event-form').attr("method", "put");
   } else {
     $$('#event-form').attr("action", "/events");
   }
