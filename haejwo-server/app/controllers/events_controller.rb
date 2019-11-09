@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
 	before_action :load_event, only: %i[show edit update destroy perform]
+  before_action :get_building_selectors, only: %i[new edit]
 
 	def index
 		@events = Event.all.order("created_at DESC")
@@ -9,7 +10,6 @@ class EventsController < ApplicationController
 	# 심부름 생성하기
 	def new
 		@event = Event.new
-    @building_selectors = Building.order(name: :asc).map {|building| [building.name, building.id]}
 	end
 
 	def create
@@ -58,4 +58,8 @@ class EventsController < ApplicationController
 	def event_params
 		params.require(:event).permit(:building_id, :title, :place, :detail_place, :time_limit, :content, :reward)
 	end
+
+  def get_building_selectors
+    @building_selectors = Building.order(name: :asc).map {|building| [building.name, building.id]}
+  end
 end

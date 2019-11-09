@@ -5,9 +5,19 @@
     <div class="container">
 
       <div class="content-box">
-        <%= render 'form' %>
+        <%= render 'form', event: @event, building_selectors: @building_selectors, form_id: 'event-edit-form', submit_id: 'event-edit-submit-button' %>
       </div>
 
     </div>
   </div>
 </div>
+
+<%= content_for :init do %>
+$$('#popup-close-button').click(function(){
+  app.popup.close();
+});
+
+$$('#event-edit-submit-button').click(function(){
+  app.preloader.show();
+});
+<% end %>

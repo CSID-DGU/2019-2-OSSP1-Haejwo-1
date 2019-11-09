@@ -1,4 +1,4 @@
-<%= form_for(@event, url: check_valid_events_path(id: @event.id), method: :post, html: {class: 'list no-hairlines-md', id: 'event-form'}, remote: true) do |f| %>
+<%= form_for(event, url: check_valid_events_path(id: event.id), method: :post, html: {class: 'list no-hairlines-md', id: form_id}, remote: true) do |f| %>
   <ul>
     <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
@@ -13,7 +13,7 @@
 			<div class="item-inner">
 				<div class="item-title item-label">심부름 받을 건물</div>
 				<div class="item-input-wrap input-dropdown-wrap">
-					<%= f.select :building_id, @building_selectors, include_blank: true %>
+					<%= f.select :building_id, building_selectors, include_blank: true %>
 				</div>
 			</div>
 		</li>
@@ -60,5 +60,5 @@
       </div>
     </li>
   </ul>
-  <%= f.submit action_name == 'new' ? "심부름 요청하기" : "심부름 수정하기", class: "button button-fill-ios button-w-icon button-full", id: "event-submit-button" %>
+  <%= f.submit action_name == 'new' ? "심부름 요청하기" : "심부름 수정하기", class: "button button-fill-ios button-w-icon button-full", id: submit_id %>
 <% end %>
