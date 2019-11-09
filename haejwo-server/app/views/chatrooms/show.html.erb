@@ -10,7 +10,10 @@
     </div>
     <div class="title">채팅방</div>
     <div class="right">
-      <a href="#" class="tab-link" id="report-popup-button"><i class='fas fa-exclamation-circle'></i></a>
+      <%= link_to '#', class: "tab-link", id: "report-popup-button", data: {event_id: @chatroom.event.id} do %>
+        <i class='fas fa-exclamation-circle'></i>
+      <% end %>
+      <!-- <a href="#" class="tab-link" id="report-popup-button"><i class='fas fa-exclamation-circle'></i></a> -->
     </div>
   </div>
 </div>
@@ -93,7 +96,7 @@
   </div>
 
   <div class="popup popup-show-report">
-    <div class="view view-init" data-url="<%= new_chatroom_report_path(@chatroom) %>"></div>
+    <div class="view view-init" data-url="<%= new_event_report_path(@chatroom) %>"></div>
   </div>
 </div>
 
@@ -246,5 +249,20 @@
 <% end %>
 
 <%= content_for :init do %>
-app.preloader.hide();
+  app.preloader.hide();
+
+  // 신고하기 눌렀을 때
+  $$('#report-popup-button').click(function(){
+    app.preloader.show();
+    const eventId = $$(this).data("event_id");
+    Rails.ajax({
+      url: `/events/${eventId}/reports/new`,
+      type: "get",
+      dataType: 'json',
+      data: { 'id' : eventId },
+      success: function(response) {
+        app.preloader.hide();
+      }
+    })
+  });
 <% end %>
