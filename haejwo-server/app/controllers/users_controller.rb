@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def update
     current_user.update!(user_params)
-    redirect_to root_path
+    redirect_to mypage_path
   end
 
   def select_certification
