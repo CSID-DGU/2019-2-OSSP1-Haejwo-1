@@ -1,0 +1,14 @@
+<% title ||= "제목" %>
+<% back ||= false %>
+<div class="navbar no-shadow">
+  <div class="navbar-inner">
+    <div class="left">
+      <% if back %>
+        <a href="<%= no_back? ? '/' : '#' %>" class="link back" id="back-button">
+          <i class="icon fas fa-chevron-left"></i>
+        </a>
+      <% end %>
+    </div>
+    <div class="title"><%= title %></div>
+  </div>
+</div>
