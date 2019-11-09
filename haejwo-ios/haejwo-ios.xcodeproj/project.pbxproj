@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4497DF09D97E045916FA6134 /* Pods_haejwo_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59F877BC795AA6B77B49A46 /* Pods_haejwo_ios.framework */; };
+		962C7475237138E1007799BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 962C7474237138E1007799BC /* GoogleService-Info.plist */; };
 		96C2AECC2367F48C00C8603C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2AECB2367F48C00C8603C /* AppDelegate.swift */; };
 		96C2AECE2367F48C00C8603C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2AECD2367F48C00C8603C /* SceneDelegate.swift */; };
 		96C2AED02367F48C00C8603C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C2AECF2367F48C00C8603C /* ViewController.swift */; };
@@ -17,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		077FF1D8483BE274E973E470 /* Pods-haejwo-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haejwo-ios.debug.xcconfig"; path = "Target Support Files/Pods-haejwo-ios/Pods-haejwo-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		75E30F382C3AB024DD049860 /* Pods-haejwo-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haejwo-ios.release.xcconfig"; path = "Target Support Files/Pods-haejwo-ios/Pods-haejwo-ios.release.xcconfig"; sourceTree = "<group>"; };
+		962C7474237138E1007799BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96C2AEC82367F48C00C8603C /* haejwo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "haejwo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C2AECB2367F48C00C8603C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96C2AECD2367F48C00C8603C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +31,7 @@
 		96C2AED72367F48C00C8603C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96C2AED92367F48C00C8603C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96C2AEDF2367FC6700C8603C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		B59F877BC795AA6B77B49A46 /* Pods_haejwo_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_haejwo_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,18 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4497DF09D97E045916FA6134 /* Pods_haejwo_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C65E9DC7287896C14EFC23F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B59F877BC795AA6B77B49A46 /* Pods_haejwo_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		96C2AEBF2367F48C00C8603C = {
 			isa = PBXGroup;
 			children = (
 				96C2AEDF2367FC6700C8603C /* .gitignore */,
 				96C2AECA2367F48C00C8603C /* haejwo-ios */,
 				96C2AEC92367F48C00C8603C /* Products */,
+				B2C7DE6AF0F80E22FE60CA44 /* Pods */,
+				7C65E9DC7287896C14EFC23F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +76,7 @@
 		96C2AECA2367F48C00C8603C /* haejwo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				962C7474237138E1007799BC /* GoogleService-Info.plist */,
 				96C2AECB2367F48C00C8603C /* AppDelegate.swift */,
 				96C2AECD2367F48C00C8603C /* SceneDelegate.swift */,
 				96C2AECF2367F48C00C8603C /* ViewController.swift */,
@@ -70,6 +88,15 @@
 			path = "haejwo-ios";
 			sourceTree = "<group>";
 		};
+		B2C7DE6AF0F80E22FE60CA44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				077FF1D8483BE274E973E470 /* Pods-haejwo-ios.debug.xcconfig */,
+				75E30F382C3AB024DD049860 /* Pods-haejwo-ios.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +104,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96C2AEDC2367F48C00C8603C /* Build configuration list for PBXNativeTarget "haejwo-ios" */;
 			buildPhases = (
+				FCC0E19EF4E521F32BA9A376 /* [CP] Check Pods Manifest.lock */,
 				96C2AEC42367F48C00C8603C /* Sources */,
 				96C2AEC52367F48C00C8603C /* Frameworks */,
 				96C2AEC62367F48C00C8603C /* Resources */,
+				E6B3473B1231FD9BDE1A6B0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,12 +159,55 @@
 			files = (
 				96C2AEE02367FC6700C8603C /* .gitignore in Resources */,
 				96C2AED82367F48C00C8603C /* LaunchScreen.storyboard in Resources */,
+				962C7475237138E1007799BC /* GoogleService-Info.plist in Resources */,
 				96C2AED52367F48C00C8603C /* Assets.xcassets in Resources */,
 				96C2AED32367F48C00C8603C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E6B3473B1231FD9BDE1A6B0F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-haejwo-ios/Pods-haejwo-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-haejwo-ios/Pods-haejwo-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-haejwo-ios/Pods-haejwo-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCC0E19EF4E521F32BA9A376 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-haejwo-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		96C2AEC42367F48C00C8603C /* Sources */ = {
@@ -202,6 +274,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: jsw209555@gmail.com (86BCCY2GAS)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -286,8 +359,10 @@
 		};
 		96C2AEDD2367F48C00C8603C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 077FF1D8483BE274E973E470 /* Pods-haejwo-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YRU26CSDFQ;
 				INFOPLIST_FILE = "haejwo-ios/Info.plist";
@@ -304,6 +379,7 @@
 		};
 		96C2AEDE2367F48C00C8603C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75E30F382C3AB024DD049860 /* Pods-haejwo-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
