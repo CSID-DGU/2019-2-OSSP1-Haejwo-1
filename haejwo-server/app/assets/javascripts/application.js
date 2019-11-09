@@ -86,3 +86,14 @@ function shortNoti(msg) {
   });
   notificationFull.open();
 }
+
+function longNoti(msg) {
+  const notificationFull = app.notification.create({
+    icon: '<i class="icon far fa-bell"></i>',
+    title: '알림',
+    subtitle: msg,
+    text: '',
+    closeTimeout: 2000,
+  });
+  notificationFull.open();
+}
