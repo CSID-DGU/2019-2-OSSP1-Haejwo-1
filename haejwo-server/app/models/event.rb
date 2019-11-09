@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   STATES = %i[matching matched]
 
   belongs_to :user
+  belongs_to :building, counter_cache: true
   belongs_to :performer, class_name: 'User', optional: true
   has_one :chatroom, dependent: :destroy
 

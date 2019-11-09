@@ -9,6 +9,7 @@ class EventsController < ApplicationController
 	# 심부름 생성하기
 	def new
 		@event = Event.new
+    @building_selectors = Building.order(name: :asc).map {|building| [building.name, building.id]}
 	end
 
 	def create
@@ -55,6 +56,6 @@ class EventsController < ApplicationController
 	end
 
 	def event_params
-		params.require(:event).permit(:title, :place, :detail_place, :time_limit, :content, :reward)
+		params.require(:event).permit(:building_id, :title, :place, :detail_place, :time_limit, :content, :reward)
 	end
 end

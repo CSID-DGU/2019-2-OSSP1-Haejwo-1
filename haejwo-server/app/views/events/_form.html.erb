@@ -1,42 +1,41 @@
 <%= form_for(@event, url: check_valid_events_path(id: @event.id), method: :post, html: {class: 'list no-hairlines-md', id: 'event-form'}, remote: true) do |f| %>
   <ul>
-    <li class="item-content item-input">
+    <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
-        <div class="item-title item-floating-label">글제목</div>
+        <div class="item-title item-label">제목</div>
         <div class="item-input-wrap">
-          <%= f.text_field :title, placeholder: "글제목", autofocus: true %>
+          <%= f.text_field :title, placeholder: '제목' %>
           <span class="input-clear-button"></span>
         </div>
       </div>
     </li>
-    <li class="item-content item-input">
+		<li class="item-content item-input" style="margin-bottom: 10px;">
+			<div class="item-inner">
+				<div class="item-title item-label">심부름 받을 건물</div>
+				<div class="item-input-wrap input-dropdown-wrap">
+					<%= f.select :building_id, @building_selectors, include_blank: true %>
+				</div>
+			</div>
+		</li>
+    <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
-        <div class="item-title item-floating-label">심부름 받을 건물</div>
-        <div class="item-input-wrap">
-          <%= f.text_field :place, placeholder: "건물이름" %>
-          <span class="input-clear-button"></span>
-        </div>
-      </div>
-    </li>
-    <li class="item-content item-input">
-      <div class="item-inner">
-        <div class="item-title item-floating-label">상세위치</div>
+        <div class="item-title item-label">상세위치</div>
         <div class="item-input-wrap">
           <%= f.text_field :detail_place, placeholder: "층수, 강의실 등" %>
           <span class="input-clear-button"></span>
         </div>
       </div>
     </li>
-    <li class="item-content item-input">
+    <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
         <div class="item-title item-label">보상금액</div>
         <div class="item-input-wrap">
-          <%= f.number_field :reward, min: 0, step: 100 %>
+          <%= f.number_field :reward, min: 0, step: 500 %>
           <span class="input-clear-button"></span>
         </div>
       </div>
     </li>
-    <li class="item-content item-input">
+    <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
         <div class="item-title item-label">제한시간</div>
         <div class="item-input-wrap">
@@ -44,17 +43,17 @@
         </div>
       </div>
     </li>
-    <li class="item-content item-input">
+    <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
-        <div class="item-title item-floating-label">심부름 내용</div>
+        <div class="item-title item-label">심부름 내용</div>
         <div class="item-input-wrap">
           <%= f.text_area :content, placeholder: "내용을 입력하세요..." %>
         </div>
       </div>
     </li>
-    <li class="item-content item-input">
+    <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
-        <div class="item-title item-floating-label">태그</div>
+        <div class="item-title item-label">태그</div>
         <div class="item-input-wrap">
           <%= f.text_field :tag_list, placeholder: "태그를 입력하세요(,로 구분)" %>
         </div>

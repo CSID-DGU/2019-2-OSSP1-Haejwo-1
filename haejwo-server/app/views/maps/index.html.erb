@@ -1,12 +1,47 @@
 <div class="page-content">
-
-  <div id="map" style="width:100%;height:100%;"></div>
-
+  <div id="map"></div>
 </div>
 
+<%= content_for :style do %>
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.gm-svpc {
+  display: none;
+}
+<% end %>
+
 <%= content_for :init do %>
-map = new google.maps.Map(document.getElementById('map'), {
-  center: {lat: 37.558199, lng: 127.000185},
-  zoom: 16.5
-});
+const locations = [
+  <% @buildings.each do |building| %>
+    ['<%= building.name %>', <%= building.lat %>, <%= building.lng %>, <%= building.id %>],
+  <% end %>
+]
+initMap(locations);
+
+function initMap(locations) {
+  var map = new google.maps.Map(document.getElementById("map"), {
+    center: {lat: 37.557468, lng: 127.000968},
+    zoom: 16.5
+  });
+  var infowindow = new google.maps.InfoWindow();
+
+  for (i = 0; i < locations.length; i++) {
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+      map: map,
+      label: locations[i][0],
+      title: locations[i][0],
+    });
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        
+        // infowindow.setContent(locations[i][0]);
+        // infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+}
 <% end %>
