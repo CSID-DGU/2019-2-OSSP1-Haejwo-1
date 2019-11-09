@@ -10,10 +10,10 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def update
-    current_user.update!(user_params)
-    redirect_to mypage_path
-  end
+  # def update
+  #   current_user.update!(user_params)
+  #   redirect_to mypage_path
+  # end
 
   def select_certification
   end
