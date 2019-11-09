@@ -38,7 +38,7 @@
               				</div>
               			</div>
                   <% elsif user_signed_in? %>
-                    <div id="events__do_result_<%= event.id %>">
+                    <div id="events__do_result_<%= event.id %>" class="event-status">
                       <% if event.state == 'matching' %>
                         <%= link_to '내가 하기!', '#', id: 'events__do', class: "button button-fill-ios", style: "float: right;", data: {id: event.id} %>
                       <% else %>
@@ -69,6 +69,10 @@
 <%= content_for :style do %>
   .event-popover {
     width: 25%;
+  }
+
+  .event-status {
+    display: inline;
   }
 <% end %>
 
