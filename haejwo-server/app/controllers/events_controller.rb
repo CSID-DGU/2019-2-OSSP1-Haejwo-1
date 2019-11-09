@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		@event = current_user.events.create!(set_params)
+		@event = current_user.events.create!(event_params)
     @event.tag_list.add(params[:event][:tag_list], parse: true)
     @event.save
 	end
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
 	end
 
 	def update
-		@event.update!(set_params)
+		@event.update!(event_params)
     redirect_to root_path
 	end
 
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     @event.state = 1
     @event.save
 
-    채팅방 생성
+    # 채팅방 생성
     @chatroom = Chatroom.new()
     @chatroom.event_id = params[:id]
     @chatroom.request_user = @event.user
@@ -58,7 +58,7 @@ class EventsController < ApplicationController
 		@event = Event.find params[:id]
 	end
 
-	def set_params
+	def event_params
 		params.require(:event).permit(:title, :place, :detail_place, :time_limit, :content, :reward)
 	end
 end

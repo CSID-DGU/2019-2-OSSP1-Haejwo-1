@@ -1,19 +1,34 @@
-<%#= render 'shared/navbar', title: '채팅방', back: true %>
+<% back ||= true %>
+<div class="navbar no-shadow">
+  <div class="navbar-inner">
+    <div class="left">
+      <% if back %>
+        <a href="<%= no_back? ? '/' : '#' %>" class="link back" id="back-button">
+          <i class="icon fas fa-chevron-left"></i>
+        </a>
+      <% end %>
+    </div>
+    <div class="title">채팅방</div>
+    <div class="right">
+      <a href="#" class="tab-link" id="report-popup-button"><i class='fas fa-exclamation-circle'></i></a>
+    </div>
+  </div>
+</div>
+
 
 <div class="page">
   <div class="navbar">
     <div class="navbar-bg"></div>
     <div class="navbar-inner">
-      <div class="title">Messages</div><a href="#" class="tab-link" id="report-popup-button"><i class='fas fa-exclamation-circle'></i></a>
+
     </div>
-    <%#= render 'shared/navbar', title: '채팅방', back: true %>
   </div>
   <div class="toolbar messagebar">
     <div class="toolbar-inner">
       <%= form_for(@message, url: chatroom_messages_path(@chatroom), remote: true, id: "message-form") do |f| %>
         <div class="messagebar-area">
           <!-- <textarea class="resizable" placeholder="Message"></textarea> -->
-          <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content" %>
+          <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content", required: true %>
         </div><!-- <a class="link send-link" href="#">전송</a> -->
         <%= f.submit "전송", class: "link send-link" %>
         <%#= link_to "전송", chatroom_messages_path(@chatroom), id: "message-submit-link", class: "link send-link", method: :post %>
@@ -77,8 +92,8 @@
     </div>
   </div>
 
-  <div class="popup popup-show">
-    <div class="view view-init" data-url="<%= new_report_path %>"></div>
+  <div class="popup popup-show-report">
+    <div class="view view-init" data-url="<%= new_chatroom_report_path(@chatroom) %>"></div>
   </div>
 </div>
 
@@ -215,7 +230,7 @@
 
 
   $$('#report-popup-button').click(function(){
-    app.popup.open(".popup-show");
+    app.popup.open(".popup-show-report");
   });
 
 </script>

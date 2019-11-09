@@ -3,6 +3,7 @@ class Event < ApplicationRecord
 
   belongs_to :user
   belongs_to :performer, class_name: 'User', optional: true
+  has_one :chatroom, dependent: :destroy
 
   # validates :title, presence: true
   # validates :place, presence: true

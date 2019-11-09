@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: :update
+  # before_action :authenticate_user!, only: :update
+  before_action :user_params, only: [:edit, :update]
   skip_before_action :verify_authenticity_token, only: :token
 
   def mypage
-    name = :name
-    email = :email
-    phone = :phone
+    @user = current_user
+  end
+
+  def edit
   end
 
   def update
-    current_user.update_attributes!(thumbnail_params)
+    current_user.update!(user_params)
+    redirect_to root_path
   end
 
   def select_certification
@@ -32,7 +35,7 @@ class UsersController < ApplicationController
 
   private
 
-  def thumbnail_params
-    params.require(:user).permit(:thumbnail)
+  def user_params
+    params.require(:user).permit(:name, :email, :phone, :thumbnail, :address1, :address2, :zipcode)
   end
 end

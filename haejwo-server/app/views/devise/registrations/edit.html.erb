@@ -1,4 +1,4 @@
-<%= render 'shared/navbar', title: '회원정보', back: true %>
+<%= render 'shared/navbar', title: '회원정보수정', back: true %>
 
 <div class="page-content">
   <div class="segments-page">
@@ -17,7 +17,7 @@
           </div>
           <div class="divider-space"></div>
           <div class="wrap-form">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'list no-hairlines-md list-box', id: 'form' }) do |f| %>
+            <%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), html: { method: :put, class: 'list no-hairlines-md list-box', id: 'form' }) do |f| %>
               <ul>
                 <li class="item-content item-input">
                   <div class="item-inner">
@@ -39,8 +39,7 @@
                   <div class="item-inner">
                     <%= f.label :phone, '전화번호', class: 'item-title item-label' %>
                     <div class="item-input-wrap">
-                      <%= f.text_field :phone, required: true %>
-                      <span class="input-clear-button"></span>
+                      <%= f.text_field :phone, readonly: true %>
                     </div>
                   </div>
                 </li>
@@ -61,7 +60,7 @@
                     <%= f.label :zipcode, '우편번호', class: 'item-title item-label' %>
                     <div class="item-input-wrap row">
                       <div class="col-50 zipcode-col">
-                        <%= f.text_field :zipcode, readonly: true %>
+                        <%= f.text_field :zipcode%>
                       </div>
                       <div class="col-50 zipcode-col">
                         <button type="button" id="zipcode-btn" class="button button-outline">검색</button>
@@ -73,7 +72,7 @@
                   <div class="item-inner">
                     <%= f.label :address1, '주소', class: 'item-title item-label' %>
                     <div class="item-input-wrap">
-                      <%= f.text_field :address1, readonly: true %>
+                      <%= f.text_field :address1%>
                     </div>
                   </div>
                 </li>
@@ -106,19 +105,20 @@
                 </li>
                 <li class="item-content item-input">
                   <div class="item-inner">
-                    <%= f.label :current_password, '현재 비밀번호', class: 'item-title item-label' %>
+                    <%= f.label :current_password, '현재 비밀번호*', class: 'item-title item-label' %>
                     <div class="item-input-wrap">
-                      <%= f.password_field :current_password, autocomplete: "off", class: "form-control mypage__form_control form-control-lg rounded-0", placeholder: "정보 수정시 필수입니다." %>
+                      <%= f.password_field :current_password, autocomplete: "off", class: "form-control mypage__form_control form-control-lg rounded-0", placeholder: "정보 수정시 필수입력" %>
                       <span class="input-clear-button"></span>
                     </div>
                   </div>
                 </li>
               </ul>
             <br>
-            <%= f.submit '저장하기', id: 'submit-button', class: 'button button-outline gen-preloader' %>
-            <% end %>
           </div>
         </div>
+        <br>
+        <%= f.submit '저장하기', id: 'submit-button', class: 'button button button-fill-ios gen-preloader' %>
+        <% end %>
       </div>
     </div>
   </div>
