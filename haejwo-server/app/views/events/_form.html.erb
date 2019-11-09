@@ -1,4 +1,6 @@
 <%= form_for(event, url: check_valid_events_path(id: event.id), method: :post, html: {class: 'list no-hairlines-md', id: form_id}, remote: true) do |f| %>
+  <!-- <span id="set-form-method"></span> -->
+  <input name="_method" type="hidden" id="set-method" value="post" />
   <ul>
     <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">

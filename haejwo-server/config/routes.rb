@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     post :check_valid, on: :collection
     resources :reports, only: [:new, :create]
   end
+
+  post '/events/:id' => 'events#update'
+
   resources :maps, only: :index
   resources :notifications
 
