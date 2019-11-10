@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   end
   post '/chatroom_create' => 'chatrooms#create', as: :chatroom_create
 
+  get '/reported_user' => 'users#reported_user'
 end
