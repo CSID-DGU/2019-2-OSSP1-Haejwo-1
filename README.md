@@ -45,10 +45,5 @@
 ## Rails Controller
 ![rails_controller_diagram](./haejwo-server/doc/controllers_complete.svg)
 
-## Android
-
-![class_dia1](./haejwo-android/class_dia1.png)
-![class_dia2](./haejwo-android/class_dia2.png)
-
 ## Swift
 ![ios_diagram](./haejwo-ios/ios_diagram.png)
