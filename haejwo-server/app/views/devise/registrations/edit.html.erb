@@ -4,7 +4,7 @@
   <div class="segments-page">
     <div class="container">
       <div class="profile-edit">
-        <div class="content-edit">
+        <div class="content-box">
           <div class="profile-user">
             <div class="content-image">
               <%= image_tag(current_user.thumbnail_url, id: 'user-thumbnail') %>
@@ -17,7 +17,7 @@
           </div>
           <div class="divider-space"></div>
           <div class="wrap-form">
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'list no-hairlines-md list-box', id: 'form' }) do |f| %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'list no-hairlines-md', id: 'form' }) do |f| %>
               <ul>
                 <li class="item-content item-input">
                   <div class="item-inner">
@@ -113,11 +113,9 @@
                   </div>
                 </li>
               </ul>
+              <br>
               <%= f.submit '저장하기', id: 'submit-button', class: 'button button button-fill-ios gen-preloader' %>
               <% end %>
-
-
-            <br>
           </div>
         </div>
         <br>
