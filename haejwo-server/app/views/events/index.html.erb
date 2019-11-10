@@ -16,7 +16,7 @@
     <div class="container">
       <div class="searchbar-backdrop"></div>
       <div class="forum">
-        <%#= link_to '채팅방', chatrooms_path %>
+        <%= link_to '채팅방', chatrooms_path %>
         <% if @events.present? %>
           <% @events.each do |event| %>
             <% target_event = event %>
