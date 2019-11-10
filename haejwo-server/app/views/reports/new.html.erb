@@ -15,7 +15,7 @@
     <div class="container">
 
       <div class="content-box">
-        <%= form_for(@report, html: {class: 'list no-hairlines-md'}, url: chatroom_reports_path, remote: true) do |f| %>
+        <%= form_for(@report, html: {class: 'list no-hairlines-md'}, url: event_reports_path, remote: true) do |f| %>
           <ul>
             <li class="item-content item-input">
               <div class="item-inner">
@@ -26,7 +26,6 @@
               </div>
             </li>
           </ul>
-          <%= f.hidden_field :event_id, value: @event.id %>
           <%= f.submit '신고하기', class: "button button-fill-ios button-w-icon button-full", id: "report-submit-button" %>
         <% end %>
       </div>
