@@ -1,26 +1,30 @@
 class ReportsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_params, only: %i[create]
+  before_action :find_event, only: %i[new, create]
 
   def new
-    # byebug
-    @report = Report.new(event_id: id)
+    @report = Report.new
   end
 
   def create
-    @event = @report.event
+    @report = Report.new(event: @event)
     if @event.performer == current_user
       @report.user = @event.user
-      @event.performer.blacklist = true
     else
       @report.user = @event.performer
-      @event.user.blacklist = true
     end
-    @report = @report.create!(set_params)
-    @report.save
+    @report.user.blacklist = true
+    @report.user.save
+    @report.update(set_params)
   end
 
   private
   def set_params
-    params.require(:report).permit(:event_id, :content)
+    params.require(:report).permit(:content)
+  end
+
+  def find_event
+    @event = Event.find params[:event_id]
   end
 end

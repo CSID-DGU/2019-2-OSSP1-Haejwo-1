@@ -35,10 +35,12 @@
     <div id="app">
       <div class="statusbar"></div>
       <% if user_signed_in? %>
-        <% if current_user.unapproved? %>
+        <% if current_user.blacklist? %>
           <%= render 'shared/panel' %>
-          <div class="view view-init view-main" data-url="<%= select_certification_users_path %>">
-          </div>
+          <div class="view view-init view-main" data-url="<%= reported_user_path %>"></div>
+        <% elsif current_user.unapproved? %>
+          <%= render 'shared/panel' %>
+          <div class="view view-init view-main" data-url="<%= select_certification_users_path %>"></div>
         <% else %>
           <div class="views tabs">
             <div class="toolbar tabbar tabbar-labels toolbar-bottom no-shadow">

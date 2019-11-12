@@ -5,7 +5,7 @@
     var eventId = path.split('-')[2];
     $$('#event-edit-form').attr("action", `/events/${eventId}`);
     // $$('#event-edit-form').attr("method", "put");
-
+    
     target = $('#event-edit-submit-button');
   } else {
     $$('#event-form').attr("action", "/events");
