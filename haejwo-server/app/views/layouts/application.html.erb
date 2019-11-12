@@ -145,7 +145,7 @@
             window.history.back();
           }
           else {
-            $$('#back-button').trigger('click');
+            app.view.current.router.back();
           }
         });
       }

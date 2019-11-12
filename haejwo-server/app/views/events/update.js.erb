@@ -1,4 +1,7 @@
-app.view.main.router.navigate('/');
-// app.view.main.router.refreshPage();
+app.view.main.router.back();
+setTimeout(function(){
+  app.view.main.router.refreshPage();
+  app.preloader.hide();
+}, 500);
 
 shortNoti('심부름이 정상적으로 수정되었습니다.');

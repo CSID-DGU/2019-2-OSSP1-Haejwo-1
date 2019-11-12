@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
 	before_action :load_event, only: %i[show edit update destroy perform]
-  before_action :get_building_selectors, only: %i[new edit]
+  before_action :load_selectors, only: %i[new edit]
 
 	def index
 		@events = Event.all.order("created_at DESC")
@@ -59,7 +59,8 @@ class EventsController < ApplicationController
 		params.require(:event).permit(:building_id, :title, :place, :detail_place, :time_limit, :content, :reward)
 	end
 
-  def get_building_selectors
+  def load_selectors
     @building_selectors = Building.order(name: :asc).map {|building| [building.name, building.id]}
+    @reward_selectors = Event.reward_selectors
   end
 end
