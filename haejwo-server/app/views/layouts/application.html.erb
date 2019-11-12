@@ -41,6 +41,9 @@
         <% elsif current_user.unapproved? %>
           <%= render 'shared/panel' %>
           <div class="view view-init view-main" data-url="<%= select_certification_users_path %>"></div>
+        <% elsif current_user.waiting? %>
+          <%= render 'shared/panel' %>
+          <div class="view view-init view-main" data-url="<%= waiting_user_path %>"></div>
         <% else %>
           <div class="views tabs">
             <div class="toolbar tabbar tabbar-labels toolbar-bottom no-shadow">

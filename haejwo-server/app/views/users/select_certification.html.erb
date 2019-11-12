@@ -15,62 +15,30 @@
               <div class="reservation-header reservation-plane">
                 <div class="caption">
                   <i class="fas fa-id-card"></i>
-                  <h4>Plane Ticket Reservation</h4>
+                  <h4>학생증 인증</h4>
                   <div class="icon-close">
                     <a href="#" class="link popup-close"><i class="fas fa-times"></i></a>
                   </div>
                 </div>
               </div>
               <div class="reservation-form content-box">
-                <form class="list no-hairlines-md">
+                <div>가입 승인 처리까지는 최대 24시간이 소요될 수 있습니다.</div>
+                <%= form_for(current_user, url: submit_student_card_users_path, method: :post, html: {class: 'list no-hairlines-md'}) do |f| %>
                   <ul>
                     <li class="item-content item-input">
                       <div class="item-inner">
-                        <div class="item-title item-label">Full Name</div>
-                        <div class="item-input-wrap">
-                          <input type="email" placeholder="*Petter Blake">
-                          <span class="input-clear-button"></span>
+                        <div class="content-image">
+                          <%= f.file_field :student_card_image, id: 'button-upload' %>
+                            <label for="button-upload" class="icon-upload"><i class="fas fa-camera"></i></label>
                         </div>
                       </div>
                     </li>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-label">Phone</div>
-                        <div class="item-input-wrap">
-                          <input type="text" placeholder="*1 23456789">
-                          <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-label">Check In</div>
-                        <div class="item-input-wrap">
-                          <input type="date" placeholder="Choose">
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-label">Check Out</div>
-                        <div class="item-input-wrap">
-                          <input type="date" placeholder="Choose">
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-label">Message</div>
-                        <div class="item-input-wrap">
-                          <textarea class="resizable" placeholder="*Fast respon"></textarea>
-                        </div>
-                      </div>
-                    </li>
+
                   </ul>
                   <div class="reservation-button">
-                    <button class="buttons">Send</button>
+                    <%= f.submit '제출하기', class: 'button button-fill-ios button-round-ios' %>
                   </div>
-                </form>
+                <% end %>
               </div>
             </div>
           </div>
