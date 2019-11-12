@@ -1,19 +1,23 @@
 <% if @valid %>
   var path = window.location.hash;
-  let target = null;
+  var submitBtn = null;
+  var targetForm = null;
   if (path.includes("edit")) {
     var eventId = path.split('-')[2];
-    $$('#event-edit-form').attr("action", `/events/${eventId}`);
-    target = $('#event-edit-submit-button');
+    targetForm = $$('#event-edit-form');
+    submitBtn = $('#event-edit-submit-button');
+
+    targetForm.prop("action", `/events/${eventId}`);
   } else {
-    $$('#event-form').attr("action", "/events");
-    target = $('#event-submit-button');
+    targetForm = $$('#event-form')
+    submitBtn = $('#event-submit-button');
+
+    targetForm.prop("action", "/events");
   }
-  setTimeout(function(){
-    console.log(target);
-    target.trigger('click');
-    app.preloader.hide();
-  }, 300)
+setTimeout(function(){
+  submitBtn.trigger('click');
+  app.preloader.hide();
+}, 300)
 <% else %>
   app.preloader.hide();
   app.dialog.alert('<%= @msg %>', "");
