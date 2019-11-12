@@ -33,7 +33,6 @@ class EventsController < ApplicationController
 	# 심부름 삭제
 	def destroy
 		@event.destroy
-		redirect_to root_path
 	end
 
   # 심부름 수행

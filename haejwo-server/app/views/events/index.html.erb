@@ -17,7 +17,6 @@
       <div class="searchbar-backdrop"></div>
       <div class="forum">
         <%= link_to '채팅방', chatrooms_path %>
-        <% if @events.present? %>
           <% @events.each do |event| %>
             <% target_event = event %>
             <div class="content-box">
@@ -32,7 +31,7 @@
               					<div class="list simple-list">
               						<ul>
               							<li><%= link_to "수정", edit_event_path(target_event), class: "list-button item-link popover-close" %></li>
-              							<li><%= link_to "삭제", event_path(target_event), method: :delete, class: "list-button item-link popover-close" %></li>
+              							<li><%= link_to "삭제", '#', id: 'events__delete_btn', class: "list-button item-link popover-close", data: {id: target_event.id} %></li>
               						</ul>
               					</div>
               				</div>
@@ -58,7 +57,6 @@
               </div>
 
             <div class="divider-space"></div>
-          <% end %>
         <% end %>
 
       </div>
@@ -91,5 +89,10 @@ $$('#events__do').click(function(){
       longNoti('성공적으로 매칭되었습니다! 심부름을 부탁한 사람과 이야기를 나누세요!');
     }
   })
+});
+
+// 이벨트 삭제하기 눌렀을 때
+$$('#events__delete_btn').click(function(){
+
 });
 <% end %>
