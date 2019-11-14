@@ -16,6 +16,11 @@ class UsersController < ApplicationController
   def select_certification
   end
 
+  def submit_student_card
+    current_user.certification_state = 'waiting'
+    current_user.update!(get_student_card_image)
+  end
+
   def token
     Rails.logger.info('generate a new token')
     user = User.find(params[:id])
@@ -35,5 +40,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :phone, :thumbnail, :address1, :address2, :zipcode)
+  end
+
+  def get_student_card_image
+    params.require(:user).permit(:student_card_image)
   end
 end

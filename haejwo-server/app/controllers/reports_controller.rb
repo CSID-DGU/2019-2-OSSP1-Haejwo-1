@@ -8,11 +8,10 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new(event: @event)
     if @event.performer == current_user
-      @report.user = @event.user
+      @report = Report.create!(user: @event.user, event: @event)
     else
-      @report.user = @event.performer
+      @report = Report.create!(user: @event.performer, event: @event)
     end
     @report.user.blacklist = true
     @report.user.save

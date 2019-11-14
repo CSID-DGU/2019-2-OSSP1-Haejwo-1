@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get :select_certification
       post :check_email
+      post :submit_student_card
     end
     member do
       post :token
@@ -37,4 +38,5 @@ Rails.application.routes.draw do
   post '/chatroom_create' => 'chatrooms#create', as: :chatroom_create
 
   get '/reported_user' => 'users#reported_user'
+  get '/waiting_user' => 'users#waiting_user'
 end
