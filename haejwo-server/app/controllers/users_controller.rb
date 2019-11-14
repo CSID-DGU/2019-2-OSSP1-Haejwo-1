@@ -21,6 +21,16 @@ class UsersController < ApplicationController
     current_user.update!(get_student_card_image)
   end
 
+  def submit_student_email
+    email_certification = EmailCertification.new(current_user, params)
+    email_certification.exec
+  end
+
+  def confirm_email
+    current_user.approved! if current_user.certification_token == params.permit(:token)[:token]
+    redirect_to root_path(notice: '인증이 성공적으로 이루어졌습니다.');
+  end
+
   def token
     Rails.logger.info('generate a new token')
     user = User.find(params[:id])

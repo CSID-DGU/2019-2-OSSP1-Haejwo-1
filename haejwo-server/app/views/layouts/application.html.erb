@@ -138,7 +138,7 @@
           else if ($$('.calendar').hasClass('modal-in')) {
             app.calendar.close();
           }
-          else if ($$('.popup').hasClass('modal-in')) {
+          else if ($('.popup').hasClass('modal-in')) {
             app.popup.close();
           }
           else if ($$('.searchbar').hasClass('searchbar-enabled')) {
@@ -156,7 +156,7 @@
       const currentUser = <%= raw current_user.to_json %>;
 
       $(function() {
-        <% if current_user %>
+        <% if user_signed_in? %>
           if (window.Android) {
             let android = window.Android;
             console.log(android);

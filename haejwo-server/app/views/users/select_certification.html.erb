@@ -47,68 +47,36 @@
           <div class="col-100">
             <a href="#" class="link popup-open content-box" data-popup=".hotel-reservation">
               <i class="fas fa-envelope"></i>
-              <h4>이메일 인증</h4>
+              <h4>학생이메일 인증</h4>
             </a>
             <div class="popup reservation-popup hotel-reservation reservation-content">
               <div class="reservation-header reservation-hotel">
                 <div class="caption">
                   <i class="fas fa-envelope"></i>
-                  <h4>Hotels Ticket Reservation</h4>
+                  <h4>학생이메일 인증</h4>
                   <div class="icon-close">
                     <a href="#" class="link popup-close"><i class="fas fa-times"></i></a>
                   </div>
                 </div>
               </div>
               <div class="reservation-form content-box">
-                <form class="list no-hairlines-md">
+                <%= form_for(current_user, url: submit_student_email_users_path, method: :post, remote: true, html: {class: 'list no-hairlines-md'}) do |f| %>
                   <ul>
                     <li class="item-content item-input">
                       <div class="item-inner">
-                        <div class="item-title item-label">Full Name</div>
+                        <div class="item-title item-label">학생 이메일</div>
                         <div class="item-input-wrap">
-                          <input type="email" placeholder="*Petter Blake">
+                          <%= f.email_field :student_email %>
                           <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-label">Phone</div>
-                        <div class="item-input-wrap">
-                          <input type="text" placeholder="*1 23456789">
-                          <span class="input-clear-button"></span>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-label">Check In</div>
-                        <div class="item-input-wrap">
-                          <input type="date" placeholder="Choose">
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-label">Check Out</div>
-                        <div class="item-input-wrap">
-                          <input type="date" placeholder="Choose">
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content item-input">
-                      <div class="item-inner">
-                        <div class="item-title item-label">Message</div>
-                        <div class="item-input-wrap">
-                          <textarea class="resizable" placeholder="*Fast respon"></textarea>
                         </div>
                       </div>
                     </li>
                   </ul>
+                  <br>
                   <div class="reservation-button">
-                    <button class="buttons">Send</button>
+                    <%= f.submit '인증받기', class: 'button button-fill-ios button-round-ios', id: 'student_emaiL_submit_btn' %>
                   </div>
-                </form>
+                <% end %>
               </div>
             </div>
           </div>
@@ -119,7 +87,14 @@
 </div>
 
 <%= content_for :style do %>
-<%# .my-box {
+<% end %>
 
-} %>
+<%= content_for :init do %>
+// $$('#student_emaiL_submit_btn').click(function(e){
+//   const studentEmail = $$('#user_student_email').val();
+//   if (!studentEmail.endsWith("dongguk.edu") || !studentEmail.endsWith("dgu.edu")) {
+//     e.preventDefault();
+//     app.dialog.alert("dongguk.edu 또는 dgu.edu 이용", "적합하지 않은 이메일입니다.");
+//   }
+// });
 <% end %>

@@ -88,11 +88,22 @@ $$('#events__do').click(function(){
       $$(`#events__do_result_${eventId}`).append(`<span style="float: right;"><i class="fas fa-check"></i></span>`);
       longNoti('성공적으로 매칭되었습니다! 심부름을 부탁한 사람과 이야기를 나누세요!');
     }
-  })
+  });
 });
 
 // 이벨트 삭제하기 눌렀을 때
 $$('#events__delete_btn').click(function(){
-
+  app.preloader.show();
+  const eventId = $$(this).data("id");
+  Rails.ajax({
+    url: `/events/perform/${eventId}`,
+    type: "post",
+    success: function(response) {
+      app.view.main.router.navigate(`/chatrooms/${response.chatroomId}`);
+      $$('#events__do').remove();
+      $$(`#events__do_result_${eventId}`).append(`<span style="float: right;"><i class="fas fa-check"></i></span>`);
+      longNoti('성공적으로 매칭되었습니다! 심부름을 부탁한 사람과 이야기를 나누세요!');
+    }
+  })
 });
 <% end %>
