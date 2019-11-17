@@ -13,44 +13,7 @@
       <div class="tabs-animated-wrap">
         <div class="tabs">
           <div id="tab1" class="tab tab-active">
-            <div class="wrap-title wrap-title-first">
-              <h3>Timeline Life</h3>
-            </div>
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-item-date">
-                  05 <small>June</small>
-                </div>
-                <div class="timeline-item-divider"></div>
-                <div class="timeline-item-content">
-                  <div class="timeline-item-inner">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, exercitationem.
-                  </div>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-item-date">
-                  06 <small>June</small>
-                </div>
-                <div class="timeline-item-divider"></div>
-                <div class="timeline-item-content">
-                  <div class="timeline-item-inner">
-                    Lorem ipsum dolor sit amet.
-                  </div>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-item-date">
-                  07 <small>June</small>
-                </div>
-                <div class="timeline-item-divider"></div>
-                <div class="timeline-item-content">
-                  <div class="timeline-item-inner">
-                    Lorem ipsum dolor sit amet.
-                  </div>
-                </div>
-              </div>
-            </div>
+            <%= render "push_list", pushes: @pushes %>
           </div>
 
           <div id="tab2" class="tab">
