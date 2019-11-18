@@ -29,7 +29,6 @@ class EmailCertification
   end
 
   def send_certification_email
-    byebug
     StudentMailer.certification_email(user: user).deliver_now
   end
 

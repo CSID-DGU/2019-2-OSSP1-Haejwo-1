@@ -27,8 +27,13 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
-    current_user.approved! if current_user.certification_token == params.permit(:token)[:token]
-    redirect_to root_path(notice: '인증이 성공적으로 이루어졌습니다.');
+    if current_user.certification_token == params.permit(:token)[:token]
+      flash[:alert] = '이메일 인증에 성공하셨습니다.'
+      current_user.approved!
+    else
+      flash[:alert] = '이메일 인증에 실패하셨습니다.'
+    end
+    redirect_to 'http://www.dongguk.edu/mbs/kr/index.jsp'
   end
 
   def token

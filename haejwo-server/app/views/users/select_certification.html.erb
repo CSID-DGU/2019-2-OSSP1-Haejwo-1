@@ -90,11 +90,17 @@
 <% end %>
 
 <%= content_for :init do %>
-// $$('#student_emaiL_submit_btn').click(function(e){
-//   const studentEmail = $$('#user_student_email').val();
-//   if (!studentEmail.endsWith("dongguk.edu") || !studentEmail.endsWith("dgu.edu")) {
-//     e.preventDefault();
-//     app.dialog.alert("dongguk.edu 또는 dgu.edu 이용", "적합하지 않은 이메일입니다.");
-//   }
-// });
+$$('#student_emaiL_submit_btn').click(function(e){
+  app.preloader.show();
+  const studentEmail = $$('#user_student_email').val();
+  if (studentEmail === "") {
+    e.preventDefault();
+    app.dialog.alert("이메일을 입력해주세요", "");
+    app.preloader.hide();
+  } else if (!(studentEmail.endsWith("dongguk.edu") || studentEmail.endsWith("dgu.edu"))) {
+    e.preventDefault();
+    app.dialog.alert("dongguk.edu 또는 dgu.edu 이용", "적합하지 않은 이메일입니다.");
+    app.preloader.hide();
+  }
+});
 <% end %>
