@@ -1,21 +1,6 @@
-<div class="subnavbar">
-  <form class="searchbar searchbar-init" data-search-container=".forum" data-search-in=".event-title">
-    <div class="searchbar-inner">
-      <div class="searchbar-input-wrap">
-        <input type="search" placeholder="심부름 제목으로 검색해주세요.">
-        <i class="searchbar-icon"></i>
-        <span class="input-clear-button"></span>
-      </div>
-      <span class="searchbar-disable-button if-not-aurora">Cancel</span>
-    </div>
-  </form>
-</div>
-
 <div class="page-content hide-toolbar-on-scroll">
   <div class="segments-page">
     <div class="container">
-    <!-- Searchbar backdrop -->
-    <div class="searchbar-backdrop"></div>
 
       <div class="forum searchbar-found">
         <% if @chatrooms.present? %>
@@ -45,10 +30,7 @@
 
       </div>
     </div>
-    <!-- Nothing found message -->
-    <div class="block searchbar-not-found">
-      <div class="block-inner">채팅방 검색 결과가 없습니다.</div>
-    </div>
+
   </div>
 </div>
 

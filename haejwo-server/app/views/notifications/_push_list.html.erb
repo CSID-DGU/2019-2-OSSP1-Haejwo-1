@@ -7,7 +7,7 @@
             <div class="content-box">
               <div class="user-forum">
                 <div class="title-name">
-                  <div class="event-status">
+                  <div class="push-time">
                       <span style="float: right;"><%= push.created_at.strftime("%Y-%m-%d %H:%M") %></span>
                   </div>
                   <div>
@@ -30,7 +30,7 @@
 </div>
 
 <%= content_for :style do %>
-  .event-status {
+  .push-time {
     display: inline;
   }
 <% end %>
