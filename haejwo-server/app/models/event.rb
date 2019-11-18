@@ -26,6 +26,6 @@ class Event < ApplicationRecord
   end
 
   def method
-    errors.add(:free_standard, '조건부 무료배송은 무료배송 기준을 설정해주셔야합니다.') ## if ### >= 2
+    errors.add(:chatroom, '심부름에 관련된 채팅방은 한 개여야 합니다.') ## if ### >= 2
   end
 end
