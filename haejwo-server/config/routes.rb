@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   resources :chatrooms do
     resources :messages, only: [:create, :destroy]
   end
+  resources :buildings, only: :show
   post '/chatroom_create' => 'chatrooms#create', as: :chatroom_create
 
   get '/reported_user' => 'users#reported_user'

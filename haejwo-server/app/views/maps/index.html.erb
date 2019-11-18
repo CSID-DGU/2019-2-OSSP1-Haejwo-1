@@ -16,7 +16,7 @@
 <%= content_for :init do %>
 const locations = [
   <% @buildings.each do |building| %>
-    ['<%= building.name %>', <%= building.lat %>, <%= building.lng %>, <%= building.id %>],
+    ['<%= building.name %><%= building.events.exists? ? "(#{building.events.size})" : '' %>', <%= building.lat %>, <%= building.lng %>, <%= building.id %>],
   <% end %>
 ]
 initMap(locations);
@@ -37,9 +37,7 @@ function initMap(locations) {
     });
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
-        
-        // infowindow.setContent(locations[i][0]);
-        // infowindow.open(map, marker);
+        app.views.current.router.navigate(`/buildings/${locations[i][3]}`);
       }
     })(marker, i));
   }
