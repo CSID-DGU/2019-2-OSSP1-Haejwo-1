@@ -56,7 +56,7 @@
       <% if @chatroom.messages.present? %>
         <!-- Full layout sent message -->
         <% @chatroom.messages.each do |msg| %>
-          <% if msg.user == current_user %>
+          <% if msg.sender == current_user %>
           <div class="message message-sent">
             <div class="message-content">
               <div class="message-bubble">
@@ -70,16 +70,16 @@
           <% else %>
             <!-- Full layout received message -->
             <div class="message message-received">
-              <div class="message-avatar" style="background-image:url(<%= msg.user.thumbnail_url %>);"></div>
+              <div class="message-avatar" style="background-image:url(<%= msg.sender.thumbnail_url %>);"></div>
               <div class="message-content">
-                <div class="message-name"><%= msg.user&.name %></div>
+                <div class="message-name"><%= msg.sender&.name %></div>
                 <!-- <div class="message-header">Message header</div> -->
                 <div class="message-bubble">
                   <!-- <div class="message-text-header">Text header</div> -->
                   <div class="message-text"><%= msg.content %></div>
                   <!-- <div class="message-text-footer">Text footer</div> -->
                 </div>
-                <% if msg.next.nil? or msg.next.user == current_user %>
+                <% if msg.next.nil? or msg.next.sender == current_user %>
                   <div class="message-footer"><%= msg.created_at.strftime("%m월 %d일 %H:%M") %></div>
                 <% end %>
               </div>
