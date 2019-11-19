@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :chatrooms, through: :messages, dependent: :destroy
+  has_many :pushes, dependent: :destroy
 
   validates :certification_state, presence: true
 
@@ -33,6 +34,7 @@ class User < ApplicationRecord
         }
       }
       response = fcm.send(registration_ids, options)
+      pushes.create!(title: title, body: body)
     end
   end
 end
