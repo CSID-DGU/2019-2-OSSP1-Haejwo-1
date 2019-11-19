@@ -1,36 +1,29 @@
-<div class="page-content hide-toolbar-on-scroll">
-  <div class="segments-page">
-    <div class="container">
-      <div class="searchbar-backdrop"></div>
-      <div class="forum">
-          <% @pushes.each do |push| %>
-            <div class="content-box">
-              <div class="user-forum">
-                <div class="title-name">
-                  <div class="push-time">
-                      <span style="float: right;"><%= push.created_at.strftime("%Y-%m-%d %H:%M") %></span>
-                  </div>
-                  <div>
-                    <h5><%= push.title %></h5>
-                  </div>
-                </div>
-              </div>
-
-              <div class="content-text">
-                <h4><%= push.body %></h4>
-              </div>
+<div class="forum">
+    <% @pushes.each do |push| %>
+      <div class="content-box pushes__content_box">
+        <div class="user-forum">
+          <div class="title-name">
+            <div class="push-time">
+                <span style="float: right;"><%= push.created_at.strftime("%Y-%m-%d %H:%M") %></span>
             </div>
-
-            <div class="divider-space"></div>
-        <% end %>
-
+            <div>
+              <h5><%= push.title %></h5>
+            </div>
+          </div>
+        </div>
+        <div class="content-text">
+          <h4><%= push.body %></h4>
+        </div>
       </div>
-    </div>
-  </div>
+  <% end %>
 </div>
 
 <%= content_for :style do %>
   .push-time {
     display: inline;
+  }
+
+  .pushes__content_box {
+    margin-bottom: 20px;
   }
 <% end %>

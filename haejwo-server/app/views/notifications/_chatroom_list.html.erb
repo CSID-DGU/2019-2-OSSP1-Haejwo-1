@@ -1,37 +1,29 @@
-<div class="page-content hide-toolbar-on-scroll">
-  <div class="segments-page">
-    <div class="container">
-
-      <div class="forum searchbar-found">
-        <% if @chatrooms.present? %>
-          <% @chatrooms.each do |room| %>
-            <%= link_to(room) do %>
-              <div class="content-box">
-                <div class="user-forum">
-                  <img data-src="<%= room.request_user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
-                  <div class="title-name">
-                    <span class="event-title"><%= room.event.title %></span><br><span><%= room.request_user&.name %></span>
-                  </div>
-                </div>
-                <div class="content-text">
-                  <% if room.messages.exists? %>
-                    <h5 class="message-info"><%= room.messages.last.user.name %> : <%= room.messages.last.content %></h5>
-                    <small class="message-time"><%= room.messages.last.created_at.strftime("%Y-%m-%d %H:%M") %></small>
-                  <% else %>
-                    <h4></h4>
-                  <% end %>
-                </div>
-              </div>
-
-              <div class="divider-space"></div>
+<div class="forum searchbar-found">
+  <% if @chatrooms.present? %>
+    <% @chatrooms.each do |room| %>
+      <%= link_to(room) do %>
+        <div class="content-box">
+          <div class="user-forum">
+            <img data-src="<%= room.request_user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
+            <div class="title-name">
+              <span class="event-title"><%= room.event.title %></span><br><span><%= room.request_user&.name %></span>
+            </div>
+          </div>
+          <div class="content-text">
+            <% if room.messages.exists? %>
+              <h5 class="message-info"><%= room.messages.last.user.name %> : <%= room.messages.last.content %></h5>
+              <small class="message-time"><%= room.messages.last.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+            <% else %>
+              <h4></h4>
             <% end %>
-          <% end %>
-        <% end %>
+          </div>
+        </div>
 
-      </div>
-    </div>
+        <div class="divider-space"></div>
+      <% end %>
+    <% end %>
+  <% end %>
 
-  </div>
 </div>
 
 <%= content_for :style do %>

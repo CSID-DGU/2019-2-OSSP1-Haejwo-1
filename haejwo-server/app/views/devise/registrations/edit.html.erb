@@ -39,7 +39,8 @@
                   <div class="item-inner">
                     <%= f.label :phone, '전화번호', class: 'item-title item-label' %>
                     <div class="item-input-wrap">
-                      <%= f.text_field :phone, readonly: true %>
+                      <%= f.text_field :phone %>
+                      <span class="input-clear-button"></span>
                     </div>
                   </div>
                 </li>
@@ -51,36 +52,6 @@
                       <%= f.radio_button :gender, 'man' %>
                       <%= f.label :gender, '여', value: 'woman' %>
                       <%= f.radio_button :gender, 'woman' %>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <%= f.label :zipcode, '우편번호', class: 'item-title item-label' %>
-                    <div class="item-input-wrap row">
-                      <div class="col-50 zipcode-col">
-                        <%= f.text_field :zipcode%>
-                      </div>
-                      <div class="col-50 zipcode-col">
-                        <button type="button" id="zipcode-btn" class="button button-outline">검색</button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <%= f.label :address1, '주소', class: 'item-title item-label' %>
-                    <div class="item-input-wrap">
-                      <%= f.text_field :address1%>
-                    </div>
-                  </div>
-                </li>
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <%= f.label :address2, '상세주소', class: 'item-title item-label' %>
-                    <div class="item-input-wrap">
-                      <%= f.text_field :address2 %>
                     </div>
                   </div>
                 </li>
