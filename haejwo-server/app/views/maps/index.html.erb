@@ -30,6 +30,9 @@ function initMap(locations) {
 
   for (i = 0; i < locations.length; i++) {
     var marker = new google.maps.Marker({
+      icon: {
+        url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+      },
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       map: map,
       label: locations[i][0],
