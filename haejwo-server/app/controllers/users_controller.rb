@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: :update
+  before_action :authenticate_user!, only: %i[update submit_student_card submit_student_email confirm_email]
   before_action :user_params, only: [:edit, :update]
   skip_before_action :verify_authenticity_token, only: :token
 
@@ -27,10 +27,11 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
-    if current_user.certification_token == params.permit(:token)[:token]
+    user = User.find(params[:id])
+    if user.present? && (user.certification_token == params.permit(:token)[:token])
       flash[:alert] = '이메일 인증에 성공하셨습니다.'
-      current_user.approved!
-      current_user.send_push('이메일 인증에 성공하셨습니다.', '이제부터 정상적으로 해줘[Haejwo] 서비스를 이용 하실 수 있습니다.')
+      user.approved!
+      user.send_push('이메일 인증에 성공하셨습니다.', '이제부터 정상적으로 해줘[Haejwo] 서비스를 이용 하실 수 있습니다.')
     else
       flash[:alert] = '이메일 인증에 실패하셨습니다.'
     end

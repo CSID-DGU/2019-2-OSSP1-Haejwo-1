@@ -9,7 +9,7 @@
       <h1>안녕하세요 Haejwo(해줘) 입니다</h1>
       <h2><%= @user.name %>님의 인증 메일입니다!<br>아래의 인증 버튼을 눌러 인증을 완료하세요.</h2>
 
-      <%= link_to '인증', confirm_email_users_url(token: @user.certification_token), class: 'btn btn-outline-primary' %>
+      <%= link_to '인증', confirm_email_user_url(id: @user, token: @user.certification_token), class: 'btn btn-outline-primary' %>
 
       <p>이용해주셔서 감사합니다.</p>
     </div>

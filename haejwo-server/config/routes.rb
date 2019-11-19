@@ -8,13 +8,13 @@ Rails.application.routes.draw do
   resources :users, only: :update do
     collection do
       get :select_certification
-      get :confirm_email
       post :submit_student_email
       post :check_email
       post :submit_student_card
     end
     member do
       post :token
+      get :confirm_email
     end
   end
   resources :events do
