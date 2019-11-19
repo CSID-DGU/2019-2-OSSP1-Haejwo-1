@@ -16,6 +16,7 @@
 //= require activestorage
 //= require throttle
 //= require_tree ./channels
+//= require cable
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

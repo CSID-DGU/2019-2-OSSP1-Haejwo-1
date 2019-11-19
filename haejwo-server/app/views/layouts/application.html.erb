@@ -31,7 +31,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   </head>
-  <body>
+  <body data-user-id="<%= current_user.id rescue "" %>">
     <div id="app">
       <div class="statusbar"></div>
       <% if user_signed_in? %>
