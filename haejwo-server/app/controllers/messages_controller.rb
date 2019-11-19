@@ -7,9 +7,10 @@ class MessagesController < ApplicationController
 
   def create
     @message = @chatroom.messages.create!(message_params)
+    byebug
     if @message.present?
       ActionCable.server.broadcast(
-        "user_#{@받는놈 아이디}_channel",
+        "user_#{@message.id}_channel",
         broad_type: 'message',
         message: @message.content,
         user: @message.user.name

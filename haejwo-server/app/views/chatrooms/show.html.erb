@@ -27,9 +27,10 @@
     <div class="toolbar-inner">
         <div class="messagebar-area">
         <%= form_for(@message, url: chatroom_messages_path(@chatroom), html: {id: "message-form"}, remote: true) do |f| %>
-        <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content", required: true %>
-        </div>
-        <%= f.submit "전송", class: "link send-link" %>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content", required: true %>
+          </div>
+          <%= f.submit "전송", class: "link send-link", id: 'send_message_btn' %>
         <% end %>
     </div>
   </div>
@@ -114,5 +115,9 @@
 <%= content_for :init do %>
   $$('#report-popup-button').click(function(){
     app.popup.open(".popup-show-report");
+  });
+
+  $$('#send_message_btn').click(function(){
+    $$('#message-form').submit();
   });
 <% end %>
