@@ -16,8 +16,7 @@ jQuery(function() {
         console.log(data);
 
         if (data.broad_type === 'message') {
-          console.log('hello');
-          alert('hello world!');
+          
         }
 
       }

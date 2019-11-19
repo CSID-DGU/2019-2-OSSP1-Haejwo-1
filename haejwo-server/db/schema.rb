@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_17_160840) do
+ActiveRecord::Schema.define(version: 2019_11_19_050953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,12 +81,14 @@ ActiveRecord::Schema.define(version: 2019_11_17_160840) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
-    t.bigint "user_id"
+    t.bigint "sender_id"
     t.bigint "chatroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "receiver_id"
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["receiver_id"], name: "index_messages_on_receiver_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "pushes", force: :cascade do |t|
@@ -176,7 +178,8 @@ ActiveRecord::Schema.define(version: 2019_11_17_160840) do
   add_foreign_key "events", "users"
   add_foreign_key "events", "users", column: "performer_id"
   add_foreign_key "messages", "chatrooms"
-  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "users", column: "receiver_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "pushes", "users"
   add_foreign_key "reports", "events"
   add_foreign_key "reports", "users"
