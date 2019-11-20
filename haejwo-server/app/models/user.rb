@@ -7,8 +7,6 @@ class User < ApplicationRecord
   has_many :chatrooms, through: :messages, dependent: :destroy
   has_many :pushes, dependent: :destroy
 
-  validates :certification_state, presence: true
-
   enum gender: %i[no_select man woman]
   enum certification_state: %i[unapproved waiting approved]
   enum device_type: %i[android ios]
