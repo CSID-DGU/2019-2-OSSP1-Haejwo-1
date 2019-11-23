@@ -7,16 +7,16 @@ jQuery(function() {
     },
     {
       connected: function() {
-        console.log(`user_${current_user_id}_channel connected`);
+        // console.log(`user_${current_user_id}_channel connected`);
       },
 
       disconnected: function() {},
 
       received: function(data) {
-        console.log(data);
+        // console.log(data);
 
         if (data.broad_type === 'message') {
-          
+
         }
 
       }
