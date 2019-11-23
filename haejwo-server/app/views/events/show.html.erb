@@ -39,18 +39,6 @@
 										<div class="row">
 											<div class="col-30">
 												<div class="content">
-													<span>상태</span>
-												</div>
-											</div>
-											<div class="col-70">
-												<div class="content">
-													<span><%= @event.state %></span>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-30">
-												<div class="content">
 													<span>보상금액</span>
 												</div>
 											</div>
@@ -81,6 +69,18 @@
 											<div class="col-70">
 												<div class="content">
 													<span class="price"><%= @event.time_limit.strftime("%Y-%m-%d %H:%M") %>까지</span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-30">
+												<div class="content">
+													<span>내용</span>
+												</div>
+											</div>
+											<div class="col-70">
+												<div class="content">
+													<span><%= @event.content %></span>
 												</div>
 											</div>
 										</div>
