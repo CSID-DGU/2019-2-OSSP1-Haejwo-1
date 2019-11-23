@@ -1,9 +1,8 @@
-<%= render 'shared/navbar_nomenu', title: '심부름 상세보기', back: true %>
-
+<%= render 'shared/navbar_default', title: '심부름 상세보기', back: true %>
 
 	<div class="page-content">
 
-		<!-- order-history -->
+		<!-- event-show -->
 		<div class="segments-page">
 			<div class="container">
 
@@ -12,14 +11,19 @@
 						<div class="list accordion-list">
 							<ul>
 								<li class="accordion-item accordion-item-opened list-box">
-									<a href="#" class="item-content item-link">
-										<div class="item-inner">
-											<div class="item-title"><%= @event.title %>
-												<span><% if @event.state == 'matching' %><i class="fas fa-check"></i><% end %></span>
+									<div class="accordion-item-content">
+										<div class="row">
+											<div class="col-30">
+												<div class="content">
+													<span>제목</span>
+												</div>
+											</div>
+											<div class="col-70">
+												<div class="content">
+													<span><%= @event.title %></span>
+												</div>
 											</div>
 										</div>
-									</a>
-									<div class="accordion-item-content">
 										<div class="row">
 											<div class="col-30">
 												<div class="content">
@@ -80,11 +84,14 @@
 												</div>
 											</div>
 										</div>
-										<div class="row">
-											<button class="buttons">심부름 수행하기</button>
-										</div>
 
-										<% if @event.user == current_user %>
+										<% if @event.state == 'matching' %>
+											<div class="row">
+												<button class="buttons">심부름 수행하기</button>
+											</div>
+										<% end %>
+
+										<% if @event.user == current_user && @event.state == 'matching' %>
 											<div class="row">
 												<div class="col">
 													<%= link_to "글 수정하기", edit_event_path(@event), class: "button button-outline-ios" %>
@@ -98,10 +105,6 @@
 									</div>
 								</li>
 
-								<li class="divider-space-text"></li>
-
-
-
 							</ul>
 						</div>
 					</div>
@@ -109,6 +112,12 @@
 
 			</div>
 		</div>
-		<!-- end order-history -->
+		<!-- end event-show -->
 
 	</div>
+
+<%= content_for :style do %>
+	.order-history .accordion .accordion-list ul .accordion-item.accordion-item-opened .accordion-item-content {
+		padding: 15px 15px 15px;
+	}
+<% end %>
