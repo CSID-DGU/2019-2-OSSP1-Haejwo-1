@@ -15,6 +15,8 @@ class MessagesController < ApplicationController
         user: @message.sender.name
       )
     end
+    
+    @chatroom.touch
   end
 
   private
