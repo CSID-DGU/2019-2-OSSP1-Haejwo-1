@@ -39,6 +39,7 @@ class EventsController < ApplicationController
   def perform
     perform_event = PerformEvent.new(@event, current_user)
     chatroom = perform_event.execute
+    @event.user.send_push('심부름 요청 수락', '요청하신 심부름이 수락되었습니다.')
     render json: {chatroomId: chatroom.id}
   end
 

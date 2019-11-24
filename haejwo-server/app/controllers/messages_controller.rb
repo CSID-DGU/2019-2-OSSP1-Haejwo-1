@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
         user: @message.sender.name
       )
     end
-    
+    @message.receiver.send_push('메세지 도착', @message.content)
     @chatroom.touch
   end
 
