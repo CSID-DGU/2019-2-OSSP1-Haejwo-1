@@ -78,7 +78,7 @@
                   <div class="item-inner">
                     <%= f.label :current_password, '현재 비밀번호*', class: 'item-title item-label' %>
                     <div class="item-input-wrap">
-                      <%= f.password_field :current_password, autocomplete: "off", class: "form-control mypage__form_control form-control-lg rounded-0", placeholder: "정보 수정시 필수입력" %>
+                      <%= f.password_field :current_password, autocomplete: "off", class: "form-control mypage__form_control form-control-lg rounded-0", placeholder: "정보 수정시 필수입력", required: true %>
                       <span class="input-clear-button"></span>
                     </div>
                   </div>
