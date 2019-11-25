@@ -170,47 +170,7 @@
     messages.addMessage({
       text: text,
     });
-
-    if (responseInProgress) return;
-    // Receive dummy message
-    receiveMessage();
+    
   });
 
-  var people = [
-    {
-      name: 'Kate Johnson',
-      avatar: 'https://cdn.framework7.io/placeholder/people-100x100-9.jpg'
-    },
-    {
-      name: 'Blue Ninja',
-      avatar: 'https://cdn.framework7.io/placeholder/people-100x100-7.jpg'
-    }
-  ];
-  function receiveMessage() {
-    responseInProgress = true;
-    setTimeout(function () {
-      // Get random answer and random person
-      var answer = answers[Math.floor(Math.random() * answers.length)];
-      var person = people[Math.floor(Math.random() * people.length)];
-
-      // Show typing indicator
-      messages.showTyping({
-        header: person.name + ' is typing',
-        avatar: person.avatar
-      });
-
-      setTimeout(function () {
-        // Add received dummy message
-        messages.addMessage({
-          text: answer,
-          type: 'received',
-          name: person.name,
-          avatar: person.avatar
-        });
-        // Hide typing indicator
-        messages.hideTyping();
-        responseInProgress = false;
-      }, 4000);
-    }, 1000);
-  }
 <% end %>
