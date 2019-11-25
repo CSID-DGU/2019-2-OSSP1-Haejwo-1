@@ -14,7 +14,7 @@
                   <img data-src="<%= event.user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
                   <div class="title-name">
                     <span><%= event.user&.name %></span>
-                    <% if event.user == current_user %>
+                    <% if event.user == current_user && event.state == 'matching' %>
                       <a href="#" class="link popover-open" data-popover=".popover-links-<%= target_event.id %>" style="float: right;"><i class="fa fa-ellipsis-h"></i></a>
                       <div class="popover popover-links-<%= target_event.id %> event-popover">
                 				<div class="popover-inner">

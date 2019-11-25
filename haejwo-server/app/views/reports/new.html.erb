@@ -15,7 +15,7 @@
     <div class="container">
 
       <div class="content-box">
-        <%= form_for(@report, html: {class: 'list no-hairlines-md'}, url: event_reports_path, remote: true) do |f| %>
+        <%= form_for(@report, html: {class: 'list no-hairlines-md', id: 'report-form'}, url: event_reports_path, remote: true) do |f| %>
           <ul>
             <li class="item-content item-input">
               <div class="item-inner">

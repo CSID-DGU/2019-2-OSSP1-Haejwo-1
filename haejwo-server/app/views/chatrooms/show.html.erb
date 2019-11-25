@@ -44,11 +44,16 @@
       <div class="row">
         <div class="col-80 margin-auto">
           <div class="grids">
+            <%= link_to event_path(@chatroom.event) do %>
             <div class="card">
               <div class="content-text">
-                <span><b><%= @chatroom.perform_user.name %></b>님이 <b><%= @chatroom.request_user.name %></b>님이 올린 <b><br><%= @chatroom.event.title %></b> 요청을 수락했습니다.</span>
+                <span>
+                  <b><%= @chatroom.perform_user.name %></b>님이 <b><%= @chatroom.request_user.name %></b>님이 올린 <b><br><%= @chatroom.event.title %></b> 요청을 수락했습니다.<br>
+                  <small>* 심부름 내용 상세확인은 이곳을 클릭해 주세요.</small>
+                </span>
               </div>
             </div>
+            <% end %>
           </div>
         </div>
       </div>
