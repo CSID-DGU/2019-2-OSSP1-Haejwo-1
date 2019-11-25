@@ -1,89 +1,82 @@
 <%= render 'shared/navbar_default', title: '채팅방', back: true %>
 
-<div class="page">
-  <div class="navbar">
-    <div class="navbar-bg"></div>
-    <div class="navbar-inner">
-
-    </div>
+<div class="toolbar messagebar">
+  <div class="toolbar-inner">
+      <div class="messagebar-area">
+      <%= form_for(@message, url: chatroom_messages_path(@chatroom), html: {id: "message-form"}, remote: true) do |f| %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content", required: true %>
+        </div>
+        <%= f.submit "전송", class: "link send-link", id: 'send_message_btn' %>
+      <% end %>
   </div>
-  <div class="toolbar messagebar">
-    <div class="toolbar-inner">
-        <div class="messagebar-area">
-        <%= form_for(@message, url: chatroom_messages_path(@chatroom), html: {id: "message-form"}, remote: true) do |f| %>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content", required: true %>
-          </div>
-          <%= f.submit "전송", class: "link send-link", id: 'send_message_btn' %>
-        <% end %>
-    </div>
-  </div>
-  <div class="page-content messages-content">
-    <div class="messages messages-init" data-new-messages-first="true">
-      <!-- Messages title -->
-      <div class="messages-title"><b><%= @chatroom.created_at.strftime("%Y년 %m월 %d일,") %></b> <%= @chatroom.created_at.strftime("%H:%M") %></div>
+</div>
+<div class="page-content messages-content">
+  <div class="messages messages-init" data-new-messages-first="true">
+    <!-- Messages title -->
+    <div class="messages-title"><b><%= @chatroom.created_at.strftime("%Y년 %m월 %d일,") %></b> <%= @chatroom.created_at.strftime("%H:%M") %></div>
 
-      <!-- Chatroom info -->
-      <div class="divider-space"></div>
-      <div class="row">
-        <div class="col-80 margin-auto">
-          <div class="grids">
-            <%= link_to event_path(@chatroom.event) do %>
-            <div class="card">
-              <div class="content-text">
-                <span>
-                  <b><%= @chatroom.perform_user.name %></b>님이 <b><%= @chatroom.request_user.name %></b>님이 올린 <b><br><%= @chatroom.event.title %></b> 요청을 수락했습니다.<br>
-                  <small>* 심부름 내용 상세확인은 이곳을 클릭해 주세요.</small>
-                </span>
-              </div>
+    <!-- Chatroom info -->
+    <div class="divider-space"></div>
+    <div class="row">
+      <div class="col-80 margin-auto">
+        <div class="grids">
+          <%= link_to event_path(@chatroom.event) do %>
+          <div class="card">
+            <div class="content-text">
+              <span>
+                <b><%= @chatroom.perform_user.name %></b>님이 <b><%= @chatroom.request_user.name %></b>님이 올린 <b><br><%= @chatroom.event.title %></b> 요청을 수락했습니다.<br>
+                <small>* 심부름 내용 상세확인은 이곳을 클릭해 주세요.</small>
+              </span>
             </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if @chatroom.messages.present? %>
+      <!-- Full layout sent message -->
+      <% @chatroom.messages.each do |msg| %>
+        <% if msg.sender == current_user %>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text"><%= msg.content %></div>
+            </div>
+            <% if msg.next.blank? %>
+              <!-- <div class="message-footer">읽음</div> -->
             <% end %>
           </div>
         </div>
-      </div>
-
-      <% if @chatroom.messages.present? %>
-        <!-- Full layout sent message -->
-        <% @chatroom.messages.each do |msg| %>
-          <% if msg.sender == current_user %>
-          <div class="message message-sent">
+        <% else %>
+          <!-- Full layout received message -->
+          <div class="message message-received">
+            <div class="message-avatar" style="background-image:url(<%= msg.sender.thumbnail_url %>);"></div>
             <div class="message-content">
+              <div class="message-name"><%= msg.sender&.name %></div>
+              <!-- <div class="message-header">Message header</div> -->
               <div class="message-bubble">
+                <!-- <div class="message-text-header">Text header</div> -->
                 <div class="message-text"><%= msg.content %></div>
+                <!-- <div class="message-text-footer">Text footer</div> -->
               </div>
-              <% if msg.next.blank? %>
-                <!-- <div class="message-footer">읽음</div> -->
+              <% if msg.next.nil? or msg.next.sender == current_user %>
+                <div class="message-footer"><%= msg.created_at.strftime("%m월 %d일 %H:%M") %></div>
               <% end %>
             </div>
           </div>
-          <% else %>
-            <!-- Full layout received message -->
-            <div class="message message-received">
-              <div class="message-avatar" style="background-image:url(<%= msg.sender.thumbnail_url %>);"></div>
-              <div class="message-content">
-                <div class="message-name"><%= msg.sender&.name %></div>
-                <!-- <div class="message-header">Message header</div> -->
-                <div class="message-bubble">
-                  <!-- <div class="message-text-header">Text header</div> -->
-                  <div class="message-text"><%= msg.content %></div>
-                  <!-- <div class="message-text-footer">Text footer</div> -->
-                </div>
-                <% if msg.next.nil? or msg.next.sender == current_user %>
-                  <div class="message-footer"><%= msg.created_at.strftime("%m월 %d일 %H:%M") %></div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
         <% end %>
       <% end %>
-      <!-- Messages -->
-    </div>
-  </div>
-
-  <div class="popup popup-show-report">
-    <div class="view view-init" data-url="<%= new_event_report_path(@chatroom.event) %>"></div>
+    <% end %>
+    <!-- Messages -->
   </div>
 </div>
+
+<div class="popup popup-show-report">
+  <div class="view view-init" data-url="<%= new_event_report_path(@chatroom.event) %>"></div>
+</div>
+
 
 <%= content_for :style do %>
   .margin-auto {
