@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     email = params[:email] if params[:email].present?
     already_exist = User.find_by(email: email).present?
     format_wrong = (email =~ /\A[^@\s]+@[^@\s]+\z/) != 0
-    result = (already_exist || format_wrong)  ? 0 : 1
+    result = (already_exist || format_wrong) ? 0 : 1
     render json: {result: result}
   end
 

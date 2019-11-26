@@ -42,4 +42,6 @@ Rails.application.routes.draw do
 
   get '/reported_user' => 'users#reported_user'
   get '/waiting_user' => 'users#waiting_user'
+
+  get '/user_privacy' => 'users#privacy'
 end
