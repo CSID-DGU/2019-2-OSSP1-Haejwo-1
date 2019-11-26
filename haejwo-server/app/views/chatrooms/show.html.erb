@@ -1,105 +1,82 @@
-<% back ||= true %>
-<div class="navbar no-shadow">
-  <div class="navbar-inner">
-    <div class="left">
-      <% if back %>
-        <a href="<%= no_back? ? '/' : '#' %>" class="link back" id="back-button">
-          <i class="icon fas fa-chevron-left"></i>
-        </a>
+<%= render 'shared/navbar_default', title: '채팅방', back: true %>
+
+<div class="toolbar messagebar">
+  <div class="toolbar-inner">
+      <div class="messagebar-area">
+      <%= form_for(@message, url: chatroom_messages_path(@chatroom), html: {id: "message-form"}, remote: true) do |f| %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content", required: true %>
+        </div>
+        <%= f.submit "전송", class: "link send-link", id: 'send_message_btn' %>
       <% end %>
-    </div>
-    <div class="title">채팅방</div>
-    <div class="right">
-      <a href="#" class="tab-link" id="report-popup-button"><i class='fas fa-exclamation-circle'></i></a>
-    </div>
   </div>
 </div>
+<div class="page-content messages-content">
+  <div class="messages messages-init" data-new-messages-first="true">
+    <!-- Messages title -->
+    <div class="messages-title"><b><%= @chatroom.created_at.strftime("%Y년 %m월 %d일,") %></b> <%= @chatroom.created_at.strftime("%H:%M") %></div>
 
-
-<div class="page">
-  <div class="navbar">
-    <div class="navbar-bg"></div>
-    <div class="navbar-inner">
-
-    </div>
-  </div>
-  <div class="toolbar messagebar">
-    <div class="toolbar-inner">
-        <div class="messagebar-area">
-        <%= form_for(@message, url: chatroom_messages_path(@chatroom), html: {id: "message-form"}, remote: true) do |f| %>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <%= f.text_area :content, class: "resizable", placeholder: "Message", id: "message_content", required: true %>
-          </div>
-          <%= f.submit "전송", class: "link send-link", id: 'send_message_btn' %>
-        <% end %>
-    </div>
-  </div>
-  <div class="page-content messages-content">
-    <div class="messages messages-init" data-new-messages-first="true">
-      <!-- Messages title -->
-      <div class="messages-title"><b><%= @chatroom.created_at.strftime("%Y년 %m월 %d일,") %></b> <%= @chatroom.created_at.strftime("%H:%M") %></div>
-
-      <!-- Chatroom info -->
-      <div class="divider-space"></div>
-      <div class="row">
-        <div class="col-80 margin-auto">
-          <div class="grids">
-            <%= link_to event_path(@chatroom.event) do %>
-            <div class="card">
-              <div class="content-text">
-                <span>
-                  <b><%= @chatroom.perform_user.name %></b>님이 <b><%= @chatroom.request_user.name %></b>님이 올린 <b><br><%= @chatroom.event.title %></b> 요청을 수락했습니다.<br>
-                  <small>* 심부름 내용 상세확인은 이곳을 클릭해 주세요.</small>
-                </span>
-              </div>
+    <!-- Chatroom info -->
+    <div class="divider-space"></div>
+    <div class="row">
+      <div class="col-80 margin-auto">
+        <div class="grids">
+          <%= link_to event_path(@chatroom.event) do %>
+          <div class="card">
+            <div class="content-text">
+              <span>
+                <b><%= @chatroom.perform_user.name %></b>님이 <b><%= @chatroom.request_user.name %></b>님이 올린 <b><br><%= @chatroom.event.title %></b> 요청을 수락했습니다.<br>
+                <small>* 심부름 내용 상세확인은 이곳을 클릭해 주세요.</small>
+              </span>
             </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if @chatroom.messages.present? %>
+      <!-- Full layout sent message -->
+      <% @chatroom.messages.each do |msg| %>
+        <% if msg.sender == current_user %>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text"><%= msg.content %></div>
+            </div>
+            <% if msg.next.blank? %>
+              <!-- <div class="message-footer">읽음</div> -->
             <% end %>
           </div>
         </div>
-      </div>
-
-      <% if @chatroom.messages.present? %>
-        <!-- Full layout sent message -->
-        <% @chatroom.messages.each do |msg| %>
-          <% if msg.sender == current_user %>
-          <div class="message message-sent">
+        <% else %>
+          <!-- Full layout received message -->
+          <div class="message message-received">
+            <div class="message-avatar" style="background-image:url(<%= msg.sender.thumbnail_url %>);"></div>
             <div class="message-content">
+              <div class="message-name"><%= msg.sender&.name %></div>
+              <!-- <div class="message-header">Message header</div> -->
               <div class="message-bubble">
+                <!-- <div class="message-text-header">Text header</div> -->
                 <div class="message-text"><%= msg.content %></div>
+                <!-- <div class="message-text-footer">Text footer</div> -->
               </div>
-              <% if msg.next.blank? %>
-                <!-- <div class="message-footer">읽음</div> -->
+              <% if msg.next.nil? or msg.next.sender == current_user %>
+                <div class="message-footer"><%= msg.created_at.strftime("%m월 %d일 %H:%M") %></div>
               <% end %>
             </div>
           </div>
-          <% else %>
-            <!-- Full layout received message -->
-            <div class="message message-received">
-              <div class="message-avatar" style="background-image:url(<%= msg.sender.thumbnail_url %>);"></div>
-              <div class="message-content">
-                <div class="message-name"><%= msg.sender&.name %></div>
-                <!-- <div class="message-header">Message header</div> -->
-                <div class="message-bubble">
-                  <!-- <div class="message-text-header">Text header</div> -->
-                  <div class="message-text"><%= msg.content %></div>
-                  <!-- <div class="message-text-footer">Text footer</div> -->
-                </div>
-                <% if msg.next.nil? or msg.next.sender == current_user %>
-                  <div class="message-footer"><%= msg.created_at.strftime("%m월 %d일 %H:%M") %></div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
         <% end %>
       <% end %>
-      <!-- Messages -->
-    </div>
-  </div>
-
-  <div class="popup popup-show-report">
-    <div class="view view-init" data-url="<%= new_event_report_path(@chatroom.event) %>"></div>
+    <% end %>
+    <!-- Messages -->
   </div>
 </div>
+
+<div class="popup popup-show-report">
+  <div class="view view-init" data-url="<%= new_event_report_path(@chatroom.event) %>"></div>
+</div>
+
 
 <%= content_for :style do %>
   .margin-auto {
@@ -193,47 +170,7 @@
     messages.addMessage({
       text: text,
     });
-
-    if (responseInProgress) return;
-    // Receive dummy message
-    receiveMessage();
+    
   });
 
-  var people = [
-    {
-      name: 'Kate Johnson',
-      avatar: 'https://cdn.framework7.io/placeholder/people-100x100-9.jpg'
-    },
-    {
-      name: 'Blue Ninja',
-      avatar: 'https://cdn.framework7.io/placeholder/people-100x100-7.jpg'
-    }
-  ];
-  function receiveMessage() {
-    responseInProgress = true;
-    setTimeout(function () {
-      // Get random answer and random person
-      var answer = answers[Math.floor(Math.random() * answers.length)];
-      var person = people[Math.floor(Math.random() * people.length)];
-
-      // Show typing indicator
-      messages.showTyping({
-        header: person.name + ' is typing',
-        avatar: person.avatar
-      });
-
-      setTimeout(function () {
-        // Add received dummy message
-        messages.addMessage({
-          text: answer,
-          type: 'received',
-          name: person.name,
-          avatar: person.avatar
-        });
-        // Hide typing indicator
-        messages.hideTyping();
-        responseInProgress = false;
-      }, 4000);
-    }, 1000);
-  }
 <% end %>
