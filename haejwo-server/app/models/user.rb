@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :chatrooms, through: :messages, dependent: :destroy
   has_many :pushes, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   enum gender: %i[no_select man woman]
   enum certification_state: %i[unapproved waiting approved]
@@ -23,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def send_push(title, body)
-    if device_token.present? && device_type.present?
+    if device_token.present? && device_type.present? && Rails.env.production?
       fcm = FCM.new(ENV['FCM_KEY'])
       registration_ids = [device_token]
       options = { 'notification': {
