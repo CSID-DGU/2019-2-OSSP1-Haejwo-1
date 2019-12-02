@@ -16,7 +16,7 @@ jQuery(function() {
         // console.log(data);
 
         if (data.broad_type === 'message') {
-
+          $('#received-message').append(data.new_msg);
         }
 
       }

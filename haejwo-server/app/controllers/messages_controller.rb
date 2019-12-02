@@ -7,6 +7,9 @@ class MessagesController < ApplicationController
 
   def create
     @message = @chatroom.messages.create!(message_params)
+    new_msg = ApplicationController.render(
+      partial: 'messages/message', locals: {message: @message}
+    )
     if @message.present?
       ActionCable.server.broadcast(
         "user_#{@message.receiver.id}_channel",
