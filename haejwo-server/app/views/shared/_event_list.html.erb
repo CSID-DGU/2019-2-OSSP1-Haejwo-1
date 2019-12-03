@@ -38,7 +38,7 @@
                     <div><h5 class="event-title"><%= event.title %></h5></div>
                       <span><i class="fas fa-coins"></i> <%= event.reward %>원</span>
                       <span><i class='far fa-clock'></i> <%= event.time_limit.strftime("%Y-%m-%d %H:%M") %>까지</span>
-                      <span><i class='fas fa-map-marker-alt'></i> <%= event.place %> <%= event.detail_place %></span>
+                      <span><i class='fas fa-map-marker-alt'></i> <%= event.building.name %> <%= event.detail_place %></span>
                     </div>
                   </div>
                   <div class="content-text">
