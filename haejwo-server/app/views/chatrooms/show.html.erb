@@ -39,7 +39,7 @@
         <!-- Full layout sent message -->
         <% @chatroom.messages.each do |msg| %>
           <% if msg.sender == current_user %>
-            <div class="message message-sent">
+            <div class="message message-sent sent">
               <div class="message-content">
                 <div class="message-bubble">
                   <div class="message-text"><%= msg.content %></div>
@@ -81,6 +81,10 @@
 
   .send-link {
     color: #94D439 !important;
+  }
+
+  .sent {
+    max-width: 99%;
   }
 <% end %>
 
