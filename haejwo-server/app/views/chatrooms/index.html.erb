@@ -20,7 +20,7 @@
     <div class="searchbar-backdrop"></div>
 
       <div class="forum search-list searchbar-found">
-        <% if @chatrooms.present? %>
+        <% if @chatrooms.exists? %>
           <% @chatrooms.each do |room| %>
             <%= link_to(room) do %>
               <div class="content-box">
@@ -32,8 +32,8 @@
                 </div>
                 <div class="content-text">
                   <% if room.messages.exists? %>
-                    <h5 class="message-info"><%= room.messages.last.user.name %> : <%= room.messages.last.content %></h5>
-                    <small class="message-time"><%= room.messages.last.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+                    <h5 class="message-info"><%= room.messages&.last&.user&.name %> : <%= room.messages&.last&.content %></h5>
+                    <small class="message-time"><%= room.messages&.last&.created_at&.strftime("%Y-%m-%d %H:%M") %></small>
                   <% else %>
                     <h4></h4>
                   <% end %>
