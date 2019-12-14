@@ -3,7 +3,7 @@ ActiveAdmin.register Report do
   actions :index, :destroy
 
   batch_action '블랙리스트 설정', form: {
-    blacklist: [['블랙리스트 추가', false]]
+    blacklist: [['블랙리스트 추가', true]]
   } do |ids, inputs|
     reports = Report.find(ids)
     reports.each do |report|
