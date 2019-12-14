@@ -17,14 +17,6 @@ class Event < ApplicationRecord
 
   acts_as_taggable
 
-  def self.reward_selectors
-    num_arr = []
-    (1..1000).each do |i|
-      num_arr.push(i * 500)
-    end
-    num_arr
-  end
-
   def method
     errors.add(:chatroom, '심부름에 관련된 채팅방은 한 개여야 합니다.') ## if ### >= 2
   end

@@ -32,7 +32,7 @@
       <div class="item-inner">
         <div class="item-title item-label">보상금액</div>
         <div class="item-input-wrap">
-          <%= f.select :reward, reward_selectors, include_blank: true %>
+          <%= f.select :reward, options_for_select((500..100000).step(500)), include_blank: true %>
         </div>
       </div>
     </li>

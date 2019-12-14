@@ -61,7 +61,6 @@ class EventsController < ApplicationController
 	end
 
   def load_selectors
-    @building_selectors = Building.order(name: :asc).map {|building| [building.name, building.id]}
-    @reward_selectors = Event.reward_selectors
+    @building_selectors = Building.order(:name).map {|building| [building.name, building.id]}
   end
 end

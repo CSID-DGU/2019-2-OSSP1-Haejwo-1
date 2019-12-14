@@ -88,3 +88,7 @@ div.demo-lazy {
   background-size: cover;
   height: 60vw;
 }
+
+.list input[type=datetime-local] {
+  max-width: none;
+}
