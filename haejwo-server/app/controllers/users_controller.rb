@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def update
+    current_user.update_attributes!(thumbnail_params)
+  end
+
   def edit
   end
 
@@ -57,6 +61,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :phone, :thumbnail, :address1, :address2, :zipcode)
+  end
+
+  def thumbnail_params
+    params.require(:user).permit(:thumbnail)
   end
 
   def get_student_card_image

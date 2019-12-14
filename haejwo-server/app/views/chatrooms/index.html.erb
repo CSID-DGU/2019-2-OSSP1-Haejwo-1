@@ -16,9 +16,7 @@
 <div class="page-content hide-toolbar-on-scroll">
   <div class="segments-page">
     <div class="container">
-    <!-- Searchbar backdrop -->
     <div class="searchbar-backdrop"></div>
-
       <div class="forum search-list searchbar-found">
         <% @chatrooms.each do |room| %>
           <%= link_to(room) do %>
@@ -46,7 +44,6 @@
         <% end %>
       </div>
     </div>
-    <!-- Nothing found message -->
     <div class="block searchbar-not-found">
       <div class="block-inner">채팅방 검색 결과가 없습니다.</div>
     </div>
