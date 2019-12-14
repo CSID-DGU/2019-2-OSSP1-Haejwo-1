@@ -29,7 +29,7 @@ function hide_preloader() {
 function shortNotification(msg) {
   const current_time = new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
   const notificationFull = app.notification.create({
-    icon: '<i class="icon far fa-bell"></i>',
+    icon: '<i class="icon far fa-comment"></i>',
     title: '알림',
     titleRightText: current_time,
     subtitle: msg,

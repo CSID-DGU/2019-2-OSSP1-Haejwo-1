@@ -8,7 +8,6 @@ jQuery(function() {
     {
       connected: function() {
         console.log(`user_${current_user_id}_channel connected`);
-
       },
 
       disconnected: function() {},
@@ -36,6 +35,19 @@ jQuery(function() {
               return false;
             }
           });
+
+          if($('.page-current').data('name').startsWith('chatrooms-show')) {
+            const current_time = new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
+            const notificationFull = app.notification.create({
+              icon: '<i class="icon far fa-bell"></i>',
+              title: '새로운 메시지가 도착했습니다.',
+              titleRightText: current_time,
+              subtitle: data.message_content,
+              text: '',
+              closeTimeout: 800,
+            });
+            notificationFull.open();
+          }
 
           messages.addMessage({
             text: data.message_content,
