@@ -11,7 +11,7 @@
               <% target_event = event %>
               <div class="content-box">
                 <div class="user-forum">
-                  <img data-src="<%= event.user.thumbnail_url %>" class="lazy lazy-fade-in demo-lazy" style="height: 35px;">
+                  <img data-src="<%= event.user.thumbnail_url %>" class="lazy" style="height: 35px;">
                   <div class="title-name">
                     <span><%= event.user&.name %></span>
                     <% if event.user == current_user && event.state == 'matching' %>

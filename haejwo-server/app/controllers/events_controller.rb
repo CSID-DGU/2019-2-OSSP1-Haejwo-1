@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   before_action :load_selectors, only: %i[new edit]
 
 	def index
-		@events = Event.all.order("created_at DESC")
+		@events = Event.includes(:user, :building)
+                   .order('CASE WHEN performer_id IS NULL THEN 0 ELSE 1 END, created_at')
 	end
 
 	# 심부름 생성하기

@@ -3,7 +3,7 @@ class BuildingsController < ApplicationController
 
   def show
     @events = @building.events
-                       .not_performed
+                       .matching
                        .order(created_at: :desc)
   end
 
