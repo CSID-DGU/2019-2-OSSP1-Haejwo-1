@@ -5,6 +5,7 @@ app.tab.show('#home-tab');
 shortNoti('심부름이 정상적으로 생성되었습니다.');
 setTimeout(function(){
   app.popup.close();
+}, 200);
+setTimeout(function(){
   app.view.main.router.refreshPage();
-  app.preloader.hide();
-}, 500);
+}, 300)
