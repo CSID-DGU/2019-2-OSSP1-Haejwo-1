@@ -33,7 +33,7 @@ $$('.events__do').click(function(){
       url: `/events/perform/${eventId}`,
       type: "post",
       success: function(response) {
-        $$('#events__do').remove();
+        $$(`#events__do_${eventId}`).remove();
         $$(`#events__do_result_${eventId}`).append(`<span style="float: right;"><i class="fas fa-check"></i></span>`);
         app.tab.show('#noti-chat-tab');
         app.views.current.router.navigate(`/chatrooms/${response.chatroomId}`);

@@ -32,7 +32,7 @@
                     <% elsif user_signed_in? %>
                       <div id="events__do_result_<%= event.id %>" class="event-status">
                         <% if event.state == 'matching' %>
-                          <%= link_to '내가 하기!', '#', class: "button button-fill-ios events__do", style: "float: right;", data: {id: event.id} %>
+                          <%= link_to '내가 하기!', '#', id: "events__do_#{event.id}", class: "button button-fill-ios events__do", style: "float: right;", data: {id: event.id} %>
                         <% else %>
                           <span style="float: right;"><i class="fas fa-check"></i></span>
                         <% end %>
