@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = 'Heajwo Admin'
+  config.site_title = 'Haejwo Admin'
 
   config.before_action do
     params.permit!

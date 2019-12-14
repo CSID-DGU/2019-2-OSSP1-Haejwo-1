@@ -17,6 +17,10 @@ class Event < ApplicationRecord
 
   acts_as_taggable
 
+  def to_s
+    title
+  end
+
   def method
     errors.add(:chatroom, '심부름에 관련된 채팅방은 한 개여야 합니다.') ## if ### >= 2
   end

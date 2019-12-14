@@ -176,6 +176,8 @@ ko:
       notice: 공지사항
       faq: FAQ
       banner: 배너
+      event: 심부름
+      report: 신고
 
     errors:
       models:
