@@ -33,8 +33,6 @@
         </div>
       </div>
     </div>
-
-    <% if @chatroom.messages.exists? %>
       <div id="messages">
         <!-- Full layout sent message -->
         <% @chatroom.messages.each do |msg| %>
@@ -47,7 +45,6 @@
               </div>
             </div>
           <% else %>
-            <!-- Full layout received message -->
             <div class="message message-received" id="received-message">
               <div class="message-avatar" style="background-image:url(<%= msg.sender.thumbnail_url %>);"></div>
               <div class="message-content">
@@ -59,8 +56,6 @@
             </div>
           <% end %>
         <% end %>
-      <% end %>
-      <!-- Messages -->
     </div>
   </div>
 </div>
@@ -145,5 +140,5 @@
 <%= content_for :before_remove do %>
   setTimeout(function(){
     app.views.current.router.refreshPage();
-  }, 100);
+  }, 300);
 <% end %>

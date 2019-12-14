@@ -18,6 +18,10 @@ class User < ApplicationRecord
   scope :whitelist, -> { where(blacklist: false) }
   scope :blacklist, -> { where(blacklist: true) }
 
+  def to_s
+    name
+  end
+
   def thumbnail_url
     thumbnail.url.present? ? thumbnail.url : '/vuma/images/profile.png'
   end
