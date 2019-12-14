@@ -123,9 +123,3 @@
     }, 2000);
   });
 <% end %>
-
-<%= content_for :before_remove do %>
-  setTimeout(function(){
-    app.views.current.router.refreshPage();
-  }, 500);
-<% end %>

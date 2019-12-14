@@ -2,7 +2,7 @@
   <div class="subnavbar-inner">
     <div class="segmented segment-custom">
       <a href="#tab1" class="button tab-link tab-link-active">알림</a>
-      <a href="#tab2" class="button tab-link">채팅</a>
+      <a href="#tab2" class="button tab-link" id="chatroom-tab">채팅</a>
     </div>
   </div>
 </div>
@@ -18,7 +18,6 @@
 
           <div id="tab2" class="tab">
             <%= render "chatroom_list", chatrooms: @chatrooms %>
-
           </div>
         </div>
       </div>
