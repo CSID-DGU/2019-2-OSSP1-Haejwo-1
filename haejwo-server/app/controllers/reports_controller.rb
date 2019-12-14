@@ -8,14 +8,15 @@ class ReportsController < ApplicationController
   end
 
   def create
+    r_params = report_params
+    r_params[:event] = @event
     if @event.performer == current_user
-      @report = Report.create!(user: @event.user, event: @event)
+      r_params[:user] = @event.user
+      @report = Report.create!(r_params)
     else
+      r_params[:user] = @event.performer
       @report = Report.create!(user: @event.performer, event: @event)
     end
-    @report.user.blacklist = true
-    @report.user.save
-    @report.update(report_params)
   end
 
   def check_valid
@@ -26,7 +27,7 @@ class ReportsController < ApplicationController
     else
       report.user = @event.performer
     end
-    
+
     @valid = report.valid?
     @msg = report.errors.full_messages[0] if !@valid
   end
