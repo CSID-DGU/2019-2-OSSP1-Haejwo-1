@@ -2,11 +2,28 @@ ActiveAdmin.register User, as: 'Certifacation' do
   menu parent: '인증관리', label: '사용자인증관리'
   actions :all, except: [:new, :create]
 
+  controller do
+    def scoped_collection
+      User.waiting
+    end
+  end
+
   scope -> { '전체' }, :all
 
   filter :name_cont, label: '이름으로 검색'
   filter :email_cont, label: '이메일로 검색'
   filter :phone_cont, label: '전화번호로 검색'
+
+  batch_action '인증상태 변경', form: {
+    state: User::CERTIFICATION_STATES
+  } do |ids, inputs|
+    users = User.find(ids)
+    users.each do |user|
+      user.update!(certification_state: inputs[:state])
+    end
+    flash[:notice] = "해당 사용자(들)의 인증이 성공적으로 처리 되었습니다."
+    redirect_back(fallback_location: collection_path)
+  end
 
   index do
     selectable_column

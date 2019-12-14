@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  CERTIFICATION_STATES = %i[unapproved waiting approved].freeze
+
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable
 
@@ -9,7 +11,7 @@ class User < ApplicationRecord
   has_many :reports, dependent: :destroy
 
   enum gender: %i[no_select man woman]
-  enum certification_state: %i[unapproved waiting approved]
+  enum certification_state: CERTIFICATION_STATES
   enum device_type: %i[android ios]
 
   mount_uploader :thumbnail, ImageUploader
