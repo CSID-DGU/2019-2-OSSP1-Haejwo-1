@@ -50,7 +50,7 @@ $$('#events__delete_btn').click(function(){
     url: `/events/${eventId}`,
     type: "delete",
     success: function(response) {
-      app.view.main.router.refreshPage();
+      app.views.current.router.refreshPage();
       shortNoti('심부름 요청글이 정상적으로 삭제되었습니다.');
     }
   });
@@ -64,4 +64,9 @@ const eventSearchbar = app.searchbar.create({
   searchIn: '.event-title'
 });
 
+
+var $ptrContent = $$('.ptr-content');
+$ptrContent.on('ptr:refresh', function (e) {
+  app.views.current.router.refreshPage();
+});
 <% end %>
