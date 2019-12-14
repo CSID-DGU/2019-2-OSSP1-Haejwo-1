@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+
+    <meta name="theme-color" content="#510fa8">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/blitzer/jquery-ui.css">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="Nectar Lite" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="format-detection" content="telephone=no" />
+    <title>SIMBA</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'theme' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/framework7/4.2.2/css/framework7.bundle.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" />
+    <link rel="stylesheet" href="/vuma/css/style.css">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="view view-main">
+        <div class="page">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <script src="/javascripts/f7.min.js"></script>
+    <script type="text/javascript">
+      const $$ = Dom7;
+      const app = new Framework7({
+        root: "#app",
+        name: "Haejwo",
+        theme: "ios",
+        id: "kr.rails",
+        routes: <%= rails_routes.to_json.html_safe %>,
+        view: {
+          iosDynamicNavbar: false,
+          xhrCache: false,
+          stackPages: true,
+          pushState: false,
+        },
+        lazy: {
+          threshold: 50,
+          sequential: false,
+        },
+        touch: {
+          disableContextMenu: false,
+        },
+        dialog: {
+          buttonOk: '확인',
+          buttonCancel: '취소',
+          touch: {
+            disableContextMenu: false,
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

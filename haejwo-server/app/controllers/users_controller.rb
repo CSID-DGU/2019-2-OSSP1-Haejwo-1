@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     current_user.update_attributes!(thumbnail_params)
   end
 
+
   def edit
   end
 
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = '이메일 인증에 실패하셨습니다.'
     end
-    redirect_to 'http://www.dongguk.edu/mbs/kr/index.jsp'
+    redirect_to single_complete_certification_path
   end
 
   def token

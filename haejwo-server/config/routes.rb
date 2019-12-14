@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     end
     member do
       post :token
-      get :confirm_email
     end
   end
   resources :events do
@@ -44,4 +43,8 @@ Rails.application.routes.draw do
   get '/waiting_user' => 'users#waiting_user'
 
   get '/user_privacy' => 'users#privacy'
+
+  namespace :single do
+    get :complete_certification
+  end
 end

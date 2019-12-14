@@ -1,0 +1,2 @@
+module SingleHelper
+end
