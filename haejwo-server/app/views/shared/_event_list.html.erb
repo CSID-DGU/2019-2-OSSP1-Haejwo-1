@@ -11,7 +11,7 @@
       <div class="forum" id="events">
         <ul>
           <% events.each do |event| %>
-            <li>
+            <li id="event-card-<%= event.id %>">
               <div class="content-box">
                 <div class="user-forum">
                   <img data-src="<%= event.user.thumbnail_url %>" class="lazy" style="height: 35px;">
