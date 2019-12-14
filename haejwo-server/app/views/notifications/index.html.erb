@@ -1,8 +1,8 @@
 <div class="subnavbar">
   <div class="subnavbar-inner">
     <div class="segmented segment-custom">
-      <a href="#tab1" class="button tab-link tab-link-active">알림</a>
-      <a href="#tab2" class="button tab-link" id="chatroom-tab">채팅</a>
+      <a href="#tab1" class="button tab-link tab-link-active">채팅</a>
+      <a href="#tab2" class="button tab-link" id="chatroom-tab">알림</a>
     </div>
   </div>
 </div>
@@ -13,11 +13,10 @@
       <div class="tabs-animated-wrap">
         <div class="tabs">
           <div id="tab1" class="tab tab-active">
-            <%= render "push_list", pushes: @pushes %>
-          </div>
-
-          <div id="tab2" class="tab">
             <%= render "chatroom_list", chatrooms: @chatrooms %>
+          </div>
+          <div id="tab2" class="tab">
+            <%= render "push_list", pushes: @pushes %>
           </div>
         </div>
       </div>
