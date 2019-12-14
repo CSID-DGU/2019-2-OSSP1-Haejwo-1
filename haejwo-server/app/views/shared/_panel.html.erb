@@ -13,7 +13,7 @@
           <ul>
             <% if user_signed_in? %>
               <li>
-                <%= link_to edit_user_registration_path, class: 'panel-close item-link item-content' do %>
+                <%= link_to '#', class: 'panel-close item-link item-content', onClick: "app.views.current.router.navigate('#{edit_user_registration_path}')" do %>
                   회원정보수정
                 <% end %>
               </li>
@@ -24,12 +24,12 @@
               </li>
             <% else %>
               <li>
-                <%= link_to new_user_session_path, class: 'panel-close item-link item-content' do %>
+                <%= link_to '#', class: 'panel-close item-link item-content', onClick: "app.views.current.router.navigate('#{new_user_session_path}')" do %>
                   로그인
                 <% end %>
               </li>
               <li>
-                <%= link_to new_user_registration_path, class: 'panel-close item-link item-content' do %>
+                <%= link_to '#', class: 'panel-close item-link item-content', onClick: "app.views.current.router.navigate('#{new_user_registration_path}')" do %>
                   회원가입
                 <% end %>
               </li>
