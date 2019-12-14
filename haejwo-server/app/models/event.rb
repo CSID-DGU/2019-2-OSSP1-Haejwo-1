@@ -11,6 +11,9 @@ class Event < ApplicationRecord
   validates :time_limit, presence: true
   validates :reward, numericality: {greater_than_or_equal_to: 0}
 
+  scope :not_performed, -> { where(performer_id: nil) }
+  scope :performed, -> { where.not(performer_id: nil) }
+
   # validate :method
 
   enum state: STATES

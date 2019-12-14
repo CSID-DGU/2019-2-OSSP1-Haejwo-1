@@ -16,7 +16,8 @@
 <%= content_for :init do %>
 const locations = [
   <% @buildings.each do |building| %>
-    ['<%= building.name %><%= building.events.exists? ? "(#{building.events.size})" : '' %>', <%= building.lat %>, <%= building.lng %>, <%= building.id %>],
+    <% not_performed_events = building.events.not_performed %>
+    ['<%= building.name %><%= not_performed_events.exists? ? "(#{not_performed_events.size})" : '' %>', <%= building.lat %>, <%= building.lng %>, <%= building.id %>],
   <% end %>
 ]
 initMap(locations);

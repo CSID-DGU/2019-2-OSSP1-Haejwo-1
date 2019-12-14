@@ -2,7 +2,9 @@ class BuildingsController < ApplicationController
   before_action :set_building, only: :show
 
   def show
-    @events = @building.events.order(created_at: :desc)
+    @events = @building.events
+                       .not_performed
+                       .order(created_at: :desc)
   end
 
   private
