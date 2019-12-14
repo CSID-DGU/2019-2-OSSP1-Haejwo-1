@@ -8,6 +8,7 @@ ActiveAdmin.register Report do
     reports = Report.find(ids)
     reports.each do |report|
       report.user.update(blacklist: inputs[:blacklist])
+      report.user.send_push('신고 누적처리 되었습니다.', '당분간 해줘 서비스를 해당 계정으로 이용하실 수 없습니다.')
     end
     flash[:notice] = "해당 신고 처리가 완료되었습니다."
     redirect_back(fallback_location: collection_path)
