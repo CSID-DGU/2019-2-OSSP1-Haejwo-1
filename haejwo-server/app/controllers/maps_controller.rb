@@ -1,5 +1,8 @@
 class MapsController < ApplicationController
   def index
-    @buildings = Building.includes(:events)
+    @buildings = Building.joins(:events)
+                         .select('buildings.*, COUNT("events") matching_events_count')
+                         .where(events: {state: 'matching'})
+                         .group('buildings.id')
   end
 end

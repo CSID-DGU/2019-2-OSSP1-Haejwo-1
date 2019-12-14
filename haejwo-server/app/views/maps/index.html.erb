@@ -16,9 +16,7 @@
 <%= content_for :init do %>
 const locations = [
   <% @buildings.each do |building| %>
-    <% matching_events = building.events.matching %>
-    <% matching_events_count = matching_events.size %>
-    <% events_count = (matching_events_count == 0) ? '' : "(#{matching_events_count})" %>
+    <% events_count = (building.matching_events_count == 0) ? '' : "(#{building.matching_events_count})" %>
     ['<%= building.name %><%= events_count %>', <%= building.lat %>, <%= building.lng %>, <%= building.id %>],
   <% end %>
 ]
