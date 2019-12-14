@@ -8,6 +8,9 @@
   <%= yield :style %>
 </style>
 <script>
+  <% if params[:main] != 'true' %>
+    gen_preloader();
+  <% end %>
   return {
     created: function() {
       <%= yield :created %>
@@ -21,21 +24,15 @@
         var notice = '<%= params[:notice] %>';
         var splittedNotice = notice.split('+');
         var joinedNotice = splittedNotice.join(' ');
-        if (notice !== '') {
-          const notificationFull = app.notification.create({
-            icon: '<i class="icon far fa-bell"></i>',
-            title: '알림',
-            titleRightText: '<%= Time.current %>',
-            subtitle: joinedNotice,
-            text: '',
-            closeTimeout: 1200,
-          });
-          notificationFull.open();
-        }
+        if (notice !== '') shortNotification(joinedNotice);
         <%= yield :init %>
       },
       pageAfterIn: function() {
+        app.preloader.hide();
         <%= yield :afterin %>
+      },
+      pageBeforeRemove: function() {
+        <%= yield :before_remove %>
       }
     }
   }

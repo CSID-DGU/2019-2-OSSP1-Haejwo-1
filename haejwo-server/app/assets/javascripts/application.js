@@ -18,6 +18,27 @@
 //= require_tree ./channels
 //= require cable
 
+function gen_preloader() {
+  app.preloader.show();
+}
+
+function hide_preloader() {
+  app.preloader.hide();
+}
+
+function shortNotification(msg) {
+  const current_time = new Date().toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
+  const notificationFull = app.notification.create({
+    icon: '<i class="icon far fa-bell"></i>',
+    title: '알림',
+    titleRightText: current_time,
+    subtitle: msg,
+    text: '',
+    closeTimeout: 1000,
+  });
+  notificationFull.open();
+}
+
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
