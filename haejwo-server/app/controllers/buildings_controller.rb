@@ -5,7 +5,7 @@ class BuildingsController < ApplicationController
     @events = @building.events
                        .matching
                        .where('time_limit >= ?', Time.current)
-                       .order(created_at: :desc)
+                       .order(:time_limit)
   end
 
   private

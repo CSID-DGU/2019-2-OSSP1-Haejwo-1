@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 	def index
 		@events = Event.includes(:user, :building)
                    .where('time_limit >= ?', Time.current)
-                   .order('CASE WHEN performer_id IS NULL THEN 0 ELSE 1 END, created_at desc')
+                   .order('CASE WHEN performer_id IS NULL THEN 0 ELSE 1 END, time_limit')
 	end
 
 	# 심부름 생성하기
