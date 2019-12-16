@@ -242,6 +242,10 @@ ko:
         kakao: 카카오
         facebook: 페이스북
         naver: 네이버
+      certification_state:
+        unapproved: 미인증
+        waiting: 인증대기
+        approved: 인증
     pointhistory:
       state:
         accumulate: 적립
