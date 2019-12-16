@@ -17,7 +17,9 @@ ActiveAdmin.register User do
     column :image do |user|
       image_tag(user.student_card_image_url, class: 'admin-index-image')
     end
-    tag_column :account_type
+    tag_column :account_type do |user|
+      user.enum_ko(:account_type)
+    end
     column :email
     column :sign_in_count
     column :name

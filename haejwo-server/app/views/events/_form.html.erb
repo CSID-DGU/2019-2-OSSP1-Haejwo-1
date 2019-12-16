@@ -4,7 +4,7 @@
   <ul>
     <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
-        <div class="item-title item-label">제목</div>
+        <div class="item-title item-label">제목*</div>
         <div class="item-input-wrap">
           <%= f.text_field :title %>
           <span class="input-clear-button"></span>
@@ -13,7 +13,7 @@
     </li>
 		<li class="item-content item-input" style="margin-bottom: 10px;">
 			<div class="item-inner">
-				<div class="item-title item-label">심부름 받을 건물</div>
+				<div class="item-title item-label">심부름 받을 건물*</div>
 				<div class="item-input-wrap input-dropdown-wrap">
 					<%= f.select :building_id, building_selectors, include_blank: true %>
 				</div>
@@ -21,7 +21,7 @@
 		</li>
     <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
-        <div class="item-title item-label">상세위치</div>
+        <div class="item-title item-label">상세위치*</div>
         <div class="item-input-wrap">
           <%= f.text_field :detail_place %>
           <span class="input-clear-button"></span>
@@ -30,7 +30,7 @@
     </li>
     <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
-        <div class="item-title item-label">보상금액</div>
+        <div class="item-title item-label">보상금액*</div>
         <div class="item-input-wrap">
           <%= f.select :reward, options_for_select((500..100000).step(500), event.reward), include_blank: true %>
         </div>
@@ -38,7 +38,7 @@
     </li>
     <li class="item-content item-input" style="margin-bottom: 10px;">
       <div class="item-inner">
-        <div class="item-title item-label">제한시간</div>
+        <div class="item-title item-label">제한시간*</div>
         <div class="item-input-wrap">
           <%= f.datetime_local_field :time_limit %>
         </div>
