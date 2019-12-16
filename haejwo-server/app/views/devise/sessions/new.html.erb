@@ -45,10 +45,12 @@
 				</div>
 				<div class="sign-in-with">
 					<ul>
-						<li class="bg-facebook">
-							<i class="fab fa-facebook-f"></i>페이스북 로그인
-						</li>
-            <%= link_to user_kakao_omniauth_authorize_path, method: :get do %>
+            <%= link_to user_facebook_omniauth_authorize_path, class: 'sns_login_btn', method: :get do %>
+  						<li class="bg-facebook">
+  							<i class="fab fa-facebook-f"></i>페이스북 로그인
+  						</li>
+            <% end %>
+            <%= link_to user_kakao_omniauth_authorize_path, class: 'sns_login_btn', method: :get do %>
   						<li class="bg-kakao kakao-btn">
   							 <i class="fas fa-comment"></i>카카오 로그인
   						</li>
@@ -79,10 +81,14 @@ $$('#submit-button').on('click', function(){
   }, 2000);
 });
 
-  <% if params[:privacy] == true || params[:privacy] == 'true' %>
-    console.log('hello');
-    setTimeout(function(){
-      app.views.current.router.navigate('/user_privacy');
-    }, 500);
-  <% end %>
+$$('.sns_login_btn').click(function(){
+  app.preloader.show();
+});
+
+<% if params[:privacy] == true || params[:privacy] == 'true' %>
+  console.log('hello');
+  setTimeout(function(){
+    app.views.current.router.navigate('/user_privacy');
+  }, 500);
+<% end %>
 <% end %>

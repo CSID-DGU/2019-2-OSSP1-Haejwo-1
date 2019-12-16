@@ -52,5 +52,6 @@ Rails.application.routes.draw do
 
   namespace :single do
     get :complete_certification
+    get :privacy
   end
 end
