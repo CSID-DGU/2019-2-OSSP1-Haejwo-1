@@ -10,12 +10,11 @@
     <% end %>
   </div>
 </div>
+
 <div class="page-content messages-content">
-  <div class="messages messages-init" data-new-messages-first="true">
-    <!-- Messages title -->
+  <div class="messages">
     <div class="messages-title"><b><%= @chatroom.created_at.strftime("%Y년 %m월 %d일,") %></b> <%= @chatroom.created_at.strftime("%H:%M") %></div>
 
-    <!-- Chatroom info -->
     <div class="divider-space"></div>
     <div class="row">
       <div class="col-80 margin-auto">
@@ -33,29 +32,31 @@
         </div>
       </div>
     </div>
-      <div id="messages">
-        <!-- Full layout sent message -->
-        <% @chatroom.messages.each do |msg| %>
-          <% if msg.sender == current_user %>
-            <div class="message message-sent sent">
-              <div class="message-content">
-                <div class="message-bubble">
-                  <div class="message-text"><%= msg.content %></div>
-                </div>
+    <div id="messages">
+      <!-- Full layout sent message -->
+      <% @chatroom.messages.each do |msg| %>
+        <% if msg.sender == current_user %>
+          <div class="message message-sent sent">
+            <div class="message-content">
+              <div class="message-bubble padding-vertical">
+                <div class="message-text small"><%= simple_format msg.content %></div>
               </div>
+              <div class="message-footer"><%= simple_time msg.created_at %></div>
             </div>
-          <% else %>
-            <div class="message message-received" id="received-message">
-              <div class="message-avatar" style="background-image:url(<%= msg.sender.thumbnail_url %>);"></div>
-              <div class="message-content">
-                <div class="message-name"><%= msg.sender&.name %></div>
-                <div class="message-bubble">
-                  <div class="message-text"><%= msg.content %></div>
-                </div>
+          </div>
+        <% else %>
+          <div class="message message-received" id="received-message">
+            <div class="message-avatar" style="background-image:url(<%= msg.sender.thumbnail_url %>);"></div>
+            <div class="message-content">
+              <div class="message-name"><%= msg.sender&.name %></div>
+              <div class="message-bubble padding-vertical">
+                <div class="message-text small"><%= simple_format msg.content %></div>
               </div>
+              <div class="message-footer"><%= simple_time msg.created_at %></div>
             </div>
-          <% end %>
+          </div>
         <% end %>
+      <% end %>
     </div>
   </div>
 </div>
