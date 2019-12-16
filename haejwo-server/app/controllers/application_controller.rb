@@ -38,6 +38,10 @@ class ApplicationController < ActionController::Base
     [nil, request.url].include?(request.env['HTTP_REFERER'])
   end
 
+  def simple_time(time = nil)
+    time.methods.include?(:strftime) ? time&.strftime('%m/%d %H:%M') : ''
+  end
+
   def sort_params(default = {created_at: :desc})
     sort = default.keys.first.to_s
     sort = params[:sort] if params[:sort]
