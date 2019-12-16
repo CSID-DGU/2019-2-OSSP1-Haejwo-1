@@ -1,6 +1,6 @@
 <template>
-  <% toolbar_state = current_page?('/') || (params['main'] == 'true') ? '' : 'no-toolbar' %>
-  <div class="page <%= toolbar_state %>" data-name="<%= data_name %><%= Time.now.to_i %>">
+  <% main = params[:main] == 'true' ? true : false %>
+  <div class="page <%= main ? '' : 'no-toolbar' %>" data-name="<%= data_name %><%= Time.current.to_i %>">
     <%= yield %>
   </div>
 </template>
@@ -8,9 +8,10 @@
   <%= yield :style %>
 </style>
 <script>
-  <% if params[:main] != 'true' %>
-    gen_preloader();
-  <% end %>
+  if (<%= !main %>) {
+    window.history.pushState('forward', null, '/#' + '<%= data_name %>');
+    app.preloader.show();
+  }
   return {
     created: function() {
       <%= yield :created %>
@@ -19,8 +20,7 @@
       <%= yield :mounted %>
     },
     on: {
-      pageInit: function(e) {
-        window.history.pushState('forward', null, '/#' + '<%= data_name %>');
+      pageInit: function() {
         var notice = '<%= params[:notice] %>';
         var splittedNotice = notice.split('+');
         var joinedNotice = splittedNotice.join(' ');

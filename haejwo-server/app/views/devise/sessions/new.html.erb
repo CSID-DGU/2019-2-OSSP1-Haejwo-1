@@ -37,7 +37,39 @@
       </div>
     <% end %>
   </div>
+  <div class="segments-page">
+    <div class="container">
+      <div class="sign-in">
+				<div class="wrap-title">
+					<h3>SNS계정으로 로그인 하기</h3>
+				</div>
+				<div class="sign-in-with">
+					<ul>
+						<li class="bg-facebook">
+							<i class="fab fa-facebook-f"></i>페이스북 로그인
+						</li>
+            <%= link_to user_kakao_omniauth_authorize_path, method: :get do %>
+  						<li class="bg-kakao kakao-btn">
+  							 <i class="fas fa-comment"></i>카카오 로그인
+  						</li>
+            <% end %>
+					</ul>
+				</div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<%= content_for :style do %>
+.segments-page {
+  padding: 0px 0px;
+}
+
+.kakao-btn {
+  background: #F7E418 !important;
+  color: black !important;
+}
+<% end %>
 
 <%= content_for :init do %>
 $$('#submit-button').on('click', function(){

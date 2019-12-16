@@ -1,9 +1,11 @@
 class User < ApplicationRecord
   CERTIFICATION_STATES = %i[unapproved waiting approved].freeze
+  ACCOUNT_TYPES = %i{default naver kakao facebook}
 
   devise :database_authenticatable, :registerable, :trackable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable
 
+  has_many :identities, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :chatrooms, through: :messages, dependent: :destroy
@@ -13,6 +15,7 @@ class User < ApplicationRecord
   enum gender: %i[no_select man woman]
   enum certification_state: CERTIFICATION_STATES
   enum device_type: %i[android ios]
+  enum account_type: ACCOUNT_TYPES
 
   mount_uploader :thumbnail, ImageUploader
   mount_uploader :student_card_image, ImageUploader

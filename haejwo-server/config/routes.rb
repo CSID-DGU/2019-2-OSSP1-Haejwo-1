@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-  devise_for :users
   root 'events#index'
-  get '/mypage' => 'users#mypage'
+  ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
+  }
 
   resources :users, only: :update do
     collection do
@@ -17,6 +19,9 @@ Rails.application.routes.draw do
       post :token
     end
   end
+
+  get '/mypage' => 'users#mypage'
+
   resources :events do
     post :check_valid, on: :collection
     resources :reports, only: [:new, :create]

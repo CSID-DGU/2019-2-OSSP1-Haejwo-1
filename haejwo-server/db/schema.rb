@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_14_034718) do
+ActiveRecord::Schema.define(version: 2019_12_16_065437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,13 +61,6 @@ ActiveRecord::Schema.define(version: 2019_12_14_034718) do
     t.index ["request_user_id"], name: "index_chatrooms_on_request_user_id"
   end
 
-  create_table "contacts", force: :cascade do |t|
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_contacts_on_user_id"
-  end
-
   create_table "events", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
@@ -84,6 +77,15 @@ ActiveRecord::Schema.define(version: 2019_12_14_034718) do
     t.index ["building_id"], name: "index_events_on_building_id"
     t.index ["performer_id"], name: "index_events_on_performer_id"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -174,6 +176,7 @@ ActiveRecord::Schema.define(version: 2019_12_14_034718) do
     t.boolean "blacklist", default: false
     t.string "student_email"
     t.string "certification_token"
+    t.integer "account_type", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -181,10 +184,10 @@ ActiveRecord::Schema.define(version: 2019_12_14_034718) do
   add_foreign_key "chatrooms", "events"
   add_foreign_key "chatrooms", "users", column: "perform_user_id"
   add_foreign_key "chatrooms", "users", column: "request_user_id"
-  add_foreign_key "contacts", "users"
   add_foreign_key "events", "buildings"
   add_foreign_key "events", "users"
   add_foreign_key "events", "users", column: "performer_id"
+  add_foreign_key "identities", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
