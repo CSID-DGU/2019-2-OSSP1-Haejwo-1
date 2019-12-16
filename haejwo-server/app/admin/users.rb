@@ -14,7 +14,7 @@ ActiveAdmin.register User do
     column :image do |user|
       image_tag(user.thumbnail_url ,class: 'admin-index-image')
     end
-    column :image do |user|
+    column :student_card_image_url, '학생증사진' do |user|
       image_tag(user.student_card_image_url, class: 'admin-index-image')
     end
     tag_column :account_type do |user|

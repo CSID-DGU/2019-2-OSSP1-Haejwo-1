@@ -1,7 +1,8 @@
 app.popup.close();
+app.preloader.show();
 setTimeout(function(){
   shortNoti('승인 요청이 왼료되었습니다.');
 }, 300);
 setTimeout(function(){
-  app.views.current.router.refreshPage();
+  location.reload();
 }, 600);

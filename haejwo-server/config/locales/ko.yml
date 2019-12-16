@@ -62,6 +62,7 @@ ko:
       user:
         account_type: 계정타입
         point: 적립금
+        student_card_image_url: 학생증 이미지
       item:
         sale_rate: 할인율
         category: 카테고리
