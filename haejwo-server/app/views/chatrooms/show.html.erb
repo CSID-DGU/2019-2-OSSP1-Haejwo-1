@@ -132,6 +132,8 @@
       success: function(response){
         messages.addMessage({
           text: msgContent,
+          name: `<%= current_user.name %>`,
+          avatar: `<%= current_user.thumbnail_url %>`
         });
       }
     });
