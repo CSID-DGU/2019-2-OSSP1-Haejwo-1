@@ -36,7 +36,7 @@
       <% @chatroom.messages.each do |msg| %>
         <% if msg.sender == current_user %>
           <div class="message message-sent">
-            <div class="message-avatar" style="background-image:url(<%= msg.receiver.thumbnail_url %>);"></div>
+            <div class="message-avatar" style="background-image:url(<%= current_user.thumbnail_url %>);"></div>
             <div class="message-content">
               <div class="message-bubble padding-vertical">
                 <div class="message-text small"><%= simple_format msg.content %></div>
