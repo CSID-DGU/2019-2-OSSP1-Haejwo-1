@@ -41,7 +41,6 @@
               <div class="message-bubble">
                 <div class="message-text small"><%= simple_format msg.content %></div>
               </div>
-              <div class="message-footer"><%= simple_time msg.created_at %></div>
             </div>
           </div>
         <% else %>
@@ -52,7 +51,6 @@
               <div class="message-bubble">
                 <div class="message-text small"><%= simple_format msg.content %></div>
               </div>
-              <div class="message-footer"><%= simple_time msg.created_at %></div>
             </div>
           </div>
         <% end %>
@@ -84,7 +82,7 @@
   }
 
   .message-content {
-    padding: 15px !important;
+    padding: 5px !important;
   }
 <% end %>
 
