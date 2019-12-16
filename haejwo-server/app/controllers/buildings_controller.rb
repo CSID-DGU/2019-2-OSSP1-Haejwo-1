@@ -4,6 +4,7 @@ class BuildingsController < ApplicationController
   def show
     @events = @building.events
                        .matching
+                       .where('time_limit >= ?', Time.current)
                        .order(created_at: :desc)
   end
 
