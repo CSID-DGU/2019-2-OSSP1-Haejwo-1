@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   layout :detect_layout
 
-  helper_method :f7_request?, :rails_routes, :data_name
+  helper_method :f7_request?, :rails_routes, :data_name, :simple_time
   helper_method :no_back?
 
   def detect_layout
