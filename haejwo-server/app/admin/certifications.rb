@@ -15,7 +15,7 @@ ActiveAdmin.register User, as: 'Certifacation' do
   filter :phone_cont, label: '전화번호로 검색'
 
   batch_action '인증상태 변경', form: {
-    state: User::CERTIFICATION_STATES
+    state: User.enum_selectors(:certification_state)
   } do |ids, inputs|
     users = User.find(ids)
     users.each do |user|
