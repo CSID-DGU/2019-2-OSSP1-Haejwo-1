@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   belongs_to :building, counter_cache: true
   belongs_to :performer, class_name: 'User', optional: true
 
-  has_many :chatrooms, dependent: :destroy
+  has_one :chatroom, dependent: :destroy
   has_many :reports, dependent: :destroy
 
   validates :title, presence: true
