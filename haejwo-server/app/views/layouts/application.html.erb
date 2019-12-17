@@ -119,6 +119,12 @@
         }, 2000);
       });
 
+      $$('#map-tab').click(function(){
+        setTimeout(function(){
+          app.views.current.router.refreshPage();
+        }, 500);
+      });
+
       if (window.history && window.history.pushState) {
         $(window).on('popstate', function() {
           const pageName = $$('.page-current').data('pageName');
