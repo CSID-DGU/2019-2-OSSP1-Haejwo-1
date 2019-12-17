@@ -7,7 +7,7 @@ class Refund
     @refund_requests = refund_requests
   end
 
-  def exec
+  def success
     ActiveRecord::Base.transaction do
       if request_refund?
         refund = _event.refunds.create!
