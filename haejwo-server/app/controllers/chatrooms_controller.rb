@@ -2,11 +2,11 @@ class ChatroomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @chatrooms = Chatroom.joins("LEFT JOIN messages on messages.chatroom_id = chatrooms.id")
-                         .includes(:request_user, :event, messages: :sender)
+    @chatrooms = Chatroom.joins(:messages)
                          .where('request_user_id = :user_id OR perform_user_id = :user_id', user_id: current_user.id)
-                         .uniq
-                         .order('messages.created_at desc')
+                         .includes(:request_user, :event, messages: :sender)
+                         .group('chatrooms.id')
+                         .order('max(messages.created_at) desc')
   end
 
   # 채팅방 상세보기
