@@ -4,7 +4,7 @@ class ChatroomsController < ApplicationController
   def index
     @chatrooms = Chatroom.joins(:messages)
                          .where('request_user_id = :user_id OR perform_user_id = :user_id', user_id: current_user.id)
-                         .includes(:request_user, :event, messages: :sender)
+                         .includes(:request_user, :event, messages: :senders)
                          .group('chatrooms.id')
                          .uniq
                          .order('max(messages.created_at) desc')
