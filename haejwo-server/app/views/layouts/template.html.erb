@@ -9,7 +9,6 @@
 </style>
 <script>
   if (<%= !main %>) {
-    window.history.pushState('forward', null, '/#' + '<%= data_name %>');
     app.preloader.show();
   }
   return {
@@ -21,6 +20,7 @@
     },
     on: {
       pageInit: function() {
+        window.history.pushState('forward', null, '/#' + '<%= data_name %>');
         var notice = '<%= params[:notice] %>';
         var splittedNotice = notice.split('+');
         var joinedNotice = splittedNotice.join(' ');
