@@ -1,5 +1,6 @@
 # 2019-2-OSSP1-Haejwo-1
 ### 동국대학교 학생들을 위한 심부름 애플리케이션
+[해줘앱 다운로드](https://play.google.com/store/apps/details?id=kr.rails)
 ![app_icon](haejwo_icon_new.png)
 
 ## 프로젝트 설명
