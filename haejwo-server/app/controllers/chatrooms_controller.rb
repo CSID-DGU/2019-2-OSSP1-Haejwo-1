@@ -6,7 +6,9 @@ class ChatroomsController < ApplicationController
                          .where('request_user_id = :user_id OR perform_user_id = :user_id', user_id: current_user.id)
                          .includes(:request_user, :event, messages: :sender)
                          .group('chatrooms.id')
+                         .uniq
                          .order('max(messages.created_at) desc')
+
   end
 
   # 채팅방 상세보기
