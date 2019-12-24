@@ -1,2 +1,5 @@
 .idea
 .DS_Store
+haejwo-android/app
+haejwo-server/app
+haejwo.server/public
